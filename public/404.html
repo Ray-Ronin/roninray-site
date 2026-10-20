@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Out of Court · Ronin Ray</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="/assets/arcade.css">
+</head>
+<body>
+  <div class="screen">
+    <div class="hud"><span>1P&nbsp;&nbsp;00</span><span class="hi">404</span></div>
+
+    <main class="attract">
+      <h1 class="title">OUT!</h1>
+      <p class="sub">THAT PAGE HIT THE TIN.</p>
+      <nav class="menu" aria-label="Pages">
+        <a class="on" href="/">BACK TO START</a>
+        <a href="/hogg-squash/">PLAY THE GAME</a>
+      </nav>
+    </main>
+
+    <footer class="foot">
+      <span>&copy; 2026 RONIN RAY</span>
+      <span>GT CAPSTONE &middot; HOGG MIDDLE SCHOOL</span>
+    </footer>
+  </div>
+  <script>
+    // Hover and focus move the menu bar, as on the homepage.
+    const items = [...document.querySelectorAll('.menu a')];
+    const set = el => items.forEach(i => i.classList.toggle('on', i === el));
+    items.forEach(el => { el.addEventListener('mouseenter', () => set(el)); el.addEventListener('focus', () => set(el)); });
+  </script>
+</body>
+</html>

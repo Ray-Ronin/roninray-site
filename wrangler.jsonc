@@ -1,0 +1,16 @@
+{
+  // roninray.com: the homepage and build log, served by Cloudflare Workers (static assets).
+  // The game itself is a separate Worker (Ray-Ronin/hogg-squash) on roninray.com/hogg-squash*.
+  // That route is more specific than roninray.com/*, so it wins for every /hogg-squash URL.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "roninray-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "roninray.com/*", "zone_name": "roninray.com" }
+  ]
+}
