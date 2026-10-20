@@ -1,0 +1,23 @@
+{
+  "a562e63": "Created the project's home on GitHub, where every change to the game is saved.",
+  "333ce2e": "Set up hosting on Cloudflare so the game has its own web address, starting with a placeholder page.",
+  "adb444c": "Moved in the research notes and design decisions, plus the ball physics rebuilt from the 1992 arcade game, with tests that check it against about 30,000 recorded frames of the real game.",
+  "2569406": "Wrote the step-by-step plan for version 1, from the first test screen to release.",
+  "f455093": "Installed Node.js and ran the physics tests for the first time to record a starting point.",
+  "68e44d9": "Changed the plan so each work session ends by writing the instructions for the next one.",
+  "487eb01": "The first thing on screen: the court, a ball and a stand-in player you can move, to test the ball physics by eye.",
+  "0a51f38": "Checkpoint: decided to keep drawing the game with plain Canvas instead of a game engine, kept the camera behind the players, and picked three character sizes.",
+  "c6a99f6": "Added the rules of a rally and squash scoring, checked by automated tests before any of it was playable.",
+  "b96c81f": "Approved the heights of the lines on the court and added a check that catches typing mistakes in the code.",
+  "2cee88c": "The first real game: two players share one keyboard and play full rallies with serving, turns and scoring.",
+  "5948c09": "The game now fills the whole browser window while keeping the pixel art sharp.",
+  "19027a7": "Players now grow and shrink smoothly as they move toward or away from the front wall, instead of jumping between three sizes.",
+  "c41c88a": "Updated the plan with what was learned from the first playable version.",
+  "4173965": "Hitting: swings use timings measured from the arcade game, with diving shots and on-screen signs when the ball is hit or missed.",
+  "58fa278": "The pause message now says PAUSED instead of FROZEN.",
+  "5b7babb": "Fixed the serve so it crosses the court and lands behind the opposite service box, as the rules require.",
+  "2905084": "Updated the plan for the next sessions after the latest changes.",
+  "55b3b87": "Play-test: played 2-player rallies and listed what to fix, which became a new fix-up session.",
+  "227bef5": "Fixes from the play-test: you can now aim your serve, dives last 2 seconds, and players change height along one smooth curve.",
+  "9fe3744": "Added a computer opponent that moves and hits like the arcade CPU, so you can now play alone."
+}

@@ -2,8 +2,10 @@
   "name": "roninray-site",
   "version": "0.1.0",
   "private": true,
-  "description": "roninray.com: homepage and build log for Hogg Squash. No build step; public/ is served as-is.",
+  "description": "roninray.com: homepage and build log for Hogg Squash. public/ is served as-is; npm run build adds the build log and old game versions from the game repo.",
   "scripts": {
-    "dev": "npx wrangler dev --port 8788"
-  }
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && npx wrangler dev --port 8788"
+  },
+  "type": "module"
 }

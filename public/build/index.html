@@ -4,25 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>How I Built Hogg Squash · Ronin Ray</title>
-  <meta name="description" content="The build log for Hogg Squash: every commit and playable old versions, from arcade research to a working CPU opponent.">
+  <meta name="description" content="The build log for Hogg Squash: every commit in plain English, and playable old versions, from arcade research to a working CPU opponent.">
+  <meta property="og:title" content="How I Built Hogg Squash">
+  <meta property="og:description" content="Every commit in plain English, and playable old versions of the game.">
+  <meta property="og:url" content="https://roninray.com/build/">
   <meta name="theme-color" content="#050505">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap">
   <link rel="stylesheet" href="/assets/arcade.css">
+  <link rel="stylesheet" href="/assets/build.css">
+  <script type="module" src="/assets/build-page.js"></script>
 </head>
 <body>
-  <div class="screen">
-    <div class="hud"><span><a href="/" style="color:inherit;text-decoration:none">&larr; START</a></span><span class="hi">BUILD LOG</span></div>
+  <div class="screen reading">
+    <div class="hud">
+      <span><a href="/" style="color:inherit;text-decoration:none">&lt; START</a></span>
+      <span id="hud-commits">COMMITS</span>
+      <span class="hi">BUILD LOG</span>
+    </div>
 
-    <main class="panel">
-      <h1 class="title" style="font-size:clamp(22px,5vw,44px)">HOW I<br>BUILT IT</h1>
-      <p>This page is coming soon. It will walk through how Hogg Squash was made, from studying the 1992 arcade game to a playable rally and a CPU opponent. It will list every commit and link to playable old versions along the way.</p>
-      <p>Until then, the full history is on GitHub: <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main">Ray-Ronin/hogg-squash commits</a>.</p>
-      <nav class="menu" aria-label="Pages">
-        <a class="on" href="/hogg-squash/">PLAY THE GAME</a>
-      </nav>
+    <main class="log-page">
+      <header class="intro">
+        <h1 class="title">HOW I<br>BUILT IT</h1>
+        <p>Hogg Squash is built in small steps. Each step is a short work session that ends with a commit: a saved change on GitHub. Between some steps I stop to play-test the game and decide what to fix next.</p>
+        <p>This page reads those commits straight from GitHub, so it is always up to date. Old versions stay playable, so you can see how the game grew.</p>
+        <div class="stats" id="stats"></div>
+        <p><a href="#latest">Jump to the latest step &darr;</a></p>
+      </header>
+
+      <section id="versions-section" aria-labelledby="versions-h">
+        <h2 id="versions-h">PLAY OLD VERSIONS</h2>
+        <div class="versions" id="versions"></div>
+      </section>
+
+      <section aria-labelledby="log-h">
+        <h2 id="log-h">THE LOG</h2>
+        <ol class="log" id="log"></ol>
+        <noscript><p class="status">The log needs JavaScript. The full history is on <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main">GitHub</a>.</p></noscript>
+      </section>
+
+      <section id="next-section" aria-labelledby="next-h">
+        <h2 id="next-h">UP NEXT</h2>
+        <ol class="next" id="next"></ol>
+      </section>
+
+      <p class="status"><span id="updated"></span> Source: <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main">Ray-Ronin/hogg-squash</a>.</p>
     </main>
 
     <footer class="foot">

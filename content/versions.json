@@ -1,0 +1,11 @@
+[
+  {
+    "id": "s1",
+    "commit": "487eb01",
+    "tag": "S1",
+    "title": "Physics test",
+    "about": "The very first playable build. One stand-in player and no racket art: just the court and a ball you can feed in to see how the arcade ball physics feels.",
+    "controls": [["W A S D", "move"], ["F / G", "hard / soft swing"], ["Space", "feed a ball"], ["R", "reset"], ["`", "debug overlay"]],
+    "note": "Needs a keyboard."
+  }
+]

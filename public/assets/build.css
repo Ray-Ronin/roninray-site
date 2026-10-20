@@ -1,0 +1,107 @@
+/* Build log page. Reading layout on the arcade screen: pixel type for labels, mono text for everything you read. */
+:root {
+  --panel: #111010;
+  --line: #2a2726;
+  --key: #1c1a1a;
+}
+.screen.reading { overflow: visible; }
+.screen.reading::after { display: none; }
+
+.log-page {
+  width: 100%; max-width: 860px; margin: 0 auto;
+  display: grid; gap: 64px;
+  font-family: var(--text); font-size: 16px; line-height: 1.65; color: var(--soft);
+}
+.log-page a { color: var(--dot); }
+.log-page h2 {
+  margin: 0; font: 400 clamp(13px, 2vw, 16px)/1.4 var(--pixel); color: var(--white); letter-spacing: .02em;
+}
+.log-page section { display: grid; gap: 24px; scroll-margin-top: 24px; }
+
+/* Intro */
+.intro { display: grid; gap: 20px; padding-top: 24px; }
+.intro .title { font-size: clamp(24px, 5.4vw, 48px); }
+.intro p { margin: 0; max-width: 62ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 400 clamp(8px, 1.2vw, 11px)/1.8 var(--pixel); color: var(--dim); }
+.stats b { color: var(--dot); font-weight: 400; }
+
+/* Tags and buttons shared by versions and the log */
+.tag {
+  display: inline-block; padding: 5px 7px 4px;
+  font: 400 11px/1 var(--pixel); color: #fff; background: var(--red);
+}
+.tag.kind-checkpoint, .tag.kind-prep { background: transparent; color: var(--dot); outline: 2px solid var(--dot); outline-offset: -2px; }
+.tag.kind-setup { background: #3a3534; }
+.tag.kind-art { background: #fff; color: #000; }
+.play {
+  justify-self: start; display: inline-flex; gap: .7em; align-items: center;
+  padding: 10px 14px; background: var(--red); color: #fff !important; text-decoration: none;
+  font: 400 12px/1 var(--pixel);
+}
+.play::before { content: "\25B6"; color: var(--dot); }
+.play:hover { background: #e01637; }
+.play:focus-visible, .log-page a:focus-visible, .log-page summary:focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
+
+/* Playable versions */
+.versions { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 16px; }
+.version {
+  display: grid; gap: 14px; align-content: start;
+  padding: 20px; background: var(--panel); border: 2px solid var(--line);
+  scroll-margin-top: 24px;
+}
+.version:target { border-color: var(--dot); }
+.v-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--dim); }
+.version h3 { margin: 0; font: 600 20px/1.3 var(--text); color: var(--white); }
+.version p { margin: 0; }
+.keys { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; align-items: center; }
+.keys dt { margin: 0; }
+.keys dd { margin: 0; color: var(--dim); }
+kbd {
+  display: inline-block; min-width: 2.2em; padding: 3px 7px; text-align: center;
+  font: 600 12px/1.3 var(--text); color: var(--white);
+  background: var(--key); border: 1px solid #3d3938; border-bottom-width: 3px;
+}
+.v-note { font-size: 13px; color: var(--dim); }
+
+/* The log */
+.log { list-style: none; margin: 0; padding: 0; display: grid; }
+.step { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 24px; scroll-margin-top: 24px; }
+.step-side { display: grid; justify-items: start; align-content: start; gap: 8px; padding-top: 4px; position: relative; }
+.step-side::after { /* the line joining one step to the next */
+  content: ""; position: absolute; left: 14px; top: 34px; bottom: 0; width: 2px; background: var(--line);
+}
+.step:last-child .step-side::after { display: none; }
+.kind { font: 400 8px/1.4 var(--pixel); color: var(--dim); letter-spacing: .04em; }
+.step-body { display: grid; gap: 12px; padding-bottom: 40px; min-width: 0; }
+.step-body h3 { margin: 0; font: 600 19px/1.35 var(--text); color: var(--white); text-wrap: balance; }
+.step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }
+.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.commit { display: grid; gap: 3px; }
+.commit p { margin: 0; }
+.sum { color: var(--soft); }
+.meta { font-size: 12.5px; color: var(--dim); overflow-wrap: anywhere; }
+.meta a { color: var(--dim); }
+.meta code { font: 600 12.5px var(--text); color: var(--dot); }
+.new { font: 400 8px/1 var(--pixel); color: #000; background: var(--dot); padding: 3px 5px 2px; margin-right: 6px; vertical-align: 1px; }
+details { font-size: 13px; color: var(--dim); }
+summary { cursor: pointer; width: max-content; max-width: 100%; }
+details pre {
+  margin: 8px 0 0; padding: 12px 14px; overflow-x: auto;
+  background: var(--panel); border-left: 2px solid var(--line);
+  font: 12.5px/1.6 var(--text); white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* Up next */
+.next { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.next li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 24px; align-items: baseline; }
+.next .you { font-size: 13px; color: var(--dim); }
+
+.status { margin: 0; font-size: 14px; color: var(--dim); }
+
+@media (max-width: 600px) {
+  .log-page { gap: 48px; }
+  .step, .next li { grid-template-columns: 1fr; gap: 10px; }
+  .step-side { grid-auto-flow: column; justify-content: start; align-items: center; gap: 12px; }
+  .step-side::after { display: none; }
+  .step-body { padding-bottom: 32px; }
+}
