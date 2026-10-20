@@ -40,6 +40,9 @@
 }
 .play::before { content: "\25B6"; color: var(--dot); }
 .play:hover { background: #e01637; }
+.v-play { display: flex; flex-wrap: wrap; gap: 10px; }
+.play.alt { background: transparent; outline: 2px solid var(--red); outline-offset: -2px; }
+.play.alt:hover { background: rgba(200, 16, 46, .25); }
 .play:focus-visible, .log-page a:focus-visible, .log-page summary:focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
 
 /* Playable versions */

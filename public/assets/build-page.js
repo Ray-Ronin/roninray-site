@@ -52,7 +52,11 @@ function render(data) {
     h('dl', { class: 'keys' }, v.controls.map((/** @type {[string, string]} */ [key, what]) =>
       [h('dt', {}, h('kbd', {}, key)), h('dd', {}, what)])),
     v.note ? h('p', { class: 'v-note' }, v.note) : null,
-    h('a', { class: 'play', href: `/versions/${v.id}/` }, `PLAY ${v.tag}`),
+    h('div', { class: 'v-play' },
+      h('a', { class: 'play', href: `/versions/${v.id}/` }, `PLAY ${v.tag}`),
+      (v.modes ?? []).map((/** @type {{ label: string, query: string }} */ m) =>
+        h('a', { class: 'play alt', href: `/versions/${v.id}/${m.query}` }, m.label)),
+    ),
   )));
   $('versions-section').hidden = !(data.versions ?? []).length;
 
