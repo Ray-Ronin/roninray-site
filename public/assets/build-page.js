@@ -110,7 +110,8 @@ async function main() {
     const fresh = [];
     for (const c of list) {
       if (c.sha === data.head) break;
-      fresh.push({ hash: c.sha, short: c.sha.slice(0, 7), date: c.commit.author.date, ...parseMessage(c.commit.message), live: true });
+      // Only mark commits NEW when there is a deployed log to be newer than.
+      fresh.push({ hash: c.sha, short: c.sha.slice(0, 7), date: c.commit.author.date, ...parseMessage(c.commit.message), live: Boolean(data.head) });
     }
     if (fresh.length) {
       data.commits = data.commits.concat(fresh.reverse());
