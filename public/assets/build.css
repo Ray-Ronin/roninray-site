@@ -72,6 +72,16 @@
 .kind { font: 400 8px/1.4 var(--pixel); color: var(--dim); letter-spacing: .04em; }
 .step-body { display: grid; gap: 12px; padding-bottom: 40px; min-width: 0; }
 .step-body h3 { margin: 0; font: 600 19px/1.35 var(--text); color: var(--white); text-wrap: balance; }
+.log-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.toggle {
+  padding: 8px 10px; background: transparent; color: var(--dot); cursor: pointer;
+  border: 2px solid var(--line); font: 400 11px/1 var(--pixel);
+}
+.toggle:hover { border-color: var(--dot); }
+.toggle:focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
+/* Collapsed: each step shows only its title, date and play link. */
+.log.collapsed .commits { display: none; }
+.log.collapsed .step-body { padding-bottom: 24px; }
 .step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .commit { display: grid; gap: 3px; }
 .commit p { margin: 0; }

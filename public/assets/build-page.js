@@ -97,6 +97,14 @@ function render(data) {
   if (data.generatedAt) $('updated').textContent = `Log rebuilt ${day(data.generatedAt, true)}. Newer commits appear here as soon as they're on GitHub.`;
 }
 
+// Collapse or expand every step's commit list. Starts expanded.
+$('log-toggle').addEventListener('click', e => {
+  const btn = /** @type {HTMLButtonElement} */ (e.currentTarget);
+  const collapsed = $('log').classList.toggle('collapsed');
+  btn.setAttribute('aria-expanded', String(!collapsed));
+  btn.textContent = collapsed ? 'EXPAND ALL' : 'COLLAPSE ALL';
+});
+
 async function main() {
   /** @type {any} */
   let data = null;
