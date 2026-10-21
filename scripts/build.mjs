@@ -44,7 +44,7 @@ const commits = gitText('log', BRANCH, '--reverse', `--format=%H${SEP}%aI${SEP}%
 const plan = parsePlan(gitText('show', `${BRANCH}:docs/plan.md`));
 
 // 4. Playable old versions. The game has no build step, so its files at a commit are the whole game.
-/** @type {{ id: string, commit: string, tag: string, title: string, about: string, controls: [string, string][], note?: string, modes?: { label: string, query: string }[], hash?: string, date?: string }[]} */
+/** @type {{ id: string, commit: string, tag: string, title: string, about: string, note?: string, modes?: { label: string, query: string }[], hash?: string, date?: string }[]} */
 const versions = readJson('content/versions.json');
 fs.rmSync(OUT_VERSIONS, { recursive: true, force: true });
 for (const v of versions) {

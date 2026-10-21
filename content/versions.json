@@ -5,7 +5,14 @@
     "tag": "S1",
     "title": "Physics test",
     "about": "The very first playable build. One stand-in player and no racket art: just the court and a ball you can feed in to see how the arcade ball physics feels.",
-    "controls": [["W A S D", "move"], ["F / G", "hard / soft swing"], ["Space", "feed a ball"], ["R", "reset"], ["`", "debug overlay"]],
+    "note": "Needs a keyboard."
+  },
+  {
+    "id": "s2",
+    "commit": "c6a99f6",
+    "tag": "S2",
+    "title": "Rules and scoring",
+    "about": "The rules of a rally and squash scoring, checked by automated tests. They run behind the scenes, so on screen it still plays like S1.",
     "note": "Needs a keyboard."
   },
   {
@@ -14,17 +21,41 @@
     "tag": "S3",
     "title": "First 2-player rally",
     "about": "The first version you can really play: two players share one keyboard, with serving, turns and scoring. The players are still colored boxes.",
-    "controls": [["W A S D", "player 1 move"], ["F / G", "player 1 hard / soft"], ["Arrows", "player 2 move"], ["Num 0 / Num .", "player 2 hard / soft"], ["Esc", "freeze"], ["`", "debug overlay"]],
-    "note": "Needs a keyboard. Player 2 uses the number pad."
+    "note": "Needs a keyboard."
+  },
+  {
+    "id": "s4b",
+    "commit": "227bef5",
+    "tag": "S4b",
+    "title": "Hitting and ball feel",
+    "about": "Swings use the arcade's timing and you can dive for shots. After the play-test: an aimed serve, 2-second dives and smoother player sizes.",
+    "note": "Needs a keyboard."
   },
   {
     "id": "s5",
     "commit": "9fe3744",
     "tag": "S5",
     "title": "First CPU opponent",
-    "about": "Play alone against a computer opponent that moves and hits like the arcade CPU. Swings use the arcade's timing, and you can dive for shots.",
-    "controls": [["W A S D", "move"], ["F / G", "hard / soft"], ["Esc", "pause"], ["`", "debug overlay"]],
-    "note": "Needs a keyboard. You serve first. In 2-player mode, player 2 uses the arrows and the number pad, as in S3.",
+    "about": "Play alone against a computer opponent that moves and hits like the arcade CPU.",
+    "note": "Needs a keyboard.",
+    "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
+  },
+  {
+    "id": "s6b",
+    "commit": "70ce5fe",
+    "tag": "S6b",
+    "title": "Nine difficulty levels",
+    "about": "The CPU plays very differently at each level, from slow and forgiving at level 1 to arcade-sharp at 9.",
+    "note": "Needs a keyboard. Starts at level 5.",
+    "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
+  },
+  {
+    "id": "s7",
+    "commit": "4349bd1",
+    "tag": "S7",
+    "title": "Gamepads",
+    "about": "Play on one or two controllers, or one player on the keyboard and one on a controller.",
+    "note": "Keyboard or gamepad.",
     "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
   }
 ]

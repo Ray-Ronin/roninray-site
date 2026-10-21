@@ -41,11 +41,9 @@ function render(data) {
 
   // Stats line
   const steps = groups.filter(g => g.kind === 'session').length;
-  const tests = groups.filter(g => g.kind === 'checkpoint').length;
   $('stats').replaceChildren(
     h('span', {}, h('b', {}, String(commits.length)), ' COMMITS'),
     h('span', {}, h('b', {}, String(steps)), ' SESSIONS'),
-    h('span', {}, h('b', {}, String(tests)), ' PLAY-TESTS'),
     commits.length ? h('span', {}, `${day(commits[0].date).toUpperCase()} – ${day(commits[commits.length - 1].date, true).toUpperCase()}`) : null,
   );
   document.getElementById('hud-commits')?.replaceChildren(`COMMITS ${commits.length}`);
@@ -55,11 +53,9 @@ function render(data) {
     h('div', { class: 'v-head' }, h('span', { class: 'tag kind-session' }, v.tag), h('span', {}, day(v.date, true))),
     h('h3', {}, v.title),
     h('p', {}, v.about),
-    h('dl', { class: 'keys' }, v.controls.map((/** @type {[string, string]} */ [key, what]) =>
-      [h('dt', {}, h('kbd', {}, key)), h('dd', {}, what)])),
     v.note ? h('p', { class: 'v-note' }, v.note) : null,
     h('div', { class: 'v-play' },
-      h('a', { class: 'play', href: `/versions/${v.id}/`, ...NEW_TAB }, `PLAY ${v.tag}`),
+      h('a', { class: 'play', href: `/versions/${v.id}/`, ...NEW_TAB }, 'PLAY'),
       (v.modes ?? []).map((/** @type {{ label: string, query: string }} */ m) =>
         h('a', { class: 'play alt', href: `/versions/${v.id}/${m.query}`, ...NEW_TAB }, m.label)),
     ),
