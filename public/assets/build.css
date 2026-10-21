@@ -22,6 +22,7 @@
 .intro { display: grid; gap: 20px; padding-top: 24px; }
 .intro .title { font-size: clamp(24px, 5.4vw, 48px); }
 .intro p { margin: 0; max-width: 62ch; }
+.intro .question { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); }
 .stats { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 400 clamp(8px, 1.2vw, 11px)/1.8 var(--pixel); color: var(--dim); }
 .stats b { color: var(--dot); font-weight: 400; }
 
