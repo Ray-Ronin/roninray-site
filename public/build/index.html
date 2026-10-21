@@ -52,7 +52,11 @@
                   <p class="meta">Oct 18 · Research the original game</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Pulled the graphics and 84 sound clips out of the game's ROM to study, for reference only.</p>
+                  <p class="sum">Found out what the original runs on: a 1992 arcade board with a Motorola 68000 processor, running code written for that chip alone.</p>
+                  <p class="meta">Oct 18 · The original's hardware</p>
+                </li>
+                <li class="commit">
+                  <p class="sum">Pulled the graphics and sound clips out of the game's ROM to study, for reference only.</p>
                   <p class="meta">Oct 18 · ROM graphics and sound extracted</p>
                 </li>
                 <li class="commit">
@@ -60,12 +64,15 @@
                   <p class="meta">Oct 18 · MAME test runs</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Decompiled the game's code, getting past its copy protection, to find the exact ball physics, shots and computer opponent.</p>
+                  <p class="sum">Decompiled the game's code to find the exact ball physics, shots and computer opponent.</p>
                   <p class="meta">Oct 18 · Ghidra decompile</p>
                   <details><summary>Technical notes</summary><pre>- Ghidra 12.1.3 on the 68000 program ROM
-- Copy protection: encrypted jump tables and constants, decrypted with MAME's
-  Gaelco keys (0x0F / 0x4228)
+- Turned the arcade's machine code back into readable code
 - Found the ball physics, shot tables, CPU "ghost ball" predictor and difficulty tables</pre></details>
+                </li>
+                <li class="commit">
+                  <p class="sum">Chose JavaScript, the language every web browser runs, so Hogg Squash is a complete rewrite that plays on any computer, tablet or phone with nothing to install.</p>
+                  <p class="meta">Oct 18 · Platform: browser and JavaScript</p>
                 </li>
                 <li class="commit">
                   <p class="sum">Rebuilt the ball physics in JavaScript and checked it against about 30,000 frames of the real game, with zero error.</p>
