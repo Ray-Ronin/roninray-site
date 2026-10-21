@@ -78,9 +78,7 @@ kbd {
 .kind { font: 400 8px/1.4 var(--pixel); color: var(--dim); letter-spacing: .04em; }
 .step-body { display: grid; gap: 12px; padding-bottom: 40px; min-width: 0; }
 .step-body h3 { margin: 0; font: 600 19px/1.35 var(--text); color: var(--white); text-wrap: balance; }
-.step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }
-.step-body .lead { margin: 0; }
-.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .commit { display: grid; gap: 3px; }
 .commit p { margin: 0; }
 .sum { color: var(--soft); }

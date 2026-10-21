@@ -30,7 +30,7 @@
         <h1 class="title">HOW I<br>BUILT IT</h1>
         <p>Hogg Squash is built in small steps. Each step is a short work session that ends with a commit: a saved change on GitHub. Between some steps I stop to play-test the game and decide what to fix next.</p>
         <p>This page reads those commits straight from GitHub, so it is always up to date. Old versions stay playable, so you can see how the game grew.</p>
-        <p>Before any code, Claude (an AI assistant) and I spent a day studying the original 1992 arcade game. That research is the first entry in the log.</p>
+        <p>Before any code, I researched the original 1992 arcade game with Claude. That&rsquo;s the first entry in the log.</p>
         <div class="stats" id="stats"></div>
         <p><a href="#latest">Jump to the latest step &darr;</a></p>
       </header>
@@ -44,67 +44,46 @@
               <span class="kind">RESEARCH</span>
             </div>
             <div class="step-body">
-              <h3>Before the code: researching the 1992 arcade game with Claude</h3>
-              <p class="step-date">Oct 18, 2026 · research day, before the first line of game code</p>
-              <p class="lead">This research was done in a chat with Claude, an AI assistant. I chose the game, supplied the ROM and asked the questions. Claude did the technical work: decompiling the code, running the game in an emulator, and taking the screenshots and measurements. I read the results and decided what to keep.</p>
+              <h3>Researching the 1992 arcade game</h3>
+              <p class="step-date">Oct 18, 2026 · done with Claude, before any code</p>
               <ol class="commits">
                 <li class="commit">
-                  <p class="sum">I picked Gaelco's <i>Squash</i> (Barcelona, 1992) as the game to learn from. Claude gathered reviews, arcade-museum pages and the emulator's notes on it: first to 9 points, a HARD and a SOFT button, 8 players from 8 countries, and a tournament from Qualify to Final.</p>
-                  <p class="meta">Who: me and Claude</p>
+                  <p class="sum">Picked Gaelco's <i>Squash</i> (1992) as the model and read up on it: first to 9 points, HARD and SOFT shots, 8 players and a tournament.</p>
+                  <p class="meta">Oct 18 · Research the original game</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Claude opened up the game's ROM (the chips the arcade game is stored on) and pulled out every graphic and 84 sound clips, so we could study how the original looks and sounds. None of it is used in Hogg Squash.</p>
-                  <p class="meta">Who: Claude</p>
-                  <details><summary>Technical notes</summary><pre>ROM set: MAME "squash", World ver. 1.0, checksum 015aef61.
-Graphics: 4 tile sheets of 16x16 tiles decoded from ROMs c09–c12 (fonts,
-flags, portraits, banners, crowd and player frames).
-Sound: 84 OKI M6295 ADPCM samples decoded to WAV (mono, 7,576 Hz).
-Hardware: Motorola 68000 at 10 MHz, 320x240 screen at about 57.4 Hz.</pre></details>
+                  <p class="sum">Pulled the graphics and 84 sound clips out of the game's ROM to study, for reference only.</p>
+                  <p class="meta">Oct 18 · ROM graphics and sound extracted</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Claude ran the real game in an arcade emulator (MAME) with a script that played it like a robot, taking about 1,000 screenshots. That settled questions the reviews didn't answer: every rally scores a point, faults work like lives, and the left button is HARD. It also measured the ball: about 25 m/s into the front wall and only about 7 m/s back off it.</p>
-                  <p class="meta">Who: Claude</p>
-                  <details><summary>Technical notes</summary><pre>MAME 0.289 driven by a Lua script (squash_probe.lua): watched attract mode,
-inserted coins, cycled character select, played about 3.5 minutes with a
-random-input bot. Recorded 997 screenshots, palettes, every frame of sprite
-RAM and work-RAM dumps.
-Scores live at 0xFFB948 (P1) / 0xFFB949 (P2). FAULT starts at 5 per credit.
-Ball timing from 24 tracked front-wall hits: racket to front wall ~0.35 s,
-front wall to first bounce ~0.9 s.
-Two more probe runs later logged about 92,000 frames for testing.</pre></details>
+                  <p class="sum">Ran the real game in an arcade emulator with a robot player to confirm the rules and measure the ball's speed.</p>
+                  <p class="meta">Oct 18 · MAME test runs</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Claude decompiled the game's program, turning the machine code back into something readable. Gaelco had hidden parts of it with copy protection, so Claude decrypted those too. That revealed exactly how the ball flies and bounces, every shot, and how the computer opponent thinks.</p>
-                  <p class="meta">Who: Claude</p>
-                  <details><summary>Technical notes</summary><pre>Ghidra 12.1.3, run headless, on the interleaved program ROM (d16 + d18).
-Protection: encrypted trap #1 jump tables and encrypted constants written
-through Gaelco's "encrypted screen RAM" at 0x102000. MAME's decryption
-(keys 0x0F / 0x4228) was ported to Python and a Ghidra script; 22 jump
-tables (197 code targets), the gravity table and all shot tables decrypted.
-Found: ball integrate 0x80C6, collide 0x81C2 (collisions checked before the
-ball moves), shot classify 0x726A / apply 0x6EF2, CPU 0x7B0E (reaction delay,
-"ghost ball" landing predictor, recover to the T with a growing error),
-difficulty tables and rubber-banding.</pre></details>
+                  <p class="sum">Decompiled the game's code, getting past its copy protection, to find the exact ball physics, shots and computer opponent.</p>
+                  <p class="meta">Oct 18 · Ghidra decompile</p>
+                  <details><summary>Technical notes</summary><pre>- Ghidra 12.1.3 on the 68000 program ROM
+- Copy protection: encrypted jump tables and constants, decrypted with MAME's
+  Gaelco keys (0x0F / 0x4228)
+- Found the ball physics, shot tables, CPU "ghost ball" predictor and difficulty tables</pre></details>
                 </li>
                 <li class="commit">
-                  <p class="sum">Claude rebuilt the ball physics in JavaScript and tested it against the real game: 458 recorded ball flights, 29,634 frames, zero difference. That physics code is what went into the game repo in commit adb444c.</p>
-                  <p class="meta">Who: Claude</p>
-                  <details><summary>Technical notes</summary><pre>Integer 16.16 fixed-point maths like the original 68000 code, so every
-browser gets identical results (needed for online play later).
-flight.test.js: 458 flights, 29,634 frames, zero error.
-shot-select.test.js: 244 / 244 shot choices identical.
-hits.test.js: human hits 87 / 98 exact; CPU hits 36 / 70 (the CPU has extra
-adjustments not ported yet).</pre></details>
+                  <p class="sum">Rebuilt the ball physics in JavaScript and checked it against about 30,000 frames of the real game, with zero error.</p>
+                  <p class="meta">Oct 18 · Physics core and tests</p>
+                  <details><summary>Technical notes</summary><pre>- 16.16 fixed-point maths like the original, so every browser gets identical results
+- 458 ball flights, 29,634 frames: zero error
+- 244 / 244 shot choices identical
+- Moved into the game repo in adb444c</pre></details>
                 </li>
                 <li class="commit">
-                  <p class="sum">Together we wrote design notes on what to keep, change and leave out. Keep the behind-the-player view, the two shot buttons and the landing marker. All art and sound in Hogg Squash will be new, and I decided to leave out the original's pin-up pictures.</p>
-                  <p class="meta">Who: me and Claude</p>
+                  <p class="sum">Wrote design notes on what to keep, what to change and what to leave out.</p>
+                  <p class="meta">Oct 18 · Design notes</p>
                 </li>
               </ol>
             </div>
           </li>
         </ol>
-        <noscript><p class="status">The log needs JavaScript. The full history is on <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main">GitHub</a>.</p></noscript>
+        <noscript><p class="status">The log needs JavaScript. The full history is on <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main" target="_blank" rel="noopener">GitHub</a>.</p></noscript>
       </section>
 
       <section id="versions-section" aria-labelledby="versions-h">
@@ -117,7 +96,7 @@ adjustments not ported yet).</pre></details>
         <ol class="next" id="next"></ol>
       </section>
 
-      <p class="status"><span id="updated"></span> Source: <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main">Ray-Ronin/hogg-squash</a>.</p>
+      <p class="status"><span id="updated"></span> Source: <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main" target="_blank" rel="noopener">Ray-Ronin/hogg-squash</a>.</p>
     </main>
 
     <footer class="foot">

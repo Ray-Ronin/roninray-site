@@ -6,6 +6,8 @@ import { parseMessage, groupCommits } from './buildlog.js';
 const REPO = 'Ray-Ronin/hogg-squash';
 const KIND_LABEL = { setup: 'SETUP', prep: 'PREP', session: 'SESSION', checkpoint: 'PLAY-TEST', art: 'ART' };
 const TZ = 'America/Chicago';
+// GitHub and old-version links open in a new tab so the log stays where you left it.
+const NEW_TAB = { target: '_blank', rel: 'noopener' };
 
 /** @param {string} iso @param {boolean} [year] */
 const day = (iso, year = false) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', ...(year && { year: 'numeric' }), timeZone: TZ });
@@ -55,9 +57,9 @@ function render(data) {
       [h('dt', {}, h('kbd', {}, key)), h('dd', {}, what)])),
     v.note ? h('p', { class: 'v-note' }, v.note) : null,
     h('div', { class: 'v-play' },
-      h('a', { class: 'play', href: `/versions/${v.id}/` }, `PLAY ${v.tag}`),
+      h('a', { class: 'play', href: `/versions/${v.id}/`, ...NEW_TAB }, `PLAY ${v.tag}`),
       (v.modes ?? []).map((/** @type {{ label: string, query: string }} */ m) =>
-        h('a', { class: 'play alt', href: `/versions/${v.id}/${m.query}` }, m.label)),
+        h('a', { class: 'play alt', href: `/versions/${v.id}/${m.query}`, ...NEW_TAB }, m.label)),
     ),
   )));
   $('versions-section').hidden = !(data.versions ?? []).length;
@@ -78,11 +80,11 @@ function render(data) {
         h('ol', { class: 'commits' }, g.commits.map(c => h('li', { class: 'commit' },
           h('p', { class: 'sum' }, c.live ? h('span', { class: 'new' }, 'NEW') : null, c.summary || c.subject),
           h('p', { class: 'meta' },
-            h('a', { href: `https://github.com/${REPO}/commit/${c.hash}` }, h('code', {}, c.short)),
+            h('a', { href: `https://github.com/${REPO}/commit/${c.hash}`, ...NEW_TAB }, h('code', {}, c.short)),
             ` · ${day(c.date)}`, c.summary ? ` · ${c.subject}` : null),
           c.details ? h('details', {}, h('summary', {}, 'Technical notes'), h('pre', {}, c.details)) : null,
         ))),
-        v ? h('a', { class: 'play', href: `/versions/${v.id}/` }, 'Play this version') : null,
+        v ? h('a', { class: 'play', href: `/versions/${v.id}/`, ...NEW_TAB }, 'Play this version') : null,
       ),
     );
   }));
