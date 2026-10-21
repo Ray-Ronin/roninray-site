@@ -23,6 +23,7 @@ Where the words come from:
 - **Commit summaries:** the `Build-log:` line at the end of each game commit message (the game's `CLAUDE.md` explains the rule). Commits from before that rule use `content/summaries.json`.
 - **Playable versions:** `content/versions.json`. To add one, add an entry with the commit, a title, a short description and the controls, then push.
 - **Intro text:** `public/build/index.html`.
+- **Research entry** (the first step in the log, from before the game repo's code): written by hand in `public/build/index.html`, inside `<ol id="log">`. `build-page.js` keeps it at the top when it rebuilds the log.
 
 The page also asks GitHub for game commits made since the last deploy, so new commits show up without redeploying the site. New playable versions need a push here.
 

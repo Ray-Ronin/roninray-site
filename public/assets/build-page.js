@@ -25,6 +25,8 @@ function h(tag, attrs = {}, ...kids) {
 }
 /** @param {string} id */
 const $ = id => /** @type {HTMLElement} */ (document.getElementById(id));
+// The research step is written by hand in index.html; keep it at the top when the log is rebuilt.
+const research = document.getElementById('step-research');
 
 /** @param {any} data */
 function render(data) {
@@ -61,7 +63,7 @@ function render(data) {
   $('versions-section').hidden = !(data.versions ?? []).length;
 
   // The log, oldest first
-  $('log').replaceChildren(...groups.map((g, i) => {
+  $('log').replaceChildren(...(research ? [research] : []), ...groups.map((g, i) => {
     const first = g.commits[0].date, last = g.commits[g.commits.length - 1].date;
     const when = day(first) === day(last) ? day(first, true) : `${day(first)} – ${day(last, true)}`;
     const v = g.tag ? byTag.get(g.tag) : null;
