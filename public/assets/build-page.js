@@ -39,13 +39,6 @@ function render(data) {
   const groups = groupCommits(commits);
   const byTag = new Map((data.versions ?? []).map((/** @type {any} */ v) => [v.tag, v]));
 
-  // Stats line
-  const steps = groups.filter(g => g.kind === 'session').length;
-  $('stats').replaceChildren(
-    h('span', {}, h('b', {}, String(commits.length)), ' COMMITS'),
-    h('span', {}, h('b', {}, String(steps)), ' SESSIONS'),
-    commits.length ? h('span', {}, `${day(commits[0].date).toUpperCase()} – ${day(commits[commits.length - 1].date, true).toUpperCase()}`) : null,
-  );
   document.getElementById('hud-commits')?.replaceChildren(`COMMITS ${commits.length}`);
 
   // Playable versions

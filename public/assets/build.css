@@ -23,8 +23,6 @@
 .intro .title { font-size: clamp(24px, 5.4vw, 48px); }
 .intro p { margin: 0; max-width: 62ch; }
 .intro .question { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); }
-.stats { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 400 clamp(8px, 1.2vw, 11px)/1.8 var(--pixel); color: var(--dim); }
-.stats b { color: var(--dot); font-weight: 400; }
 
 /* The tools */
 .tools {
@@ -82,6 +80,7 @@
 .kind { font: 400 8px/1.4 var(--pixel); color: var(--dim); letter-spacing: .04em; }
 .step-body { display: grid; gap: 12px; padding-bottom: 40px; min-width: 0; }
 .step-body h3 { margin: 0; font: 600 19px/1.35 var(--text); color: var(--white); text-wrap: balance; }
+.jump { margin: -12px 0 0; }
 .log-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .toggle {
   padding: 8px 10px; background: transparent; color: var(--dot); cursor: pointer;
