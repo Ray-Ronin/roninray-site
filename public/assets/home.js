@@ -52,7 +52,7 @@ const REPO = 'Ray-Ronin/hogg-squash';
   reduce ? frame(900) : requestAnimationFrame(frame);
 })();
 
-// ---------- Menu: hover, focus, arrow keys and W/S move the cursor; Enter starts ----------
+// ---------- Menu: hover, focus, arrow keys and W/S move the cursor; Enter starts (F too: assets/keys.js) ----------
 (() => {
   const items = /** @type {HTMLAnchorElement[]} */ ([...document.querySelectorAll('.menu a')]);
   if (!items.length) return;
