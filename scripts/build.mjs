@@ -84,7 +84,9 @@ if (missing.length) console.log(`No plain-English summary yet for: ${missing.joi
  */
 function addBadge(html, id, tag, date) {
   const day = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' });
-  const badge = `<a href="/build/#v-${id}" style="position:fixed;left:8px;top:8px;z-index:9;padding:6px 9px;background:rgba(200,16,46,.92);color:#fff;font:12px/1.2 Consolas,monospace;text-decoration:none">&#9664; Build log &middot; ${tag}, ${day}</a>`;
+  // Top centre, so it stays clear of the score panels in the side margins (S9 on) and the fullscreen button (S12 on).
+  const badge = `<style>.build-badge{position:fixed;left:50%;top:6px;transform:translateX(-50%);z-index:9;padding:6px 9px;white-space:nowrap;background:rgba(200,16,46,.92);color:#fff;font:12px/1.2 Consolas,monospace;text-decoration:none}@media (max-height:500px){.build-badge{top:2px;padding:3px 6px;font-size:10px}}</style>`
+    + `<a class="build-badge" href="/build/#v-${id}">&#9664; Build log &middot; ${tag}, ${day}</a>`;
   return html
     .replace(/<title>([^<]*)<\/title>/, `<title>$1 (${tag}, ${day})</title>`)
     .replace(/<\/body>/i, `  ${badge}\n</body>`);

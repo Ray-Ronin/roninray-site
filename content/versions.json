@@ -57,5 +57,47 @@
     "about": "Play on one or two controllers, or one player on the keyboard and one on a controller.",
     "note": "Keyboard or gamepad.",
     "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
+  },
+  {
+    "id": "s8b",
+    "commit": "13b3a42",
+    "tag": "S8b",
+    "title": "Animated players",
+    "about": "The real animated player arrives, running, swinging, diving and serving, with the CPU in a white kit. After the play-test: a wider court, a serve wind-up and an overhead swing.",
+    "note": "Keyboard or gamepad.",
+    "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
+  },
+  {
+    "id": "s9",
+    "commit": "aa2f1c1",
+    "tag": "S9",
+    "title": "The finished look",
+    "about": "The painted Hogg court, a proper ball and shadow, hit effects, our own lettering, score panels and big callouts like DOUBLE BOUNCE.",
+    "note": "Keyboard or gamepad.",
+    "modes": [{ "label": "2 PLAYERS", "query": "?mode=2p" }]
+  },
+  {
+    "id": "s10",
+    "commit": "3b7d178",
+    "tag": "S10",
+    "title": "Menus and match flow",
+    "about": "A title screen and menus: pick 1 or 2 players, the match length and the CPU level, then a results screen with a rematch and a pause menu. The version number shows in the corner.",
+    "note": "Keyboard or gamepad."
+  },
+  {
+    "id": "s11b",
+    "commit": "4a23df5",
+    "tag": "S11b",
+    "title": "Options and touch controls",
+    "about": "Change any key in an options screen, test your keyboard, and play the CPU on a phone or tablet with on-screen touch controls.",
+    "note": "Keyboard, gamepad or touch screen."
+  },
+  {
+    "id": "s12",
+    "commit": "d26a557",
+    "tag": "S12",
+    "title": "Ready for release",
+    "about": "The release polish: a How to play card, a fullscreen button, a flash when a point is won and touch-friendly wording on phones.",
+    "note": "Keyboard, gamepad or touch screen."
   }
 ]
