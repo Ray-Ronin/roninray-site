@@ -1,58 +1,4 @@
-/* Build log page. Reading layout on the arcade screen: pixel type for labels, mono text for everything you read. */
-:root {
-  --panel: #111010;
-  --line: #2a2726;
-  --key: #1c1a1a;
-}
-.screen.reading { overflow: visible; }
-.screen.reading::after { display: none; }
-
-.log-page {
-  width: 100%; max-width: 860px; margin: 0 auto;
-  display: grid; gap: 64px;
-  font-family: var(--text); font-size: 16px; line-height: 1.65; color: var(--soft);
-}
-.log-page a { color: var(--dot); }
-.log-page h2 {
-  margin: 0; font: 400 clamp(13px, 2vw, 16px)/1.4 var(--pixel); color: var(--white); letter-spacing: .02em;
-}
-.log-page section { display: grid; gap: 24px; scroll-margin-top: 24px; }
-
-/* Intro */
-.intro { display: grid; gap: 20px; padding-top: 24px; }
-.intro .title { font-size: clamp(24px, 5.4vw, 48px); }
-.intro p { margin: 0; max-width: 62ch; }
-.intro .question { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); }
-
-/* The tools */
-.tools {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 12px;
-}
-.tools li { display: grid; gap: 4px; align-content: start; padding: 12px; background: var(--panel); border: 2px solid var(--line); }
-.tools a { font: 600 15px/1.3 var(--text); }
-.tools p { margin: 0; font-size: 14px; color: var(--dim); }
-
-/* Tags and buttons shared by versions and the log */
-.tag {
-  display: inline-block; padding: 5px 7px 4px;
-  font: 400 11px/1 var(--pixel); color: #fff; background: var(--red);
-}
-.tag.kind-checkpoint, .tag.kind-prep { background: transparent; color: var(--dot); outline: 2px solid var(--dot); outline-offset: -2px; }
-.tag.kind-setup { background: #3a3534; }
-.tag.kind-art { background: #fff; color: #000; }
-.tag.kind-research { background: var(--dot); color: #000; }
-.play {
-  justify-self: start; display: inline-flex; gap: .7em; align-items: center;
-  padding: 10px 14px; background: var(--red); color: #fff !important; text-decoration: none;
-  font: 400 12px/1 var(--pixel);
-}
-.play::before { content: "\25B6"; color: var(--dot); }
-.play:hover { background: #e01637; }
-.v-play { display: flex; flex-wrap: wrap; gap: 10px; }
-.play.alt { background: transparent; outline: 2px solid var(--red); outline-offset: -2px; }
-.play.alt:hover { background: rgba(200, 16, 46, .25); }
-.play:focus-visible, .log-page a:focus-visible, .log-page summary:focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
+/* Build log page only: playable versions, the log and up next. Shared reading layout is in page.css. */
 
 /* Playable versions */
 .versions { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; }
@@ -65,7 +11,7 @@
 .v-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; color: var(--dim); }
 .version h3 { margin: 0; font: 600 17px/1.3 var(--text); color: var(--white); }
 .version p { margin: 0; font-size: 14px; }
-.v-play { margin-top: 4px; gap: 8px; }
+.v-play { display: flex; flex-wrap: wrap; margin-top: 4px; gap: 8px; }
 .v-play .play { padding: 8px; gap: .5em; font-size: 11px; }
 .version .v-note { font-size: 13px; color: var(--dim); }
 
@@ -91,7 +37,8 @@
 /* Collapsed: each step shows only its title, date and play link. */
 .log.collapsed .commits { display: none; }
 .log.collapsed .step-body { padding-bottom: 24px; }
-.step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.step-date { margin: -6px 0 0; font-size: 13px; color: var(--dim); }
+.commits { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 .commit { display: grid; gap: 3px; }
 .commit p { margin: 0; }
 .sum { color: var(--soft); }
@@ -99,23 +46,13 @@
 .meta a { color: var(--dim); }
 .meta code { font: 600 12.5px var(--text); color: var(--dot); }
 .new { font: 400 8px/1 var(--pixel); color: #000; background: var(--dot); padding: 3px 5px 2px; margin-right: 6px; vertical-align: 1px; }
-details { font-size: 13px; color: var(--dim); }
-summary { cursor: pointer; width: max-content; max-width: 100%; }
-details pre {
-  margin: 8px 0 0; padding: 12px 14px; overflow-x: auto;
-  background: var(--panel); border-left: 2px solid var(--line);
-  font: 12.5px/1.6 var(--text); white-space: pre-wrap; overflow-wrap: anywhere;
-}
 
 /* Up next */
 .next { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .next li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 24px; align-items: baseline; }
 .next .you { font-size: 13px; color: var(--dim); }
 
-.status { margin: 0; font-size: 14px; color: var(--dim); }
-
 @media (max-width: 600px) {
-  .log-page { gap: 48px; }
   .step, .next li { grid-template-columns: 1fr; gap: 10px; }
   .step-side { grid-auto-flow: column; justify-content: start; align-items: center; gap: 12px; }
   .step-side::after { display: none; }

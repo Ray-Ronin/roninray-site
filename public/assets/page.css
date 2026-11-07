@@ -1,0 +1,103 @@
+/* Reading pages (about, research, build log, findings, sources, FAQ): the arcade screen with a readable layout.
+   Pixel type for headings, labels and navigation; mono text for everything you read. Loaded after arcade.css. */
+:root {
+  --panel: #111010;
+  --line: #2a2726;
+  --key: #1c1a1a;
+}
+.screen.reading { overflow: visible; }
+.screen.reading::after { display: none; }
+
+/* Top of every reading page: the HUD row, then the site navigation. */
+.masthead { display: grid; gap: 14px; width: 100%; max-width: 1100px; margin: 0 auto; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 8px 6px; font: 400 clamp(9px, 1.2vw, 11px)/1 var(--pixel); }
+.site-nav a {
+  padding: 7px 8px 6px; color: var(--soft); text-decoration: none;
+  border: 2px solid var(--line);
+}
+.site-nav a:hover { border-color: var(--dot); color: #fff; }
+.site-nav a[aria-current="page"] { background: var(--red); border-color: var(--red); color: #fff; }
+.site-nav a.nav-play { color: var(--dot); }
+.site-nav a:focus-visible { outline: 3px solid var(--dot); outline-offset: 2px; }
+
+.page {
+  width: 100%; max-width: 860px; margin: 0 auto;
+  display: grid; gap: 64px; align-content: start;
+  font-family: var(--text); font-size: 16px; line-height: 1.65; color: var(--soft);
+}
+.page a { color: var(--dot); }
+.page h2 {
+  margin: 0; font: 400 clamp(13px, 2vw, 16px)/1.4 var(--pixel); color: var(--white); letter-spacing: .02em;
+}
+.page section { display: grid; gap: 24px; scroll-margin-top: 24px; }
+.page section > p, .page section > ul, .page section > ol { margin: 0; max-width: 62ch; }
+
+/* Intro */
+.intro { display: grid; gap: 20px; padding-top: 24px; }
+.intro .title { font-size: clamp(24px, 5.4vw, 48px); }
+.intro p { margin: 0; max-width: 62ch; }
+.intro .question { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); }
+
+/* Tool cards */
+.tools {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 12px;
+}
+.tools li { display: grid; gap: 4px; align-content: start; padding: 12px; background: var(--panel); border: 2px solid var(--line); }
+.tools a { font: 600 15px/1.3 var(--text); }
+.tools p { margin: 0; font-size: 14px; color: var(--dim); }
+
+/* Tags and buttons */
+.tag {
+  display: inline-block; padding: 5px 7px 4px;
+  font: 400 11px/1 var(--pixel); color: #fff; background: var(--red);
+}
+.tag.kind-checkpoint, .tag.kind-prep { background: transparent; color: var(--dot); outline: 2px solid var(--dot); outline-offset: -2px; }
+.tag.kind-setup { background: #3a3534; }
+.tag.kind-art { background: #fff; color: #000; }
+.tag.kind-research { background: var(--dot); color: #000; }
+.play {
+  justify-self: start; display: inline-flex; gap: .7em; align-items: center;
+  padding: 10px 14px; background: var(--red); color: #fff !important; text-decoration: none;
+  font: 400 12px/1 var(--pixel);
+}
+.play::before { content: "\25B6"; color: var(--dot); }
+.play:hover { background: #e01637; }
+.play.alt { background: transparent; outline: 2px solid var(--red); outline-offset: -2px; }
+.play.alt:hover { background: rgba(200, 16, 46, .25); }
+.play:focus-visible, .page a:focus-visible, .page summary:focus-visible { outline: 3px solid var(--dot); outline-offset: 3px; }
+
+details { font-size: 13px; color: var(--dim); }
+summary { cursor: pointer; width: max-content; max-width: 100%; }
+details pre {
+  margin: 8px 0 0; padding: 12px 14px; overflow-x: auto;
+  background: var(--panel); border-left: 2px solid var(--line);
+  font: 12.5px/1.6 var(--text); white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+.status { margin: 0; font-size: 14px; color: var(--dim); }
+
+/* Writing still to do. scripts/check.mjs fails the build while any .draft is left, and lists every .todo.
+   .draft: text Claude drafted that Ronin must rewrite in his own words before it goes live.
+   .todo: a section that hasn't been written yet (safe to publish: it says so). */
+.draft { outline: 2px dashed var(--dot); outline-offset: 6px; }
+.draft::before { content: "RONIN: REWRITE"; display: block; margin-bottom: 8px; font: 400 8px/1 var(--pixel); color: var(--dot); }
+.todo { color: var(--dim); font-style: italic; }
+.todo::before { content: "COMING SOON \00B7  "; font: normal 400 8px/1 var(--pixel); color: var(--dot); vertical-align: 1px; }
+
+/* Previous / next page, in reading order: About, Research, Build log, Findings, Sources, FAQ. */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 24px; border-top: 2px solid var(--line); }
+.page .pager a {
+  display: grid; gap: 8px; align-content: start; padding: 12px 14px;
+  background: var(--panel); border: 2px solid var(--line);
+  color: var(--white); text-decoration: none; font: 600 15px/1.3 var(--text);
+}
+.pager a span { font: 400 9px/1 var(--pixel); color: var(--dot); }
+.page .pager a[rel="next"] { grid-column: 2; text-align: right; }
+.page .pager a:hover { border-color: var(--dot); }
+
+@media (max-width: 600px) {
+  .page { gap: 48px; }
+  .pager { grid-template-columns: 1fr; }
+  .page .pager a[rel="next"] { grid-column: 1; }
+}

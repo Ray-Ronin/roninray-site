@@ -53,6 +53,9 @@ body {
 .hud .hi { color: var(--dot); }
 .foot { font-size: clamp(7px, 1.1vw, 11px); color: var(--dim); line-height: 1.8; }
 .foot a { color: inherit; }
+.foot-links a { color: var(--soft); text-decoration: none; }
+.foot-links a:hover { color: var(--dot); }
+.foot-links a:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
 
 .attract {
   display: grid; align-content: center; justify-items: center;

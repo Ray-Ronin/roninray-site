@@ -1,4 +1,4 @@
-// Builds the build log from the game repo (Ray-Ronin/hogg-squash):
+// Checks the site's pages (scripts/check.mjs), then builds the build log from the game repo (Ray-Ronin/hogg-squash):
 //   public/build/data.json   commits with their plain-English summaries, playable versions, the plan's next steps
 //   public/versions/<id>/    the game exactly as it was at each commit listed in content/versions.json
 // Cloudflare runs this before every deploy (Workers Builds build command: npm run build). Needs git and Node 18+.
@@ -7,6 +7,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseMessage, parsePlan } from '../public/assets/buildlog.js';
+import { check } from './check.mjs';
+
+// 0. The site's own pages: no drafts left for Ronin to rewrite, no broken links. A failure stops the deploy.
+if (!check()) process.exit(1);
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPO = 'Ray-Ronin/hogg-squash';
@@ -40,8 +44,10 @@ const commits = gitText('log', BRANCH, '--reverse', `--format=%H${SEP}%aI${SEP}%
     return { hash, short: hash.slice(0, 7), date, subject: m.subject, summary: m.summary || old || '', details: m.details };
   });
 
-// 3. The next few unticked steps in the game's plan.
-const plan = parsePlan(gitText('show', `${BRANCH}:docs/plan.md`));
+// 3. The next few unticked steps in the game's plan: plan-v2.md since v1's release (plan.md is the finished v1 plan).
+/** @param {string} file */
+const planText = file => { try { return gitText('show', `${BRANCH}:${file}`); } catch { return null; } };
+const plan = parsePlan(planText('docs/plan-v2.md') ?? planText('docs/plan.md') ?? '');
 
 // 4. Playable old versions. The game has no build step, so its files at a commit are the whole game.
 /** @type {{ id: string, commit: string, tag: string, title: string, about: string, note?: string, modes?: { label: string, query: string }[], hash?: string, date?: string }[]} */

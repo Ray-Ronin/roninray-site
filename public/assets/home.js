@@ -77,10 +77,26 @@ const REPO = 'Ray-Ronin/hogg-squash';
   });
 })();
 
-// ---------- HUD: commit count and latest session from the game repo (keeps the built-in numbers if GitHub can't be reached) ----------
+// ---------- HUD: commit count and latest session from the game repo ----------
+// First the deployed build log (same site, so never rate-limited), then GitHub for anything newer.
+// GitHub allows 60 requests an hour per network, which a room full of visitors on one school Wi-Fi can use up.
+// If both fail, the numbers written in index.html stay.
 (async () => {
   const commitsEl = document.getElementById('hud-commits');
   const buildEl = document.getElementById('hud-build');
+  const SESSION = /^(S\d+[a-z]?)\b/;
+  try {
+    const res = await fetch('/build/data.json', { cache: 'no-cache' });
+    if (res.ok) {
+      /** @type {{ commits: { subject: string }[] }} */
+      const data = await res.json();
+      if (data.commits?.length && commitsEl) commitsEl.textContent = `COMMITS ${data.commits.length}`;
+      // Commits are oldest first; the newest session commit is the current build.
+      const latest = [...(data.commits ?? [])].reverse().map(c => c.subject.match(SESSION)?.[1]).find(Boolean);
+      if (latest && buildEl) buildEl.textContent = `BUILD ${latest.toUpperCase()}`;
+    }
+  } catch { /* no deployed log: try GitHub */ }
+
   const api = `https://api.github.com/repos/${REPO}/commits`;
   try {
     const [one, recent] = await Promise.all([fetch(`${api}?per_page=1`), fetch(`${api}?per_page=30`)]);
@@ -95,9 +111,9 @@ const REPO = 'Ray-Ronin/hogg-squash';
       const list = await recent.json();
       // Session commits start with a tag like "S5:" or "S4b:"; the newest one is the current build.
       for (const c of list) {
-        const m = c.commit.message.match(/^(S\d+[a-z]?)\b/);
+        const m = c.commit.message.match(SESSION);
         if (m) { buildEl.textContent = `BUILD ${m[1].toUpperCase()}`; break; }
       }
     }
-  } catch { /* offline or rate-limited: keep the numbers in the HTML */ }
+  } catch { /* offline or rate-limited: keep the numbers already shown */ }
 })();
