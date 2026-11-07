@@ -175,6 +175,7 @@ details pre {
 .q-change { grid-template-columns: 1fr; gap: 6px; }
 .q-change dd { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); margin-bottom: 14px; }
 .q-change dd:last-child { margin-bottom: 0; }
+.q-change dd.draft { margin-top: 8px; }
 .q-date { color: var(--dim); }
 .ai-line { border-left: 3px solid var(--dot); padding-left: 14px; color: var(--white); }
 
@@ -185,7 +186,7 @@ details pre {
 
 /* Milestones */
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; max-width: 72ch; border-left: 2px solid var(--line); }
-.timeline li { position: relative; display: grid; grid-template-columns: 7.5em 1fr; gap: 12px; padding: 0 0 18px 18px; }
+.timeline li { position: relative; display: grid; grid-template-columns: 6.5em 1fr; gap: 12px; padding: 0 0 18px 18px; }
 .timeline li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; background: var(--line); }
 .timeline time { font: 400 9px/2 var(--pixel); color: var(--dot); }
 .timeline b { color: var(--white); font-weight: 600; }
@@ -194,12 +195,13 @@ details pre {
 .timeline li.due time { color: var(--soft); }
 
 /* Before / after screenshots, each linking to its playable version. */
-.shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+.shots { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+.page section > .shots { max-width: none; }
 .shots li { display: grid; gap: 8px; align-content: start; }
 .shots a { display: block; border: 2px solid var(--line); line-height: 0; }
 .shots a:hover { border-color: var(--dot); }
-.shots img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
-.shots p { margin: 0; font-size: 14px; color: var(--dim); }
+.shots img { display: block; width: 100%; height: auto; }
+.shots p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--dim); }
 .shots b { display: block; font: 400 9px/1.8 var(--pixel); color: var(--white); }
 
 @media (max-width: 600px) {

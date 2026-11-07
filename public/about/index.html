@@ -41,37 +41,150 @@
       <header class="intro">
         <h1 class="title">ABOUT THE<br>PROJECT</h1>
         <p>Hogg Squash is a squash game for the Hogg Middle School Razorbacks that plays in any web browser. It&rsquo;s my GT Capstone project.</p>
-        <p class="question"><b>My guiding question:</b> How can AI tools help one student research, design and build a complete video game?</p>
+        <p>Start here. This page says why I made it, the question behind it and what I made. The other pages show <a href="/research/">how I researched it</a>, <a href="/build/">how it was built, step by step</a>, and <a href="/findings/">what I found</a>.</p>
+        <a class="play" href="/hogg-squash/">PLAY HOGG SQUASH</a>
       </header>
 
       <section id="purpose" aria-labelledby="purpose-h">
         <h2 id="purpose-h">PURPOSE AND GOALS</h2>
-        <p class="todo">Why I made Hogg Squash and what I set out to do.</p>
+        <!-- Drafted from hogg-squash/CLAUDE.md, docs/theme.md and docs/decisions.md ("Scope of version 1"). Ronin: say it your way. -->
+        <div class="draft">
+          <p>Hogg has its own squash courts, and the Mission Success squash programme plays on them. I wanted to make a squash game for Hogg that anyone could play on a school computer, a phone or a home computer with nothing to install. I picked a 1992 arcade squash game as my model because it plays fast and simply, and I wanted my game to feel like it.</p>
+          <p>I also wanted to find out what AI tools can really do. Everyone is talking about AI writing code and making art, so I used it to build a whole game and kept a record of where it helped and where it needed me.</p>
+          <p><b>My goals:</b></p>
+          <ul>
+            <li>Make a complete, finished game, not a demo: menus, a computer opponent with nine levels, two-player mode, sound and controls for keyboard, gamepad and touch.</li>
+            <li>Make it play like the arcade game, and check that with real measurements instead of guessing.</li>
+            <li>Make every picture and sound original, with nothing copied from the arcade game.</li>
+            <li>Keep a public record of every step, so anyone can see how it was made and what AI did.</li>
+          </ul>
+        </div>
       </section>
 
       <section id="question" aria-labelledby="question-h">
         <h2 id="question-h">MY QUESTION</h2>
-        <p class="todo">How the guiding question was refined, and the smaller questions that help answer it, each linked to where it is answered.</p>
+        <dl class="q-change">
+          <dt>ORIGINAL QUESTION</dt>
+          <dd>How can AI tools help one student research, design and build a complete video game?</dd>
+          <dt>REFINED QUESTION <span class="q-date">(proposed Nov 7, 2026)</span></dt>
+          <dd class="draft">What can AI tools do, and what still needs a person, when one student researches, designs and builds a complete video game?</dd>
+        </dl>
+        <div class="draft">
+          <p><b>Why it changed:</b> my first question only asked how AI <i>helps</i>, so it already assumed the answer was &ldquo;a lot&rdquo;. While building the game, the play-tests kept showing things the AI couldn&rsquo;t judge on its own, like whether the computer opponent felt fair or whether a shot felt right. The new question asks about both sides: what AI did, and what still needed me.</p>
+        </div>
+        <p>Five smaller questions help answer the big one. Each links to where it&rsquo;s answered.</p>
+        <div class="draft">
+          <ol class="subq">
+            <li>
+              <p>How accurately can a 1992 arcade game&rsquo;s rules and physics be rebuilt?</p>
+              <p class="where">How it was tested: <a href="/research/#methods">Research &rarr; Methods</a> &middot; Results: <a href="/findings/#data">Findings &rarr; The data</a></p>
+            </li>
+            <li>
+              <p>What did AI do well, and how were its mistakes caught?</p>
+              <p class="where">How AI output was checked: <a href="/sources/#ai-check">Sources &rarr; How AI work was checked</a> &middot; Answer: <a href="/findings/#answers">Findings &rarr; Answers to my questions</a></p>
+            </li>
+            <li>
+              <p>Which decisions needed a person, and how did play-testing change the game?</p>
+              <p class="where">Every play-test and fix: <a href="/build/">Build log</a> &middot; Answer: <a href="/findings/#patterns">Findings &rarr; What the data shows</a></p>
+            </li>
+            <li>
+              <p>What are the ethical limits of reverse engineering and AI-made art and sound?</p>
+              <p class="where">Answer: <a href="/findings/#ethics">Findings &rarr; Ethics</a> &middot; Other views: <a href="/findings/#perspectives">Findings &rarr; Other perspectives</a></p>
+            </li>
+            <li>
+              <p>How can the process be made visible and checkable by others?</p>
+              <p class="where">The public record: <a href="/build/">Build log</a> and <a href="/build/#versions-section">playable old versions</a> &middot; Answer: <a href="/findings/#answers">Findings &rarr; Answers to my questions</a></p>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section id="product" aria-labelledby="product-h">
         <h2 id="product-h">WHAT I MADE</h2>
-        <p class="todo">The game and this website: what they are, who they are for, and how to play.</p>
+        <p>Two things: a <b>game</b> (a designed product and digital tool) and <b>this website</b>, which is the project&rsquo;s public process record.</p>
+        <dl class="about-facts">
+          <dt>THE GAME</dt>
+          <!-- Modes, controls and touch: hogg-squash/README.md and docs/decisions.md ("Scope of version 1", "Mobile and touch"). Levels 1-9: decisions.md ("CPU difficulty"). -->
+          <dd>Hogg Squash, a squash game that runs in any web browser, with nothing to install. Play alone against a computer opponent at one of 9 levels, or against a friend on one keyboard or two gamepads. On a phone or tablet, on-screen touch controls appear by themselves.</dd>
+          <dt>HOW IT PLAYS</dt>
+          <!-- hogg-squash/CLAUDE.md (intro, "Physics core"); research summary: docs/research/squash-1992-research.md -->
+          <dd>It plays like Gaelco&rsquo;s arcade game <i>Squash</i> (1992): first to 9 points, a HARD and a SOFT shot, and ball physics rebuilt from the original and tested against it. <a href="/research/#original">More about the 1992 game &rarr;</a></dd>
+          <dt>THE LOOK AND SOUND</dt>
+          <!-- Pixel art 640x360, palette, theme: docs/decisions.md ("Art"), docs/theme.md. Sound effects: decisions.md ("Audio"). -->
+          <dd>All-original pixel art in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (used with approval) and a nod to the Mission Success squash programme that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
+          <dt>WHERE IT IS NOW</dt>
+          <!-- Version 1.15.0: hogg-squash/public/hogg-squash/js/version.js; v1 1.0.0 at CP-F: docs/plan.md (Session log, 2026-10-23); next steps: docs/plan-v2.md (Status) -->
+          <dd>Version 1.0 was released on Oct 23, 2026. Since then I&rsquo;ve added sound and a character select screen (version 1.15.0). A crowd and a tournament are planned next; <a href="/build/#next-section">see what&rsquo;s up next</a>.</dd>
+          <dt>THIS WEBSITE</dt>
+          <dd>Explains the project for someone reading it on their own: the <a href="/research/">research and methods</a>, the <a href="/build/">build log</a> of every step with playable old versions, <a href="/findings/">what I found</a>, the <a href="/sources/">sources</a> and a <a href="/faq/">FAQ</a>.</dd>
+          <dt>WHO IT&rsquo;S FOR</dt>
+          <dd>My classmates, squash players at Hogg, and GT judges and teachers. The game is for anyone who wants to play; the website is for anyone who wants to know how it was made.</dd>
+        </dl>
       </section>
 
       <section id="roles" aria-labelledby="roles-h">
         <h2 id="roles-h">WHO DID WHAT</h2>
-        <p class="todo">What I did, what AI tools did, and how their work was checked.</p>
+        <!-- This sentence is already live on /build/; kept word for word. -->
+        <p class="ai-line">I research, plan, play-test and make the decisions; Claude Code writes the code.</p>
+        <!-- Roles: hogg-squash/CLAUDE.md, docs/decisions.md ("Art production", "Audio"), docs/plan.md and plan-v2.md (checkpoints CP-A to CP-G, spend approvals). -->
+        <dl class="about-facts">
+          <dt>ME</dt>
+          <dd>Chose the project and the arcade game to model it on. Directed the research. Decided what goes in the game and in what order. Play-tested it at six checkpoints (CP-B to CP-G) and decided what to fix after each one. Approved every use of the school&rsquo;s logo and every spend on AI art and sound.</dd>
+          <dt>CLAUDE AND CLAUDE CODE</dt>
+          <dd>AI assistants from Anthropic. Claude helped research the arcade game and plan the build. Claude Code wrote the game&rsquo;s code and this website, one short session at a time, and cleaned up the pixel art in Aseprite.</dd>
+          <dt>SPRITECOOK AND ELEVENLABS</dt>
+          <dd>AI generators. SpriteCook made the first versions of the player sprites and animations; ElevenLabs made the sound effects. Neither was given anything from the arcade game.</dd>
+          <dt>HOW THE WORK WAS CHECKED</dt>
+          <dd>Automated tests compare the game&rsquo;s physics with recordings of the real arcade game. I play-tested every stage, and nothing went live without my OK.</dd>
+        </dl>
+        <p>More: <a href="/sources/#ai-check">how AI output was checked</a> and <a href="/findings/#ethics">the ethics of using AI and reverse engineering</a>.</p>
       </section>
 
       <section id="milestones" aria-labelledby="milestones-h">
         <h2 id="milestones-h">MILESTONES</h2>
-        <p class="todo">The project timeline, from the first research in October to the December deadline and the January Expo.</p>
+        <p>Dates come from the game&rsquo;s commit history on GitHub. Each play-test checkpoint (CP) is where I played the game and decided what to change.</p>
+        <!-- All dates: git log of the game repo (Ray-Ronin/hogg-squash), checked 2026-11-07. Checkpoint names: docs/plan.md and docs/plan-v2.md (Status). -->
+        <ol class="timeline">
+          <li><time datetime="2026-10-18">Oct 18</time><div><b>Research and first code.</b> Studied the 1992 arcade game, then built the first test court (S1) and the first two-player rally (S3). Checkpoint CP-A chose plain Canvas over a game engine.</div></li>
+          <li><time datetime="2026-10-19">Oct 19</time><div><b>Play-test 1 (CP-B)</b> on two-player rallies, then a computer opponent (S5).</div></li>
+          <li><time datetime="2026-10-20">Oct 20</time><div><b>Play-test 2 (CP-C)</b> against the computer at levels 1, 5 and 9 made the low levels gentler (S6b). Gamepads (S7) and the first pixel art (A1).</div></li>
+          <li><time datetime="2026-10-21">Oct 21</time><div><b>The animated player arrives</b> (S8). Play-test 3 (CP-D) led to a wider court and a serve wind-up (S8b).</div></li>
+          <li><time datetime="2026-10-22">Oct 22</time><div><b>The finished look</b> (S9), menus (S10), touch controls (S11b) and release polish (S12). Play-test 4 (CP-E) on the look.</div></li>
+          <li class="big"><time datetime="2026-10-23">Oct 23</time><div><b>Version 1.0 released</b> after the release play-test (CP-F) and three rounds of fixes (S12c to S12e).</div></li>
+          <li><time datetime="2026-10-24">Oct 24&ndash;31</time><div><b>Sound.</b> A sound engine (S13), sound effects (A6, S14), play-test 5 (CP-G, Oct 29) and its fixes (A6b, S14b).</div></li>
+          <li><time datetime="2026-11-07">Nov 7</time><div><b>Character select</b> (S15). This website is rebuilt around the Capstone.</div></li>
+          <li class="due"><time datetime="2026-12-11">Dec 11</time><div><b>Capstone due</b> for scoring.</div></li>
+          <li class="due"><time datetime="2027-01">Jan 2027</time><div><b>GT Expo.</b></div></li>
+        </ol>
       </section>
 
       <section id="growth" aria-labelledby="growth-h">
         <h2 id="growth-h">HOW THE GAME GREW</h2>
-        <p class="todo">Pictures of the game at five steps, from the first test screen to today, each linked to a playable version.</p>
+        <p>The game at five steps, from the first test screen to today. Click a picture to play that version.</p>
+        <!-- Screenshots: headless Edge at 1280x720, 2026-11-07. Titles and dates: content/versions.json and the game repo's git log. S15 is version 1.15.0 (js/version.js). -->
+        <ol class="shots">
+          <li>
+            <a href="/versions/s1/"><img src="/assets/shots/s1.png" width="1280" height="720" loading="lazy" alt="S1: an empty squash court drawn in plain shapes, with one red box standing in for the player."></a>
+            <p><b>S1 &middot; Oct 18</b> Physics test: the court, a ball and a stand-in player.</p>
+          </li>
+          <li>
+            <a href="/versions/s3/"><img src="/assets/shots/s3.png" width="1280" height="720" loading="lazy" alt="S3: the same court with a red box and a blue box as the two players, and scores for P1 and P2."></a>
+            <p><b>S3 &middot; Oct 18</b> The first real rally: two players, serving and scoring.</p>
+          </li>
+          <li>
+            <a href="/versions/s8b/"><img src="/assets/shots/s8b.png" width="1280" height="720" loading="lazy" alt="S8b: two pixel-art squash players, one in red and one in white, on the plain court."></a>
+            <p><b>S8b &middot; Oct 21</b> Animated players and a wider court, after play-test 3.</p>
+          </li>
+          <li>
+            <a href="/versions/s12/"><img src="/assets/shots/s12.png" width="1280" height="720" loading="lazy" alt="S12: the finished court with a wood floor, HOGG and RAZORBACKS boards on the side walls and pixel-art score panels."></a>
+            <p><b>S12 &middot; Oct 22</b> The finished look, ready for release.</p>
+          </li>
+          <li>
+            <a href="/hogg-squash/"><img src="/assets/shots/s15.png" width="1280" height="720" loading="lazy" alt="Today: the title screen with HOGG SQUASH lettering, the menu, a How to play card and the Hogg Razorbacks shield."></a>
+            <p><b>Today &middot; v1.15</b> The title screen, now with sound.</p>
+          </li>
+        </ol>
+        <p><a href="/build/#versions-section">All playable old versions &rarr;</a></p>
       </section>
 
       <nav class="pager" aria-label="Reading order">
