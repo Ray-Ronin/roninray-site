@@ -15,6 +15,48 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Press+Start+2P&display=swap">
   <link rel="stylesheet" href="/assets/arcade.css">
   <link rel="stylesheet" href="/assets/page.css">
+  <!-- Styles used only on this page (works cited, source records, court table, glossary). Kept here, not in page.css,
+       so this page doesn't clash with other pages' edits to the shared file. Move them there if another page needs them. -->
+  <style>
+    .cited { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+    .cited > li { display: grid; gap: 10px; scroll-margin-top: 24px; }
+    .cite { margin: 0; padding-left: 2em; text-indent: -2em; color: var(--white); overflow-wrap: anywhere; }
+    .cite a { color: var(--white); text-decoration-color: var(--dim); }
+    .cite a:hover { color: var(--dot); }
+    .src-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0; padding-left: 2em; }
+    .tag.secondary { background: transparent; color: var(--soft); outline: 2px solid var(--line); outline-offset: -2px; }
+    .src-tags .topic { font: 400 9px/1.4 var(--pixel); color: var(--dim); }
+    .record {
+      display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0 0 0 2em;
+      padding: 12px 14px; background: var(--panel); border-left: 2px solid var(--line); font-size: 14px;
+    }
+    .record dt { font: 400 9px/1.9 var(--pixel); color: var(--dim); }
+    .record dd { margin: 0; }
+    .group-note { font-size: 14px; color: var(--dim); }
+    .checklist { display: grid; gap: 10px; padding-left: 1.2em; }
+    .checklist b { color: var(--white); font-weight: 600; }
+    .table-wrap { overflow-x: auto; }
+    .court { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .court caption { text-align: left; padding-bottom: 8px; color: var(--dim); font-size: 13px; }
+    .court th, .court td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .court thead th { font: 400 9px/1.5 var(--pixel); color: var(--dim); }
+    .court tbody th { font-weight: 600; color: var(--white); }
+    .court .ok { color: #7fd17f; white-space: nowrap; }
+    .court .diff { color: var(--dot); white-space: nowrap; }
+    .glossary { display: grid; gap: 16px; margin: 0; }
+    .glossary div { display: grid; gap: 4px; }
+    .glossary dt { font-weight: 600; color: var(--white); scroll-margin-top: 24px; }
+    .glossary dt:target { color: var(--dot); }
+    .glossary dd { margin: 0; }
+    @media (max-width: 600px) {
+      .cite, .src-tags { padding-left: 1.2em; }
+      .cite { text-indent: -1.2em; }
+      .record { grid-template-columns: 1fr; margin-left: 0; gap: 2px; }
+      .record dd { margin-bottom: 8px; }
+      .court { font-size: 13px; }
+      .court th, .court td { padding: 6px; }
+    }
+  </style>
   <script src="/assets/keys.js" defer></script>
 </head>
 <body>
@@ -40,27 +82,473 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">SOURCES</h1>
-        <p class="todo">This page is being written. Here is what it will cover.</p>
+        <p>Every outside source this project used, cited in MLA style (9th edition). Each one has a short source record under it: who made it, what evidence it gives, how current it is, why it was made, and how the project used it.</p>
+        <p>Every link was opened again on <b>7 November 2026</b>. One source that no longer loads is listed at the end of the works cited.</p>
       </header>
+
+      <section id="judging" aria-labelledby="judging-h">
+        <h2 id="judging-h">HOW THE SOURCES WERE JUDGED</h2>
+        <p>Each source got the same five questions, from the source record in the capstone process notebook:</p>
+        <ol class="checklist">
+          <li><b>Who made it?</b> A person, a company or an official body, and whether they know the subject first-hand.</li>
+          <li><b>What evidence does it give?</b> Measurements, the real thing (such as the game itself), or someone&rsquo;s opinion.</li>
+          <li><b>How current is it?</b> When it was written or last updated, and whether that matters for this use.</li>
+          <li><b>What is its purpose, and could it be biased?</b> Selling something, reviewing, teaching or setting a standard.</li>
+          <li><b>How does it connect to the question?</b> What the project took from it, and what it was <em>not</em> trusted for.</li>
+        </ol>
+        <p>Each source is also marked <span class="tag">PRIMARY</span> or <span class="tag secondary">SECONDARY</span>. A <a href="#g-primary-source">primary source</a> is the original thing or first-hand evidence: the 1992 game itself, its program code, the official court rules. A <a href="#g-secondary-source">secondary source</a> describes or reviews something at second hand, such as a magazine review or an encyclopedia article.</p>
+        <p>The rule the project followed: <b>facts about how the arcade game works come from primary sources</b> (the game run in an <a href="#g-emulator">emulator</a>, and its decompiled code). Reviews and databases were used for background and for what players thought, never as proof of a rule or a number.</p>
+        <p class="draft">[Ronin: in 2&ndash;4 sentences, say which source you trusted most and why, and one you were careful with. For example, why a review saying the CPU is &ldquo;dull&rdquo; is an opinion you weighed against your own play-tests.]</p>
+      </section>
 
       <section id="cited" aria-labelledby="cited-h">
         <h2 id="cited-h">WORKS CITED</h2>
-        <p class="todo">Every source, cited in MLA style, with notes on who made it, how reliable it is, and how it was used.</p>
+        <p class="group-note">In alphabetical order, as MLA asks. Each tag says what the source was used for: THE ORIGINAL GAME, COURT RULES, CHOOSING TOOLS, THE TOOLS, THE HOGG THEME or AI. Dates of access are the day the source was used; sources with their own date don&rsquo;t need one.</p>
+
+        <ol class="cited">
+          <!-- Driver author from the file header ("Driver by Manuel Abadia"). squash-1992-research.md §4-5 (DIP switches, hardware). -->
+          <li id="src-mame-gaelco">
+            <p class="cite">Abadia, Manuel. &ldquo;gaelco.cpp.&rdquo; <i>MAME</i>, MAME Development Team, GitHub, <a href="https://github.com/mamedev/mame/blob/master/src/mame/gaelco/gaelco.cpp" rel="noopener">github.com/mamedev/mame/blob/master/src/mame/gaelco/gaelco.cpp</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The volunteer programmer who wrote MAME&rsquo;s emulation of Gaelco&rsquo;s arcade boards, reviewed by the MAME team.</dd>
+              <dt>EVIDENCE</dt><dd>Working code: it has to match the real board exactly or the game won&rsquo;t run. It lists <i>Squash</i>&rsquo;s board number, chips and operator settings.</dd>
+              <dt>CURRENT</dt><dd>Kept up to date in MAME&rsquo;s public code.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Preserving old games. No reason to be biased, but it only describes the hardware, not the game&rsquo;s rules.</dd>
+              <dt>USE</dt><dd>The source for the hardware facts (68000 processor, 320&times;240 screen) and the operator settings (difficulty, number of faults).</dd>
+            </dl>
+          </li>
+
+          <li id="src-mame-gaelco-v">
+            <p class="cite">---. &ldquo;gaelco_v.cpp.&rdquo; <i>MAME</i>, MAME Development Team, GitHub, <a href="https://github.com/mamedev/mame/blob/master/src/mame/gaelco/gaelco_v.cpp" rel="noopener">github.com/mamedev/mame/blob/master/src/mame/gaelco/gaelco_v.cpp</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Same author and project as above.</dd>
+              <dt>EVIDENCE</dt><dd>The code that draws the board&rsquo;s graphics: tile layers, <a href="#g-sprite">sprites</a> and the screen refresh.</dd>
+              <dt>CURRENT</dt><dd>As above.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>As above.</dd>
+              <dt>USE</dt><dd>Explained how the original draws its court and sprites, and its screen&rsquo;s refresh rate (about 57.4 a second).</dd>
+            </dl>
+          </li>
+
+          <li id="src-aseprite">
+            <p class="cite"><i>Aseprite</i>. Igara Studio, 2026, <a href="https://www.aseprite.org" rel="noopener">www.aseprite.org</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Igara Studio, the company that makes the Aseprite pixel-art editor.</dd>
+              <dt>EVIDENCE</dt><dd>What the program does. A product page, not research.</dd>
+              <dt>CURRENT</dt><dd>Kept up to date (&copy; 2001&ndash;2026).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Sells the program, so it only describes its strengths.</dd>
+              <dt>USE</dt><dd>Aseprite was used to clean up the sprites: colours, sizes, and exporting the animations.</dd>
+            </dl>
+          </li>
+
+          <li id="src-midlife">
+            <p class="cite">Brown, Jason. &ldquo;Review: Gaelco Arcade 2 (Evercade Arcade Cartridge 6).&rdquo; <i>MidLifeGamerGeek</i>, 3 Dec. 2023, <a href="https://midlifegamergeek.com/2023/12/03/review-gaelco-arcade-2-evercade-arcade-cartridge-6/" rel="noopener">midlifegamergeek.com/2023/12/03/review-gaelco-arcade-2-evercade-arcade-cartridge-6/</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A games blogger reviewing a 2022 cartridge that includes <i>Squash</i>.</dd>
+              <dt>EVIDENCE</dt><dd>One player&rsquo;s opinion after playing the game.</dd>
+              <dt>CURRENT</dt><dd>2023. Fine for opinions about a 1992 game that hasn&rsquo;t changed.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Entertainment review; reviewers may get free copies. Positive about <i>Squash</i>.</dd>
+              <dt>USE</dt><dd>One of three reviews read for what players enjoy (fast, responsive controls) and what they didn&rsquo;t.</dd>
+            </dl>
+          </li>
+
+          <li id="src-cloudflare">
+            <p class="cite"><i>Cloudflare</i>. <a href="https://www.cloudflare.com" rel="noopener">www.cloudflare.com</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Cloudflare, a web hosting and security company.</dd>
+              <dt>EVIDENCE</dt><dd>Product descriptions only.</dd>
+              <dt>CURRENT</dt><dd>Current company site (no date shown).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Marketing.</dd>
+              <dt>USE</dt><dd>Cloudflare registers the roninray.com domain and hosts the game and this site.</dd>
+            </dl>
+          </li>
+
+          <!-- Source: roninray-site public/build/index.html THE TOOLS ("Claude Code ... wrote the game and this website").
+               Model name from the Co-Authored-By lines in hogg-squash's git log (all "Claude Opus 5.5"); first commit 18 Oct 2026. -->
+          <li id="src-claude-code">
+            <p class="cite">&ldquo;Code, tests and notes for the Hogg Squash game and the roninray.com website&rdquo; prompts. <i>Claude Code</i>, model Claude Opus 5.5, Anthropic, 18 Oct.&ndash;7 Nov. 2026, <a href="https://claude.com/claude-code" rel="noopener">claude.com/claude-code</a>.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">AI &middot; THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Anthropic, an AI company. Claude Code is its AI coding assistant.</dd>
+              <dt>EVIDENCE</dt><dd>Its output is the game&rsquo;s code, its tests and the project notes. It is a tool, not an authority: anything it says is checked (see <a href="#ai-check">How AI work was checked</a>).</dd>
+              <dt>CURRENT</dt><dd>Used in every build session, 18 Oct. to 7 Nov. 2026.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>A commercial product. AI models can state wrong facts confidently, and can&rsquo;t play the game to feel if it&rsquo;s right.</dd>
+              <dt>USE</dt><dd>Wrote the code and this website, one planned session at a time. MLA&rsquo;s template is one entry per conversation; with dozens of sessions, this entry describes them all and gives the date range (MLA allows changing the template when the reason is given).</dd>
+            </dl>
+          </li>
+
+          <!-- canvas-vs-phaser.md ("Phaser 4.2.x (July 2026)"). Release date from the page. -->
+          <li id="src-phaser">
+            <p class="cite">&ldquo;Download Phaser v4.2.1.&rdquo; <i>Phaser</i>, Phaser Studio, 9 July 2026, <a href="https://phaser.io/download/stable" rel="noopener">phaser.io/download/stable</a>.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">CHOOSING TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Phaser Studio, the company that makes the Phaser game framework.</dd>
+              <dt>EVIDENCE</dt><dd>The current version and what it includes.</dd>
+              <dt>CURRENT</dt><dd>Version 4.2.1, released 9 July 2026.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>The maker&rsquo;s own page, so it is reliable for facts about Phaser but naturally promotes it.</dd>
+              <dt>USE</dt><dd>Part of the comparison that chose plain Canvas over Phaser (Phaser&rsquo;s physics is 2D only and couldn&rsquo;t keep the arcade&rsquo;s ball). See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
+            </dl>
+          </li>
+
+          <li id="src-elevenlabs">
+            <p class="cite"><i>ElevenLabs</i>. <a href="https://elevenlabs.io" rel="noopener">elevenlabs.io</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">AI &middot; THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>ElevenLabs, an AI audio company.</dd>
+              <dt>EVIDENCE</dt><dd>Product descriptions only.</dd>
+              <dt>CURRENT</dt><dd>Current (posts dated Sept.&ndash;Oct. 2026).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Marketing for a paid AI service. Whether AI-made sound is fair to sound designers is discussed on <a href="/findings/#ethics">Findings &rarr; Ethics</a>.</dd>
+              <dt>USE</dt><dd>Its AI sound-effect generator made the game&rsquo;s sounds: racket hits, the ball on the walls and floor, and the menu sounds.</dd>
+            </dl>
+          </li>
+
+          <!-- squash-1992-research.md Sources ("Wikipedia — Gaelco"); last edited date as shown on the page on 7 Nov 2026. -->
+          <li id="src-wikipedia">
+            <p class="cite">&ldquo;Gaelco.&rdquo; <i>Wikipedia</i>, Wikimedia Foundation, 1 Aug. 2026, <a href="https://en.wikipedia.org/wiki/Gaelco" rel="noopener">en.wikipedia.org/wiki/Gaelco</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Volunteer editors; no named author.</dd>
+              <dt>EVIDENCE</dt><dd>A summary of the company&rsquo;s history and a list of its games, with links to other sources.</dd>
+              <dt>CURRENT</dt><dd>Last edited 1 Aug. 2026.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>An encyclopedia; anyone can edit it, so it is a starting point, not proof.</dd>
+              <dt>USE</dt><dd>Background on Gaelco (a Barcelona arcade company) and confirming <i>Squash</i> was a 1992 in-house game.</dd>
+            </dl>
+          </li>
+
+          <!-- Version from hogg-squash docs/research/squash-game-logic.md line 3 ("Ghidra 12.1.3 (headless"). -->
+          <li id="src-ghidra">
+            <p class="cite"><i>Ghidra</i>. Version 12.1.3, National Security Agency, <a href="https://github.com/NationalSecurityAgency/ghidra" rel="noopener">github.com/NationalSecurityAgency/ghidra</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The research directorate of the US National Security Agency, which released it as free, open-source software.</dd>
+              <dt>EVIDENCE</dt><dd>A tool, not a source of facts: it turns a program&rsquo;s machine code back into readable code (<a href="#g-decompile">decompiling</a>).</dd>
+              <dt>CURRENT</dt><dd>Version 12.1.3, used 18 Oct. 2026.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Used by security researchers. Its output is a best guess that has to be read with care, so every rule found in it was tested against the running game.</dd>
+              <dt>USE</dt><dd>Decompiled the arcade program to find the exact ball physics, shot tables, CPU behaviour and scoring rules. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
+            </dl>
+          </li>
+
+          <li id="src-github">
+            <p class="cite"><i>GitHub</i>. <a href="https://github.com" rel="noopener">github.com</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>GitHub, Inc. (owned by Microsoft).</dd>
+              <dt>EVIDENCE</dt><dd>Product descriptions only.</dd>
+              <dt>CURRENT</dt><dd>Current.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Marketing.</dd>
+              <dt>USE</dt><dd>Stores the code and every change to it (<a href="#g-version-control">version control</a>). The build log reads its list of changes from there.</dd>
+            </dl>
+          </li>
+
+          <!-- hogg-squash docs/theme.md ("from its website, 2026-10-18"). -->
+          <li id="src-hogg">
+            <p class="cite"><i>Hogg Middle School</i>. Houston Independent School District, <a href="https://hogg.houstonisd.org/" rel="noopener">hogg.houstonisd.org</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">THE HOGG THEME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The school itself, on the district&rsquo;s website.</dd>
+              <dt>EVIDENCE</dt><dd>The school&rsquo;s own mascot (the Razorbacks), colours (red, black and white) and logo.</dd>
+              <dt>CURRENT</dt><dd>Current (its calendar shows this school year).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Informs families. It gives no exact colour codes, so the game&rsquo;s shades of red are its own choice.</dd>
+              <dt>USE</dt><dd>The game&rsquo;s theme: Hogg red and black for Player 1, the HOGG and RAZORBACKS wall boards, and the school shield on the title screen and in the match. Whether the school is happy for its logo to appear publicly is covered on <a href="/findings/#ethics">Findings &rarr; Ethics</a>.</dd>
+            </dl>
+          </li>
+
+          <!-- Used for the citations on this page (MLA 9 + this post for the two AI entries above). -->
+          <li id="src-mla-ai">
+            <p class="cite">&ldquo;How Do I Cite Generative AI in MLA Style? (Updated and Revised).&rdquo; <i>MLA Style Center</i>, Modern Language Association of America, 13 Aug. 2025, <a href="https://style.mla.org/citing-generative-ai-updated-revised/" rel="noopener">style.mla.org/citing-generative-ai-updated-revised/</a>.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">AI</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The Modern Language Association, which writes the MLA style rules.</dd>
+              <dt>EVIDENCE</dt><dd>The official template: describe the prompt, then the tool, model, company, date and link. It says not to treat the AI as an author.</dd>
+              <dt>CURRENT</dt><dd>Aug. 2025; it replaces MLA&rsquo;s 2023 version.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Sets the rule itself, so it is the authority. It does not cover coding assistants used over many sessions.</dd>
+              <dt>USE</dt><dd>The format of the two AI entries (Claude Code and Claude).</dd>
+            </dl>
+          </li>
+
+          <!-- squash-1992-research.md §0 (MAME 0.289, Lua bot, 997 screenshots). Release date from mamedev.org news. -->
+          <li id="src-mame">
+            <p class="cite"><i>MAME</i>. Version 0.289, MAME Development Team, 31 July 2026, <a href="https://www.mamedev.org/" rel="noopener">www.mamedev.org</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A long-running volunteer project that preserves arcade games by <a href="#g-emulator">emulating</a> their hardware.</dd>
+              <dt>EVIDENCE</dt><dd>A tool: it runs the original game exactly as the arcade board did, so the game can be watched and measured frame by frame.</dd>
+              <dt>CURRENT</dt><dd>Version 0.289 (31 July 2026), the one used.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Preservation and research. Free and open-source.</dd>
+              <dt>USE</dt><dd>Ran the 1992 game with a scripted bot that recorded 997 screenshots and every frame of the ball, which became the tests the new game must pass.</dd>
+            </dl>
+          </li>
+
+          <!-- hogg-squash docs/theme.md (Mission Success: founded 2011, squash at Hogg on Mon and Wed evenings — from the owner). -->
+          <li id="src-mission">
+            <p class="cite"><i>Mission Success</i>. <a href="https://missionsuccesshouston.org/" rel="noopener">missionsuccesshouston.org</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">THE HOGG THEME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The non-profit that runs the after-school squash and academics programme that plays at Hogg.</dd>
+              <dt>EVIDENCE</dt><dd>Its own description: founded in 2011, an urban squash programme for Houston students. Its brand colours (orange and teal) come from its logo files.</dd>
+              <dt>CURRENT</dt><dd>Current (&copy; 2026).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Describes and promotes the programme. It has no photos of the Hogg courts, so those details came from Ronin, who plays there.</dd>
+              <dt>USE</dt><dd>A thin orange-and-teal stripe on the game&rsquo;s wall boards, as a nod to the programme (the colours only, not its logo).</dd>
+            </dl>
+          </li>
+
+          <!-- squash-1992-research.md Sources: the Sept. and Oct. Time Extension links now open the same updated article, so it is cited once. -->
+          <li id="src-timeextension">
+            <p class="cite">Moyse, Kris. &ldquo;The Gaelco Sports Collection Featuring the Scandalous &lsquo;Squash&rsquo; Launches October 22.&rdquo; <i>Time Extension</i>, Hookshot Media, 2 Oct. 2026, <a href="https://www.timeextension.com/news/2026/10/the-gaelco-sports-collection-featuring-the-scandalous-squash-launches-october-22" rel="noopener">www.timeextension.com/news/2026/10/the-gaelco-sports-collection-featuring-the-scandalous-squash-launches-october-22</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A writer for a retro-games news site.</dd>
+              <dt>EVIDENCE</dt><dd>News of a 2026 re-release of <i>Squash</i> by QUByte Interactive, with its pin-up pictures censored.</dd>
+              <dt>CURRENT</dt><dd>First published 10 Sept. 2026, updated 2 Oct. 2026. Written before the 22 Oct. launch, so it doesn&rsquo;t prove the launch happened.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>News. The word &ldquo;scandalous&rdquo; in the headline is there to get clicks.</dd>
+              <dt>USE</dt><dd>Showed Gaelco&rsquo;s game is still being sold in 2026, which matters to the ethics of rebuilding it (<a href="/findings/#ethics">Findings &rarr; Ethics</a>). Supported leaving the pin-ups out.</dd>
+            </dl>
+          </li>
+
+          <!-- canvas-vs-phaser.md Sources. Date and author from the page (GameFromScratch post, 14 Apr. 2026). -->
+          <li id="src-phaser-news">
+            <p class="cite">&ldquo;Phaser 4 Released.&rdquo; <i>GameDev.net</i>, 14 Apr. 2026, <a href="https://gamedev.net/news/2759-phaser-4-released/" rel="noopener">gamedev.net/news/2759-phaser-4-released/</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">CHOOSING TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A games-development news site, sharing a post from the GameFromScratch blog.</dd>
+              <dt>EVIDENCE</dt><dd>News that Phaser 4 came out with a new graphics engine. Labelled a personal developer blog, not independent testing.</dd>
+              <dt>CURRENT</dt><dd>Apr. 2026, the month of the release.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>News for developers; enthusiastic about the release.</dd>
+              <dt>USE</dt><dd>Confirmed Phaser 4 was new in 2026, which mattered because most tutorials still teach version 3.</dd>
+            </dl>
+          </li>
+
+          <!-- Source: hogg-squash docs/research/squash-1992-research.md (written 2026-10-18 "with Claude"); build page THE TOOLS. -->
+          <li id="src-claude">
+            <p class="cite">&ldquo;Research on Gaelco&rsquo;s 1992 arcade game <i>Squash</i>, and a plan for rebuilding it&rdquo; prompts. <i>Claude</i>, Anthropic, 18 Oct. 2026, <a href="https://claude.ai" rel="noopener">claude.ai</a>.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">AI &middot; THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Anthropic. Claude is its AI assistant.</dd>
+              <dt>EVIDENCE</dt><dd>Summaries of web pages and analysis of the game&rsquo;s files. Every fact it found is in the research notes with its source, and each was marked confirmed (seen in the game) or unconfirmed.</dd>
+              <dt>CURRENT</dt><dd>18 Oct. 2026, before any code was written.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>As for Claude Code. AI summaries can mix up details, so the facts used were checked against the sources it named and against the game itself.</dd>
+              <dt>USE</dt><dd>Gathered the background research and helped plan the build.</dd>
+            </dl>
+          </li>
+
+          <li id="src-spritecook">
+            <p class="cite"><i>SpriteCook</i>. <a href="https://www.spritecook.ai" rel="noopener">www.spritecook.ai</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">AI &middot; THE TOOLS</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The company behind an AI tool that makes game art; no company name is given on its home page.</dd>
+              <dt>EVIDENCE</dt><dd>Product descriptions only.</dd>
+              <dt>CURRENT</dt><dd>Current (no date shown).</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Marketing for a paid AI service. Whether AI art is fair to artists is discussed on <a href="/findings/#ethics">Findings &rarr; Ethics</a>.</dd>
+              <dt>USE</dt><dd>Generated the player sprites and their animations, which were then cleaned up in Aseprite.</dd>
+            </dl>
+          </li>
+
+          <!-- squash-1992-research.md §0-§6. ROM set "squash", World ver. 1.0, checksum 015aef61. -->
+          <li id="src-squash">
+            <p class="cite"><i>Squash</i>. Version 1.0 (World), Gaelco, 1992. Arcade game, played in <i>MAME</i>, version 0.289.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>Gaelco, Barcelona. Directed by Luis Jonama, graphics by Esteve Polls and Xavi Fradera, software by Alexander Ekjanov (from the game&rsquo;s credits screen).</dd>
+              <dt>EVIDENCE</dt><dd>The game itself: the best possible evidence of how it plays. Its graphics and sounds were studied for reference only; none of them are in Hogg Squash.</dd>
+              <dt>CURRENT</dt><dd>1992, and it never changes, which is what makes exact tests possible.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>An entertainment product. It shows one version only (World 1.0), and some of its 1992 content (pin-up pictures) was deliberately left out.</dd>
+              <dt>USE</dt><dd>The model for the whole game: rules, ball physics, shots and CPU. See <a href="/research/#original">Research &rarr; The original game</a>.</dd>
+            </dl>
+          </li>
+
+          <li id="src-devuego-game">
+            <p class="cite">&ldquo;Squash (Gaelco, 1992).&rdquo; <i>DeVuego</i>, 4 May 2026, <a href="https://www.devuego.es/en/fgame/squash" rel="noopener">www.devuego.es/en/fgame/squash</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A non-profit database of Spanish-made video games.</dd>
+              <dt>EVIDENCE</dt><dd>A short description, the year, the maker and a video.</dd>
+              <dt>CURRENT</dt><dd>Last updated 4 May 2026.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Records Spain&rsquo;s game history; it celebrates Spanish games but makes no claims needing proof.</dd>
+              <dt>USE</dt><dd>Basic facts (1992, Gaelco, eight characters, first to nine points), later confirmed in the game itself.</dd>
+            </dl>
+          </li>
+
+          <li id="src-devuego-press">
+            <p class="cite">&ldquo;Squash (Gaelco) 1992: Presskit.&rdquo; <i>DeVuego</i>, <a href="https://www.devuego.es/en/presskit/squash" rel="noopener">www.devuego.es/en/presskit/squash</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The same database, in press-kit form.</dd>
+              <dt>EVIDENCE</dt><dd>The same description, plus screenshots.</dd>
+              <dt>CURRENT</dt><dd>No date shown.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>As above.</dd>
+              <dt>USE</dt><dd>Cross-checked the game page above.</dd>
+            </dl>
+          </li>
+
+          <li id="src-archive">
+            <p class="cite">&ldquo;Squash (Ver. 1.0).&rdquo; <i>Internet Archive</i>, 10 Apr. 2018, <a href="https://archive.org/details/arcade_squash" rel="noopener">archive.org/details/arcade_squash</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A non-profit digital library. The game&rsquo;s description is copied from the MobyGames database.</dd>
+              <dt>EVIDENCE</dt><dd>A short official-style description of the game.</dd>
+              <dt>CURRENT</dt><dd>Added 10 Apr. 2018.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Preservation. The text is second-hand (copied from another site).</dd>
+              <dt>USE</dt><dd>Background description of the game&rsquo;s rules, checked later in the game itself.</dd>
+            </dl>
+          </li>
+
+          <li id="src-museum">
+            <p class="cite">&ldquo;Squash: Videogame by Gaelco.&rdquo; <i>Museum of the Game</i>, International Arcade Museum, <a href="https://arcade-museum.com/Videogame/squash--gaelco" rel="noopener">arcade-museum.com/Videogame/squash--gaelco</a>. Accessed 18 Oct. 2026.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The best-known online archive of arcade machines (also called KLOV).</dd>
+              <dt>EVIDENCE</dt><dd>The cabinet&rsquo;s details (2 players, 8-way joystick, 2 buttons) and scans of the original flyer and operator&rsquo;s manual.</dd>
+              <dt>CURRENT</dt><dd>No date shown; the facts are from 1992.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Preserving arcade history. Reliable for the hardware; it says little about gameplay.</dd>
+              <dt>USE</dt><dd>Confirmed the controls and cabinet.</dd>
+            </dl>
+          </li>
+
+          <li id="src-retroarcadia">
+            <p class="cite">stvnorman. &ldquo;Game Review: Gaelco Arcade 2 on Evercade VS.&rdquo; <i>Retro Arcadia</i>, 2 Aug. 2022, <a href="https://retroarcadia.blog/2022/08/02/game-review-gaelco-arcade-2-on-evercade-vs/" rel="noopener">retroarcadia.blog/2022/08/02/game-review-gaelco-arcade-2-on-evercade-vs/</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A retro-games blogger (username shown as given).</dd>
+              <dt>EVIDENCE</dt><dd>One player&rsquo;s opinion, and a description of the HARD and SOFT shot buttons.</dd>
+              <dt>CURRENT</dt><dd>2022.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Hobby review; very positive about <i>Squash</i>.</dd>
+              <dt>USE</dt><dd>What players liked; a first description of the two-button controls.</dd>
+            </dl>
+          </li>
+
+          <li id="src-seafoam">
+            <p class="cite">TheDreamingHawk. &ldquo;Gaelco Arcade 2 (Evercade): Review.&rdquo; <i>Seafoam Gaming</i>, 26 Dec. 2024, <a href="https://seafoamgaming.com/2024/12/26/gaelco-arcade-2-evercade-review/" rel="noopener">seafoamgaming.com/2024/12/26/gaelco-arcade-2-evercade-review/</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A games blogger (username shown as given).</dd>
+              <dt>EVIDENCE</dt><dd>One player&rsquo;s opinion.</dd>
+              <dt>CURRENT</dt><dd>2024.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Hobby review; the most negative of the three, finding the CPU boring but two players fun.</dd>
+              <dt>USE</dt><dd>A different view from the other reviews: a reason to make the CPU more interesting and keep two-player play.</dd>
+            </dl>
+          </li>
+
+          <li id="src-cez">
+            <p class="cite">The Punisher. &ldquo;Squash (Gaelco 1992).&rdquo; <i>Computer Emuzone</i>, 17 Mar. 2019, <a href="https://computeremuzone.com/ficha/1293/squash?l=en" rel="noopener">computeremuzone.com/ficha/1293/squash?l=en</a>.</p>
+            <p class="src-tags"><span class="tag secondary">SECONDARY</span><span class="topic">THE ORIGINAL GAME</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>A reviewer (pen name) on a Spanish non-profit site about classic games.</dd>
+              <dt>EVIDENCE</dt><dd>A detailed review of the arcade original, with a user rating.</dd>
+              <dt>CURRENT</dt><dd>2019.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Fan review; praises the presentation and controls.</dd>
+              <dt>USE</dt><dd>Background on how the original looks and plays, from someone who knew it.</dd>
+            </dl>
+          </li>
+
+          <!-- Used on 7 Nov 2026 to check the court numbers below (design-notes.md §3, decisions.md, court-rules.js LINES). -->
+          <li id="src-wsf">
+            <p class="cite">World Squash Federation. <i>Specifications for Squash Courts</i>. 2017. <i>World Squash</i>, <a href="https://www.worldsquash.sport/wp-content/uploads/2021/08/171128_Court-Specifications.pdf" rel="noopener">www.worldsquash.sport/wp-content/uploads/2021/08/171128_Court-Specifications.pdf</a>. Accessed 7 Nov. 2026.</p>
+            <p class="src-tags"><span class="tag">PRIMARY</span><span class="topic">COURT RULES</span></p>
+            <dl class="record">
+              <dt>WHO</dt><dd>The world governing body for squash, recognised by the International Olympic Committee.</dd>
+              <dt>EVIDENCE</dt><dd>The official measurements every competition court must meet, to the millimetre.</dd>
+              <dt>CURRENT</dt><dd>The 2017 edition. World Squash says it still applies while new 2026 product rules are written; court sizes have not changed.</dd>
+              <dt>PURPOSE / BIAS</dt><dd>Sets the standard, so it is the authority. Written for court builders, not for games.</dd>
+              <dt>USE</dt><dd>The game&rsquo;s court numbers were checked against it (<a href="#court-check">below</a>). All the sizes match; there are two small differences.</dd>
+            </dl>
+          </li>
+        </ol>
+
+        <!-- squash-1992-research.md Sources lists Critic, Sir!; on 7 Nov 2026 it failed to load (TLS error, twice, two different browsers). -->
+        <p class="group-note"><b>Not listed:</b> the <i>Critic, Sir!</i> page for <i>Squash</i> (criticsir.com), used in the first research on 18 Oct. 2026, would not load on 7 Nov. 2026, so it can&rsquo;t be checked or cited. It summed up reviews; the reviews above cover the same ground.</p>
       </section>
 
-      <section id="judging" aria-labelledby="judging-h">
-        <h2 id="judging-h">HOW I JUDGED SOURCES</h2>
-        <p class="todo">The questions used to check each source, and the difference between primary and secondary sources.</p>
+      <section id="court-check" aria-labelledby="court-check-h">
+        <h2 id="court-check-h">CHECKING THE COURT AGAINST THE WORLD STANDARD</h2>
+        <!-- Game numbers: hogg-squash public/hogg-squash/js/sim/court-rules.js LINES (game units; ≈45 per metre across,
+             ≈35.2 high, ≈18.8 deep, from that file's header) and docs/design-notes.md §3; heights approved in docs/decisions.md
+             ("Court line heights approved", 2026-10-18; "True to scale", 2026-10-21). WSF numbers: Specifications for Squash
+             Courts (2017), Appendix 1 table and §4.01, §5. Metres below = game units ÷ those scales, rounded to 0.01 m. -->
+        <p>The game&rsquo;s court is measured in its own units, not metres. To check it, each line was turned back into metres and compared with the <a href="#src-wsf">World Squash Federation</a>&rsquo;s official singles court.</p>
+        <div class="table-wrap">
+          <table class="court">
+            <caption>Singles court: official size vs. Hogg Squash</caption>
+            <thead>
+              <tr><th scope="col">Measurement</th><th scope="col">WSF</th><th scope="col">Game</th><th scope="col">Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Court length</th><td>9.75 m</td><td>183 units = 9.75 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Court width</th><td>6.40 m</td><td>288 units = 6.40 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Front-wall out-line (to its lower edge)</th><td>4.57 m</td><td>161 = 4.57 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Service line (lower edge)</th><td>1.78 m</td><td>63 = 1.79 m</td><td class="diff">1 cm high</td></tr>
+              <tr><th scope="row">Top of the tin</th><td>0.48 m</td><td>17 = 0.48 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Back-wall line</th><td>2.13 m</td><td>75 = 2.13 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Side-wall out-line</th><td>Slopes from the front-wall line to the back-wall line</td><td>A straight slope from 161 to 75</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Short line</th><td>4.26 m from the back wall to the line&rsquo;s nearest edge</td><td>103 = 5.49 m from the front wall (the same edge)</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Service boxes</th><td>1.60 m square inside</td><td>72 &times; 30 units = 1.60 &times; 1.60 m</td><td class="ok">Match</td></tr>
+              <tr><th scope="row">Line width</th><td>50 mm; a ball touching a line is out</td><td>Lines have no width: one height, tested at the ball&rsquo;s centre</td><td class="diff">Simplified</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><b>What this shows.</b> Every size and height matches the official court to the centimetre, except two small differences:</p>
+        <ul>
+          <li>The <b>service line</b> is 1 cm high. One game unit of height is about 2.8 cm, so 63 units is the nearest the game can get. The line is only drawn; no rule uses it.</li>
+          <li>The game&rsquo;s <b>lines have no thickness</b>, and the ball&rsquo;s centre is tested against them. On a real court the ball is out if any part of it touches the 50 mm line. The 1992 arcade&rsquo;s own tin and out checks weren&rsquo;t found in its code, so these rules are the project&rsquo;s design, not a copy.</li>
+        </ul>
+        <p>The game&rsquo;s line heights were first taken from &ldquo;World Squash&rdquo; numbers in October without a source being written down. This check, against the official document, fixes that gap. Professional events may lower the tin to 0.43 m; the game uses the standard 0.48 m.</p>
       </section>
 
       <section id="ai-check" aria-labelledby="ai-check-h">
         <h2 id="ai-check-h">HOW AI WORK WAS CHECKED</h2>
-        <p class="todo">How the AI tools&rsquo; work was tested against the arcade game, play-tested and reviewed.</p>
+        <p>The AI tools wrote the code, made the art and sounds, and helped with research. None of that was trusted just because the AI said it was right. It was checked four ways:</p>
+        <ol class="checklist">
+          <!-- hogg-squash test/baselines.json: golden 12,309/12,390 and 17,452/17,563 exact; flights 164/164 and 294/294; shot select 100/100 and 144/144. -->
+          <li><b>Tests against the 1992 game.</b> Two recorded runs of the original game, played in MAME, are replayed against the new code frame by frame. Ball positions match exactly in 12,309 of 12,390 frames and 17,452 of 17,563 frames (99.3%), every one of the 458 ball flights (164 + 294) is explained, and all 244 shot choices are the same. The tests run after every change, and a change that makes them worse fails (a <a href="#g-regression-test">regression test</a>).</li>
+          <li><b>Play-tests by Ronin.</b> At each <a href="#g-checkpoint">checkpoint</a> (CP-B to CP-G), Ronin played the game and wrote down what felt wrong. Those notes caused whole fix-up sessions, such as the drop-shot fix and the reshaped difficulty levels. They are in the <a href="/build/">build log</a>.</li>
+          <!-- hogg-squash test/measure-levels.js, 1000 rallies a level (docs/decisions.md). -->
+          <li><b>Measuring, not guessing.</b> A script plays 1,000 rallies at each CPU level and counts who wins, so a claim like &ldquo;level 5 is harder than level 4&rdquo; is backed by numbers. The charts are on <a href="/findings/#data">Findings</a>.</li>
+          <li><b>Owner review.</b> Every design choice (rules, colours, art, sounds, difficulty) was approved or changed by Ronin and written down with the date and the reason in the project&rsquo;s decision log.</li>
+        </ol>
+        <p>Facts from research were treated the same way: each was marked <i>confirmed</i> once it was seen in the running game, or <i>unconfirmed</i> until then. On this page, every link was re-opened and the court numbers were checked against the official specification.</p>
+        <p><b>Limits.</b> The AI also wrote the tests, so a test could share the code&rsquo;s mistake; the recorded runs come from one version of the arcade game and a bot player; and almost all the play-testing was one person. More on <a href="/findings/#limits">Findings &rarr; Limitations</a>.</p>
+        <p class="draft">[Ronin: in your own words, 2&ndash;3 sentences on what <em>you</em> checked yourself. For example, a time a play-test caught something the tests didn&rsquo;t, or a time you told Claude it was wrong.]</p>
       </section>
 
       <section id="glossary" aria-labelledby="glossary-h">
         <h2 id="glossary-h">GLOSSARY</h2>
-        <p class="todo">The technical words used on this site, explained.</p>
+        <p>The technical words used on this site, in plain words first. Other pages link here with <code>/sources/#g-&lt;term&gt;</code>.</p>
+        <!-- Anchor ids: "g-" + the term in lower case, words joined by hyphens. Keep them stable: other pages link to them. -->
+        <dl class="glossary">
+          <div><dt id="g-checkpoint">Checkpoint</dt><dd>A planned stop in the build where Ronin play-tests the game and decides what to change before more is built. This project had checkpoints CP-A to CP-G.</dd></div>
+          <!-- Table 0.68 → 0.31: hogg-squash docs/design-notes.md (physics summary). -->
+          <div><dt id="g-coefficient-of-restitution">Coefficient of restitution</dt><dd>How bouncy a hit is: the speed after a bounce divided by the speed before. 1 would lose no speed; 0 would stop dead. In the 1992 game it changes with how hard the ball hits, from 0.68 for slow balls down to 0.31 for fast ones.</dd></div>
+          <div><dt id="g-commit">Commit</dt><dd>One saved change in <a href="#g-version-control">version control</a>, with a message saying what changed and why. The build log is made from the project&rsquo;s commits.</dd></div>
+          <div><dt id="g-decompile">Decompile</dt><dd>To turn a program&rsquo;s machine code (the numbers a processor runs) back into code a person can read. The result is a best guess with no original names or comments. Done here with Ghidra.</dd></div>
+          <div><dt id="g-deployment">Deployment</dt><dd>Putting a new version of the game or site on the internet so anyone can use it. Here, pushing to GitHub deploys to Cloudflare.</dd></div>
+          <div><dt id="g-determinism">Determinism</dt><dd>Giving exactly the same result every time from the same start. The game&rsquo;s physics is deterministic, so a test or a replay always comes out the same on every computer.</dd></div>
+          <!-- Levels 1–9: hogg-squash docs/decisions.md ("Difficulty selector, levels 1–9"). -->
+          <div><dt id="g-difficulty-curve">Difficulty curve</dt><dd>How much harder a game gets from one level to the next. Hogg Squash has CPU levels 1 to 9, measured by how often a beginner wins at each.</dd></div>
+          <div><dt id="g-emulator">Emulator</dt><dd>A program that copies old hardware in software, so a game made for it runs on a modern computer exactly as it did. MAME is an arcade emulator.</dd></div>
+          <div><dt id="g-fixed-point">Fixed-point</dt><dd>Doing maths with whole numbers that stand for fractions, instead of decimals. The 1992 arcade did this, and so does the new game, so both give identical answers.</dd></div>
+          <!-- 57.4 Hz: squash-1992-research.md §5; canvas-vs-phaser.md ("fixed-step sim at the arcade's 57.4 Hz"). -->
+          <div><dt id="g-frame-rate">Frame rate</dt><dd>How many pictures (frames) a game shows each second. The arcade ran at about 57.4 frames a second, and the new game&rsquo;s physics steps at the same rate.</dd></div>
+          <div><dt id="g-generative-ai">Generative AI</dt><dd>AI that makes new text, code, pictures or sound from a written request (a prompt). Claude, SpriteCook and ElevenLabs are generative AI.</dd></div>
+          <div><dt id="g-golden-test">Golden test</dt><dd>A test that compares the program&rsquo;s output with a recording known to be right (the &ldquo;golden&rdquo; copy). Here, the recording is the 1992 game&rsquo;s ball, frame by frame.</dd></div>
+          <div><dt id="g-iteration">Iteration</dt><dd>Building something in rounds: make it, test it, change it, repeat. Each round is an iteration.</dd></div>
+          <div><dt id="g-mla">MLA style</dt><dd>The Modern Language Association&rsquo;s rules for citing sources. This page uses the 9th edition.</dd></div>
+          <div><dt id="g-palette">Palette</dt><dd>The fixed set of colours used for the art. Hogg Squash&rsquo;s palette has 36 colours, including Hogg red.</dd></div>
+          <div><dt id="g-play-test">Play-test</dt><dd>Playing a game to find problems and judge how it feels, then writing down what to change.</dd></div>
+          <div><dt id="g-primary-source">Primary source</dt><dd>The original thing or first-hand evidence: the game itself, its code, an official rulebook.</dd></div>
+          <div><dt id="g-regression-test">Regression test</dt><dd>A test run after every change to make sure nothing that used to work has broken (&ldquo;regressed&rdquo;).</dd></div>
+          <div><dt id="g-reverse-engineering">Reverse engineering</dt><dd>Working out how something was made by studying the finished thing: here, running the 1992 game in an emulator and decompiling its code to learn its rules.</dd></div>
+          <div><dt id="g-rom">ROM</dt><dd>Read-only memory: the chips that hold an arcade game&rsquo;s program, graphics and sounds. A copy of them is also called a ROM. The project used one for reference only; nothing from it is in the game.</dd></div>
+          <div><dt id="g-secondary-source">Secondary source</dt><dd>A source that describes, reviews or explains something at second hand, such as a review or an encyclopedia article.</dd></div>
+          <div><dt id="g-short-line">Short line</dt><dd>The line across the floor that marks the front of the service boxes, a little over halfway back from the front wall.</dd></div>
+          <div><dt id="g-sprite">Sprite</dt><dd>A small picture that moves around the screen, like a player or the ball. An animation is a set of sprites shown one after another.</dd></div>
+          <!-- hogg-squash docs/decisions.md ("Squarer corners", S12d: owner picked n = 3). -->
+          <div><dt id="g-superellipse">Superellipse</dt><dd>A shape between an oval and a rectangle: a rectangle with rounded corners, where one number sets how square it is. The area a player can reach is a superellipse; Ronin picked the squareness by playing several.</dd></div>
+          <div><dt id="g-tin">Tin</dt><dd>The strip along the bottom of the front wall, like a net in tennis. A ball that hits it is out. Its top is 0.48 m high.</dd></div>
+          <div><dt id="g-version-control">Version control</dt><dd>A system that saves every change to the code with a date and a message, so any old version can be brought back. This project uses Git and GitHub.</dd></div>
+        </dl>
       </section>
 
       <nav class="pager" aria-label="Reading order">
