@@ -116,7 +116,7 @@ details pre {
 .method dl { margin: 0; display: grid; gap: 10px; font-size: 14.5px; }
 .method dt { font: 400 8px/1.6 var(--pixel); color: var(--dim); }
 .method dd { margin: 2px 0 0; }
-.method .draft { margin: 8px 0 0; font-size: 14.5px; }
+.method .draft, .method .why { margin: 8px 0 0; font-size: 14.5px; }
 
 /* Tool cards on this page also say what each tool couldn't do. */
 .tools .use { color: var(--soft); }
