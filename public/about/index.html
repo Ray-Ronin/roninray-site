@@ -47,13 +47,13 @@
 
       <section id="purpose" aria-labelledby="purpose-h">
         <h2 id="purpose-h">PURPOSE AND GOALS</h2>
-        <!-- Drafted from hogg-squash/CLAUDE.md, docs/theme.md and docs/decisions.md ("Scope of version 1"). Ronin: say it your way. -->
-        <div class="draft">
-          <p>Hogg has its own squash courts, and the Mission Success squash programme plays on them. I wanted to make a squash game for Hogg that anyone could play on a school computer, a phone or a home computer with nothing to install. I picked a 1992 arcade squash game as my model because it plays fast and simply, and I wanted my game to feel like it.</p>
+        <!-- Ronin's own words (rewritten 2026-11-07). Facts behind it: docs/theme.md (courts, Mission Success), docs/decisions.md ("Scope of version 1"). -->
+        <div>
+          <p>Hogg has its own squash courts, and the Mission Success squash program plays on them. I wanted to make a squash game for Hogg that anyone could play on a school computer, a phone or a home computer with nothing to install. I picked a 1992 arcade squash game as my model because I found it at a rental house and found out it was really fun.</p>
           <p>I also wanted to find out what AI tools can really do. Everyone is talking about AI writing code and making art, so I used it to build a whole game and kept a record of where it helped and where it needed me.</p>
           <p><b>My goals:</b></p>
           <ul>
-            <li>Make a complete, finished game, not a demo: menus, a computer opponent with nine levels, two-player mode, sound and controls for keyboard, gamepad and touch.</li>
+            <li>Make a complete and finished game, not a demo: menus, a computer opponent with nine levels, two-player mode, sound and controls for keyboard, gamepad and touch.</li>
             <li>Make it play like the arcade game, and check that with real measurements instead of guessing.</li>
             <li>Make every picture and sound original, with nothing copied from the arcade game.</li>
             <li>Keep a public record of every step, so anyone can see how it was made and what AI did.</li>
@@ -63,17 +63,14 @@
 
       <section id="question" aria-labelledby="question-h">
         <h2 id="question-h">MY QUESTION</h2>
+        <!-- Ronin kept his original guiding question (2026-11-07); a proposed refinement was declined. -->
         <dl class="q-change">
-          <dt>ORIGINAL QUESTION</dt>
+          <dt>MY GUIDING QUESTION</dt>
           <dd>How can AI tools help one student research, design and build a complete video game?</dd>
-          <dt>REFINED QUESTION <span class="q-date">(proposed Nov 7, 2026)</span></dt>
-          <dd class="draft">What can AI tools do, and what still needs a person, when one student researches, designs and builds a complete video game?</dd>
         </dl>
-        <div class="draft">
-          <p><b>Why it changed:</b> my first question only asked how AI <i>helps</i>, so it already assumed the answer was &ldquo;a lot&rdquo;. While building the game, the play-tests kept showing things the AI couldn&rsquo;t judge on its own, like whether the computer opponent felt fair or whether a shot felt right. The new question asks about both sides: what AI did, and what still needed me.</p>
-        </div>
         <p>Five smaller questions help answer the big one. Each links to where it&rsquo;s answered.</p>
-        <div class="draft">
+        <!-- Sub-questions approved by Ronin 2026-11-07 (the 5th is his pick, replacing "How can the process be made visible and checkable by others?"). -->
+        <div>
           <ol class="subq">
             <li>
               <p>How accurately can a 1992 arcade game&rsquo;s rules and physics be rebuilt?</p>
@@ -92,8 +89,8 @@
               <p class="where">Answer: <a href="/findings/#ethics">Findings &rarr; Ethics</a> &middot; Other views: <a href="/findings/#perspectives">Findings &rarr; Other perspectives</a></p>
             </li>
             <li>
-              <p>How can the process be made visible and checkable by others?</p>
-              <p class="where">The public record: <a href="/build/">Build log</a> and <a href="/build/#versions-section">playable old versions</a> &middot; Answer: <a href="/findings/#answers">Findings &rarr; Answers to my questions</a></p>
+              <p>What did I learn by building a game with AI that I wouldn&rsquo;t have learned without it?</p>
+              <p class="where">Answer: <a href="/findings/#answers">Findings &rarr; Answers to my questions</a> &middot; <a href="/findings/#reflection">Findings &rarr; My reflection</a></p>
             </li>
           </ol>
         </div>
@@ -111,7 +108,7 @@
           <dd>It plays like Gaelco&rsquo;s arcade game <i>Squash</i> (1992): first to 9 points, a HARD and a SOFT shot, and ball physics rebuilt from the original and tested against it. <a href="/research/#original">More about the 1992 game &rarr;</a></dd>
           <dt>THE LOOK AND SOUND</dt>
           <!-- Pixel art 640x360, palette, theme: docs/decisions.md ("Art"), docs/theme.md. Sound effects: decisions.md ("Audio"). -->
-          <dd>All-original pixel art in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (used with approval) and a nod to the Mission Success squash programme that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
+          <dd>All-original pixel art in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (used with approval) and a nod to the Mission Success squash program that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
           <dt>WHERE IT IS NOW</dt>
           <!-- Version 1.15.0: hogg-squash/public/hogg-squash/js/version.js; v1 1.0.0 at CP-F: docs/plan.md (Session log, 2026-10-23); next steps: docs/plan-v2.md (Status) -->
           <dd>Version 1.0 was released on Oct 23, 2026. Since then I&rsquo;ve added sound and a character select screen (version 1.15.0). A crowd and a tournament are planned next; <a href="/build/#next-section">see what&rsquo;s up next</a>.</dd>
