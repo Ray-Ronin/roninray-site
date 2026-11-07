@@ -37,30 +37,340 @@
       </nav>
     </header>
 
+    <!-- Every number on this page comes from a doc in the game repo (github.com/Ray-Ronin/hogg-squash); the comment next to it names the doc.
+         Short names: 1992 = docs/research/squash-1992-research.md · logic = docs/research/squash-game-logic.md ·
+         physics = docs/research/physics-core.md · phaser = docs/research/canvas-vs-phaser.md · decisions = docs/decisions.md ·
+         baselines = test/baselines.json · projection = public/hogg-squash/js/render/projection.js -->
     <main class="page">
       <header class="intro">
         <h1 class="title">RESEARCH &amp;<br>METHODS</h1>
-        <p class="todo">This page is being written. Here is what it will cover.</p>
+        <p class="draft">Before any code was written, I studied the 1992 arcade game the way a professional would: I read about it, ran it in an emulator with a robot player, and decompiled its code to find the exact rules. Then I tested my version against the real thing, frame by frame. This page explains each method, the tools, and the main ideas behind the game.</p>
       </header>
 
       <section id="original" aria-labelledby="original-h">
         <h2 id="original-h">THE 1992 ARCADE GAME</h2>
-        <p class="todo">What the original game is, and what was learned about its rules, players and presentation.</p>
+        <p>Hogg Squash recreates how Gaelco's arcade game <i>Squash</i> plays. It uses none of the original's art, sound or code: these facts come from reading about the game, running it in an emulator and decompiling it (see <a href="#methods">Methods</a>).</p>
+        <dl class="facts">
+          <dt>MADE BY</dt>
+          <dd>Gaelco S.A. of Barcelona, Spain, in June 1992. Directed by Luis Jonama; graphics by Esteve Polls and Xavi Fradera; software by Alexander Ekjanov.<!-- 1992 §1 (title screen and credits screen) --></dd>
+          <dt>THE MACHINE</dt>
+          <dd>An arcade board with a Motorola 68000 processor at 10 MHz, drawing a 320&times;240 picture about 57.4 times a second.<!-- 1992 §5 --></dd>
+          <dt>CONTROLS</dt>
+          <dd>A joystick to run and two buttons: HARD (fast drives) and SOFT (drops and low shots). The shot's angle comes from timing, not the joystick.<!-- 1992 §0 and §1; logic §4 ("aim is NOT the joystick") --></dd>
+          <dt>THE VIEW</dt>
+          <dd>A camera behind the glass back wall looks at the front wall, so you see your player from behind on a 3D court. A shadow and a landing arrow show where the ball is going.<!-- 1992 §0 --></dd>
+          <dt>SCORING</dt>
+          <dd>First to 9 points, and every rally scores a point (rally scoring). Each point you lose also costs one of your 5 &ldquo;faults&rdquo;, which work like lives.<!-- 1992 §0 (confirmed in MAME); 5 faults is the default setting, §2 --></dd>
+          <dt>PLAYERS</dt>
+          <dd>One player against the computer, or two head to head. There are 8 players from 8 countries, shown only by a portrait and a flag. No differences in speed or power were found in the code.<!-- 1992 §0 and §3; logic §5 --></dd>
+          <dt>TOURNAMENT</dt>
+          <dd>Five rounds against harder and harder opponents: Qualify Game, 8th Final, Quarter-Final, Semi-Final and Final. Winning a round gives 2 extra faults.<!-- logic §7 --></dd>
+          <dt>LEFT OUT</dt>
+          <dd>Between points the original shows pin-up pictures of women, which the 2026 re-release covers with a flag. Hogg Squash leaves them out.<!-- 1992 §2 --></dd>
+          <dt>TODAY</dt>
+          <dd>Re-released on the Evercade <i>Gaelco Arcade 2</i> cartridge (2022) and in the <i>Gaelco Sports Collection</i> (October 22, 2026).<!-- 1992 §1 --></dd>
+        </dl>
       </section>
 
       <section id="methods" aria-labelledby="methods-h">
         <h2 id="methods-h">METHODS</h2>
-        <p class="todo">Each research method: what it is, who uses it professionally, and what question it answered.</p>
+        <p>Each card says what the method is, who uses it in their jobs, and what it answered for this project. Ronin chose every method; the dated steps are in the <a href="/build/">build log</a>.</p>
+        <div class="methods">
+
+          <article class="method" id="m-background">
+            <h3>1 &middot; BACKGROUND RESEARCH</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Reading what others have already found: museum and archive records, reviews, the press kit and news of the re-release.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Game designers studying other games before they design (competitive analysis), historians and journalists.</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>What the game is, who made it, its rules (first to 9, HARD and SOFT, 8 players, a tournament), what reviewers liked, and what to leave out. It also listed the questions only the real game could answer.<!-- 1992 §1–§3, 12 web sources plus the MAME source --></dd>
+            </dl>
+            <p class="draft">Why I chose it: I wanted to know what made the original fun before deciding what to copy and what to change.</p>
+          </article>
+
+          <article class="method" id="m-emulation">
+            <h3>2 &middot; EMULATION WITH A ROBOT PLAYER</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>An emulator (MAME) is a program that pretends to be the 1992 arcade machine, so its game runs on a normal computer. A script in the Lua language played the game by itself and recorded what happened on every frame.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Game preservation projects that keep old games playable, and software testers who use scripts to play a game thousands of times (test automation).</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>The scoring (rally scoring to 9), which button is HARD, how faults work, and how fast the ball goes: about 25 m/s toward the front wall and about 7 m/s coming back. The recordings, about 92,000 frames of game numbers, became the test data for the physics.<!-- 1992 §0 (MAME 0.289, ~3.5 min, 997 screenshots, ball timing table ±20%); physics "Run the tests" (~92,000 frames) --></dd>
+            </dl>
+            <p class="draft">Why I chose it: reviews can be wrong or vague, but the real game can't be. Running it let me measure things instead of guessing.</p>
+          </article>
+
+          <article class="method" id="m-decompile">
+            <h3>3 &middot; DECOMPILING</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Turning a program's machine code (the numbers a processor runs) back into code a person can read. This is a kind of reverse engineering. The tool was Ghidra.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Security researchers studying viruses, engineers making old and new systems work together, and game preservation &ldquo;decomp&rdquo; projects. Ghidra was made by the U.S. National Security Agency and released free in 2019.</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>The exact ball physics, the shot tables (3 court zones &times; 12 kinds of contact &times; 2 buttons), how the computer player predicts the ball, and the difficulty tables. Gaelco had hidden parts of the code with encryption; 22 encrypted jump tables were decrypted to read it.<!-- logic §1, §3, §4, §6, §7; Ghidra 12.1.3 --></dd>
+            </dl>
+            <p class="draft">Why I chose it: watching the game shows what happens, but only the code shows the exact numbers that make it feel the way it does.</p>
+          </article>
+
+          <article class="method" id="m-golden">
+            <h3>4 &middot; GOLDEN TESTS</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Automatic tests that compare the new game's physics with frames recorded from the real one. The recordings are the &ldquo;golden&rdquo; answers. They run again after every change, so a change that breaks the match is caught at once (a regression test).</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Software engineers who rewrite old programs and must keep them behaving the same, and emulator developers who test against real hardware.</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>Whether the JavaScript physics really matches the arcade, and exactly where it doesn't. The numbers are in <a href="#accuracy">How close is the match?</a> below.</dd>
+            </dl>
+            <p class="draft">Why I chose it: &ldquo;it feels right&rdquo; isn't proof. A test gives a number anyone can check.</p>
+          </article>
+
+          <article class="method" id="m-compare">
+            <h3>5 &middot; COMPARING OPTIONS</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Listing what the project needs, checking what each option provides, weighing the trade-offs, then testing the leading choice before building on it.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Engineers (a trade study or decision matrix) and software teams, who record big choices in &ldquo;decision records&rdquo;.</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>Whether to draw the game with plain HTML5 Canvas or the Phaser game framework. Phaser's physics is 2D only and can't do the arcade's rules, so it would only have helped with drawing. Plain Canvas was chosen and then proven by a small first build, which needed about 150 lines of setup code.<!-- phaser "Would Phaser's physics help the ball?" and "Leaning"; decisions "Build tooling" (CP-A, ~150 lines) --></dd>
+            </dl>
+            <p class="draft">Why I chose it: picking a tool because it's popular could have cost days. Writing the needs down first made the choice clear.</p>
+          </article>
+
+          <article class="method" id="m-playtest">
+            <h3>6 &middot; PLAY-TEST CHECKPOINTS</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Stopping at planned points to play the game, write down what feels wrong, and plan fixes before going on. Each round of build, test and fix is an iteration.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Game studios (play-testing and user research) and designers of apps and products (usability testing).</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>The things only a person can judge: how the game feels, looks and sounds. There were 7 checkpoints, CP-A to CP-G, from October 18 to October 29, 2026, and each led to fix-up sessions. At CP-C, for example, Ronin lost 4&ndash;9 at the easiest level, so the computer player was made slower and clumsier at low levels.<!-- plan.md and plan-v2.md checkpoint sections; git log dates; decisions "CPU difficulty" (CP-C) --></dd>
+            </dl>
+            <p class="draft">Why I chose it: a test can say the ball moves correctly, but not whether the game is fun. That part had to be me.</p>
+          </article>
+
+          <article class="method" id="m-winrate">
+            <h3>7 &middot; MEASURING WIN RATES</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>A robot &ldquo;reference player&rdquo;, built to play like a beginner, plays 1,000 rallies against the computer at each difficulty level, and a script counts the share of points it wins. Fixed random seeds make every run repeatable.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Game balance designers and data analysts, and chess-engine developers, who measure strength with thousands of automatic games (simulation).</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>Whether levels 1 to 9 really go from easy to hard in even steps, measured the same way after each change. The reference player was checked against Ronin first: it won 34% of points against the old level 1, close to his 4&ndash;9 loss. The results are charted on <a href="/findings/#data">Findings</a>.<!-- decisions "CPU difficulty" (reference player: 15-frame reaction, ±3 frames timing, ±16 units; 34% vs S6 level 1); test/measure-levels.js (1000 rallies, fixed seeds) --></dd>
+            </dl>
+            <p class="draft">Why I chose it: one person playing can't tell whether level 6 is a little or a lot harder than level 5. A thousand rallies can.</p>
+          </article>
+
+          <article class="method" id="m-git">
+            <h3>8 &middot; VERSION CONTROL AND A PUBLIC LOG</h3>
+            <dl>
+              <dt>WHAT IT IS</dt>
+              <dd>Git saves every change to the code as a &ldquo;commit&rdquo; with a date and a message, so any earlier version can be brought back. The commits are public on GitHub.</dd>
+              <dt>WHO USES IT</dt>
+              <dd>Almost every software team, and open-source projects. Scientists keep a dated lab notebook for the same reason.</dd>
+              <dt>WHAT IT ANSWERED</dt>
+              <dd>What changed, when and why. The <a href="/build/">build log</a> on this site is made from the commits, and old versions of the game are still playable there.</dd>
+            </dl>
+            <p class="draft">Why I chose it: it keeps an honest record. Anyone can check what was done and when, including which parts the AI wrote.</p>
+          </article>
+        </div>
+
+        <h3 id="accuracy">HOW CLOSE IS THE MATCH?</h3>
+        <p>Two recordings of the real game were used (&ldquo;run 2&rdquo; and &ldquo;run 3&rdquo;). The tests check different things, so their results mean different things:</p>
+        <!-- baselines (recorded 2026-10-18) and physics "Run the tests" -->
+        <table class="numbers">
+          <thead><tr><th scope="col">TEST</th><th scope="col">WHAT IT CHECKS</th><th scope="col">RESULT</th></tr></thead>
+          <tbody>
+            <tr><td>Flight</td><td>Start from the ball just after a hit and run the whole flight with no corrections. Every frame must equal the arcade's.</td><td class="n">All 458 flights<br>(164 + 294),<br>29,634 frames</td></tr>
+            <tr><td>Golden</td><td>Start each frame from the arcade's recorded numbers and step the physics once.</td><td class="n">12,309 / 12,390 and<br>17,452 / 17,563 frames<br>(99.3% and 99.4%)</td></tr>
+            <tr><td>Shot choice</td><td>At each swing, pick the same kind of shot from the same table as the arcade.</td><td class="n">244 / 244</td></tr>
+            <tr><td>Racket hits</td><td>The speed the ball leaves the racket.</td><td class="n">Player 1: 87 / 98<br>Computer: 36 / 70</td></tr>
+          </tbody>
+        </table>
+        <p>The golden test's misses are not physics errors. Every frame it gets wrong is a frame where a racket hits the ball (81 and 111 hits, the same as the misses), and a hit is checked by the other tests instead. Between hits, the flight test matches every frame. The computer player's hits match less often because the arcade adjusts them in ways the decompiling didn't fully explain.<!-- baselines: golden misses 81 / 111 = hits 81 / 111; physics: "every mismatch is a racket hit", CPU hits have extra adjustments --></p>
       </section>
 
       <section id="tools" aria-labelledby="tools-h">
         <h2 id="tools-h">THE TOOLS</h2>
-        <p class="todo">Every tool, what it was used for, and its limits. For now the list is on the <a href="/build/#tools">build log</a>.</p>
+        <!-- ElevenLabs' free plan asks for a credit wherever its sounds are used, so this card must name and link ElevenLabs as the maker of the game's sounds (hogg-squash docs/decisions.md, "Audio", A6). -->
+        <ul class="tools">
+          <li><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a><p class="use">AI help: researching the 1992 arcade game, planning the build, and answering questions along the way.</p><p class="limit">It can sound sure and still be wrong, so its facts were checked against sources and tests.</p></li>
+          <li><a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a><p class="use">The AI coding assistant that wrote the game and this website, one session at a time.</p><p class="limit">It can't feel the game. Whether a change was right came from play-tests and Ronin's calls.</p></li>
+          <li><a href="https://www.mamedev.org" target="_blank" rel="noopener">MAME</a><p class="use">Ran the 1992 arcade game on a computer, with a Lua script playing and recording every frame.</p><p class="limit">The robot player pressed buttons at random and never won, so later rounds weren't seen.</p></li>
+          <li><a href="https://ghidra-sre.org" target="_blank" rel="noopener">Ghidra</a><p class="use">Decompiled the arcade's program to find its exact physics, shots and computer player.</p><p class="limit">Its output reads poorly in places, and some rules (like the tin and out-line checks) weren't found.<!-- logic §10, "Files" --></p></li>
+          <li><a href="https://www.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a><p class="use">Registers the roninray.com domain and hosts the game and this site.</p><p class="limit">A change goes live as soon as it's sent, so everything is checked before it's published.</p></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a><p class="use">Stores the code and every change to it. The build log is made from it.</p><p class="limit">It limits how often a web page can ask for data, so the site keeps its own copy of the log.</p></li>
+          <li><a href="https://www.spritecook.ai" target="_blank" rel="noopener">SpriteCook</a><p class="use">AI pixel-art generator for the player sprites and their animations.</p><p class="limit">Its art needs cleanup by hand, and each picture costs credits.</p></li>
+          <li><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a><p class="use">Pixel-art editor for cleaning up the sprites: colors, sizes and exporting the animations.</p><p class="limit">Cleanup is done pixel by pixel, which is slow.</p></li>
+          <li><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a><p class="use">AI sound-effect generator that made the game's sounds: racket hits, the ball on the walls and floor, and the menu sounds.</p><p class="limit">The free plan is for non-commercial use only and asks for this credit. Busy times can refuse a request.<!-- decisions "Audio" (A6) --></p></li>
+        </ul>
       </section>
 
       <section id="concepts" aria-labelledby="concepts-h">
         <h2 id="concepts-h">HOW IT WORKS</h2>
-        <p class="todo">The main ideas behind the game, explained with diagrams: the 3D court on a 2D screen, exact maths, the front wall, the computer opponent, and the difficulty levels.</p>
+        <p>Five ideas behind the game, in plain words first, then the name the field uses.</p>
+
+        <div class="concept" id="c-court">
+          <h3>A 3D COURT ON A FLAT SCREEN</h3>
+          <p>The game keeps track of the ball in three directions: across the court, how high, and how far from the front wall. The screen only has two. To draw it, the game imagines a camera 8.1 m behind the glass back wall and 4 m up, and works out where each point would appear on its picture. Things farther away are drawn smaller and closer to the middle.<!-- projection CAMERA; decisions "FROZEN: the wide camera" --></p>
+          <p>That leaves a problem: a ball high up near you and a ball low down far away can land on the same spot on the screen. The ball's shadow, always drawn on the floor, tells you which.</p>
+          <p class="term">Field terms: <b>perspective projection</b> with a <b>pinhole camera</b>; the ball's position is a <b>3D coordinate</b> (x, y, z).</p>
+          <figure class="fig">
+            <svg viewBox="60 30 520 330" role="img" aria-labelledby="c-court-cap">
+              <!-- Drawn from projection.js's frozen camera (8.1 m back, 4.0 m up, focal 557, widen 1.10). Front wall x 210–430, y 52–195; glass floor y 345, x 78–562. -->
+              <polygon class="floor" points="210,195 430,195 562,345 78,345"/>
+              <rect class="wall" x="210" y="52" width="220" height="143"/>
+              <line class="red" x1="210" y1="52" x2="430" y2="52"/>
+              <line class="red" x1="210" y1="139" x2="430" y2="139"/>
+              <line class="red" x1="210" y1="180" x2="430" y2="180"/>
+              <line class="red" x1="210" y1="52" x2="78" y2="199"/>
+              <line class="red" x1="430" y1="52" x2="562" y2="199"/>
+              <line class="red" x1="162" y1="250" x2="478" y2="250"/>
+              <line class="red" x1="320" y1="250" x2="320" y2="345"/>
+              <text x="320" y="100" text-anchor="middle">FRONT WALL</text>
+              <line class="thin" x1="361" y1="170" x2="361" y2="255"/>
+              <ellipse class="shadow alt" cx="361" cy="206" rx="7" ry="3"/>
+              <ellipse class="shadow" cx="361" cy="258" rx="10" ry="4"/>
+              <circle class="ball" cx="361" cy="164" r="6"/>
+              <text class="y" x="376" y="212">B</text>
+              <text class="y" x="378" y="266">A</text>
+            </svg>
+            <figcaption id="c-court-cap">The court as the game's camera sees it, drawn from its real camera numbers. The yellow ball could be ball A (2 m up, 6 m from the front wall) or ball B (1.2 m up, 1.5 m from it): both land on the same pixel. Only the shadow shows which one it is.</figcaption>
+          </figure>
+        </div>
+
+        <div class="concept" id="c-fixed">
+          <h3>EXACT MATHS: THE SAME ANSWER EVERY TIME</h3>
+          <p>The 1992 arcade's processor had no built-in way to do decimals, so its programmers stored numbers like 1.5 as whole numbers that count 65,536ths. Hogg Squash does its physics the same way. Whole-number maths has no rounding surprises, so the game gets exactly the arcade's numbers (which is why the tests can demand an exact match) and exactly the same result in every browser.<!-- logic §2 (16.16 fixed point); physics intro; hogg-squash CLAUDE.md --></p>
+          <p>Getting the same result from the same start every time also matters for the computer player: its prediction of the ball (below) is only right if the real ball does exactly what the prediction did.<!-- decisions "Platform" --></p>
+          <p class="term">Field terms: <b>16.16 fixed-point</b> numbers (16 bits for the whole part, 16 for the fraction); a program that always gives the same output for the same input is <b>deterministic</b>.</p>
+          <figure class="fig">
+            <svg viewBox="0 0 540 210" role="img" aria-labelledby="c-fixed-cap">
+              <text x="20" y="34">16 BITS: WHOLE</text>
+              <text x="280" y="34">16 BITS: FRACTION</text>
+              <rect class="box" x="20" y="46" width="250" height="70"/>
+              <rect class="box hi" x="280" y="46" width="240" height="70"/>
+              <text class="big" x="145" y="90" text-anchor="middle">1</text>
+              <text class="big y" x="400" y="90" text-anchor="middle">32,768 / 65,536</text>
+              <text x="20" y="156">1.5 = 1 &times; 65,536 + 32,768</text>
+              <text x="20" y="188">stored as one whole number: <tspan class="y">98,304</tspan></text>
+            </svg>
+            <figcaption id="c-fixed-cap">How 1.5 is stored in 16.16 fixed point: one 32-bit whole number whose top half is the whole part and bottom half counts 65,536ths.</figcaption>
+          </figure>
+        </div>
+
+        <div class="concept" id="c-wall">
+          <h3>WHY THE FRONT WALL SLOWS THE BALL</h3>
+          <p>In the recordings, a hard shot hit the front wall at about 25 m/s but came back at only about 7 m/s. That slowdown is what gives a player time to reach the ball. The code shows how: every bounce keeps a share of the ball's speed, from 68% for a slow ball down to 31% for a fast one, and the front wall counts each hit as if it were twice as fast. Harder levels make the ball a little &ldquo;deader&rdquo; still.<!-- 1992 §0 ball timing table; logic §3 (REST table 173/256 … 79/256, front wall damps at 2× impact speed, bounceOffset) --></p>
+          <p class="term">Field term: the share of speed a ball keeps after a bounce is its <b>coefficient of restitution</b>.</p>
+          <figure class="fig">
+            <svg viewBox="0 0 540 250" role="img" aria-labelledby="c-wall-cap">
+              <defs>
+                <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path class="ball" d="M0,0 L10,5 L0,10 z"/></marker>
+              </defs>
+              <line class="wall" x1="60" y1="20" x2="60" y2="205" style="stroke-width:6"/>
+              <line class="wall" x1="60" y1="205" x2="520" y2="205"/>
+              <text x="40" y="112" text-anchor="middle" transform="rotate(-90 40 112)">FRONT WALL</text>
+              <line class="arrow" x1="500" y1="60" x2="76" y2="108" marker-end="url(#ah)"/>
+              <line class="arrow out" x1="70" y1="122" x2="182" y2="155" marker-end="url(#ah)"/>
+              <text class="y" x="290" y="62">IN ~25 m/s</text>
+              <text class="y" x="196" y="170">OUT ~7 m/s</text>
+              <text x="80" y="238">slow ball keeps 68% &middot; fast ball keeps 31%</text>
+            </svg>
+            <figcaption id="c-wall-cap">Seen from the side, arrows drawn to scale: the ball goes into the front wall at about 25 m/s and comes out at about 7 m/s.</figcaption>
+          </figure>
+        </div>
+
+        <div class="concept" id="c-ghost">
+          <h3>HOW THE COMPUTER PLAYER KNOWS WHERE TO RUN</h3>
+          <p>After every hit the game sends out an invisible copy of the ball, the &ldquo;ghost ball&rdquo;. It runs the same physics three steps for every frame of the real ball, so it races ahead. Once the ghost has hit the front wall and then the floor, the game notes up to 4 places where a player could meet it. That prediction places the red landing arrow, and it is also the computer player's plan: after a short reaction delay, it runs to the earliest of those places it can reach in time.<!-- logic §4 ("The landing arrow & CPU target") and §6 --></p>
+          <p class="term">Field terms: running a copy of the simulation ahead of time is a <b>look-ahead</b> or <b>prediction</b>; the computer player is the game's <b>AI</b> (artificial intelligence, the game-design meaning).</p>
+          <figure class="fig">
+            <svg viewBox="0 -8 540 458" role="img" aria-labelledby="c-ghost-cap">
+              <defs>
+                <marker id="ah2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="cpu" d="M0,0 L10,5 L0,10 z"/></marker>
+              </defs>
+              <!-- Seen from above: 6.4 m × 9.75 m at 40 px per metre. -->
+              <rect class="floor" x="40" y="30" width="256" height="390"/>
+              <line class="wall" x1="40" y1="30" x2="296" y2="30" style="stroke-width:6"/>
+              <line class="red" x1="40" y1="248" x2="296" y2="248"/>
+              <line class="red" x1="168" y1="248" x2="168" y2="420"/>
+              <text x="168" y="22" text-anchor="middle">FRONT WALL</text>
+              <g>
+                <circle class="ghost" cx="200" cy="30" r="5"/>
+                <circle class="ghost" cx="194" cy="59" r="5"/>
+                <circle class="ghost" cx="188" cy="88" r="5"/>
+                <circle class="ghost" cx="181" cy="117" r="5"/>
+                <circle class="ghost" cx="175" cy="146" r="5"/>
+                <circle class="ghost" cx="169" cy="175" r="5"/>
+                <circle class="ghost" cx="163" cy="204" r="5"/>
+                <circle class="ghost" cx="156" cy="233" r="5"/>
+                <circle class="ghost" cx="143" cy="290" r="5"/>
+                <circle class="ghost" cx="136" cy="317" r="5"/>
+                <circle class="ghost" cx="128" cy="345" r="5"/>
+                <circle class="ghost" cx="121" cy="372" r="5"/>
+              </g>
+              <path class="cpu" d="M140,252 L160,252 L150,268 z"/>
+              <line class="thin" x1="250" y1="378" x2="168" y2="210"/>
+              <line class="red" x1="250" y1="382" x2="156" y2="294" marker-end="url(#ah2)"/>
+              <circle class="cpu" cx="255" cy="386" r="10"/>
+              <text class="y" x="140" y="200" text-anchor="end">1</text>
+              <text class="y" x="126" y="296" text-anchor="end">2</text>
+              <text class="y" x="112" y="350" text-anchor="end">3</text>
+              <text x="312" y="208">1 too soon to reach</text>
+              <text x="312" y="264">&#9660; landing arrow</text>
+              <text x="312" y="298">2 first it can reach</text>
+              <text x="312" y="352">3 a later chance</text>
+              <text x="312" y="392">&#9679; computer player</text>
+            </svg>
+            <figcaption id="c-ghost-cap">Seen from above. The rings are the ghost ball racing ahead after the front wall. The computer player (red) can't get to point 1 in time, so it runs to point 2.</figcaption>
+          </figure>
+        </div>
+
+        <div class="concept" id="c-levels">
+          <h3>DESIGNING LEVELS 1 TO 9</h3>
+          <p>The arcade has 20 hidden difficulty steps: 4 settings the arcade owner picks (Easy, Normal, Hard, Hardest), each with 5 skill levels that rise as you win. They aren't in order from easy to hard. For example, the computer reacts more slowly at Normal skill 0 (16 frames) than at Easy skill 1 (12 frames). Hogg Squash replaces them with levels 1 to 9 that get harder every step.<!-- logic §7 difficulty table; decisions "CPU difficulty" --></p>
+          <p>Each level sets the game's pace (ball speed, gravity, shot power, bounce) and how well the computer plays (how fast it reacts, how accurately it places itself and times its shots). Level 5 plays at the arcade's Normal pace. The computer's reaction time goes from 36 frames (about 0.6 s) at level 1 down to 1 frame at level 9.<!-- decisions "CPU difficulty": level 5 = Normal 0 pace; S6b reaction 36 … 1 frames at 57.4 fps --></p>
+          <p class="term">Field terms: a <b>difficulty curve</b>; one that only ever goes up is <b>monotonic</b>. Changing it after testing is <b>game balancing</b>.</p>
+          <figure class="fig">
+            <svg viewBox="0 0 560 300" role="img" aria-labelledby="c-levels-cap">
+              <!-- y = 250 − 5.5 × frames. Arcade: logic §7 (Easy, Normal, Hard, Hardest × skill 0–4). Levels: decisions "The CPU columns as built (S6b)". -->
+              <line class="grid" x1="44" y1="250" x2="550" y2="250"/>
+              <line class="grid" x1="44" y1="184" x2="550" y2="184"/>
+              <line class="grid" x1="44" y1="118" x2="550" y2="118"/>
+              <line class="grid" x1="44" y1="52" x2="550" y2="52"/>
+              <line class="grid" x1="285" y1="40" x2="285" y2="260"/>
+              <text x="36" y="256" text-anchor="end">0</text>
+              <text x="36" y="190" text-anchor="end">12</text>
+              <text x="36" y="124" text-anchor="end">24</text>
+              <text x="36" y="58" text-anchor="end">36</text>
+              <text x="50" y="30">CPU reaction delay, frames (lower = harder)</text>
+              <polyline class="curve arcade" points="50,140 60.5,184 71,206 81.5,222.5 92,228 102.5,162 113,206 123.5,211.5 134,217 144.5,228 155,162 165.5,206 176,222.5 186.5,233.5 197,239 207.5,195 218,217 228.5,228 239,239 249.5,244.5"/>
+              <g class="pt arcade">
+                <circle cx="50" cy="140" r="3.5"/><circle cx="60.5" cy="184" r="3.5"/><circle cx="71" cy="206" r="3.5"/><circle cx="81.5" cy="222.5" r="3.5"/><circle cx="92" cy="228" r="3.5"/>
+                <circle cx="102.5" cy="162" r="3.5"/><circle cx="113" cy="206" r="3.5"/><circle cx="123.5" cy="211.5" r="3.5"/><circle cx="134" cy="217" r="3.5"/><circle cx="144.5" cy="228" r="3.5"/>
+                <circle cx="155" cy="162" r="3.5"/><circle cx="165.5" cy="206" r="3.5"/><circle cx="176" cy="222.5" r="3.5"/><circle cx="186.5" cy="233.5" r="3.5"/><circle cx="197" cy="239" r="3.5"/>
+                <circle cx="207.5" cy="195" r="3.5"/><circle cx="218" cy="217" r="3.5"/><circle cx="228.5" cy="228" r="3.5"/><circle cx="239" cy="239" r="3.5"/><circle cx="249.5" cy="244.5" r="3.5"/>
+              </g>
+              <polyline class="curve" points="320,52 347,79.5 374,101.5 401,123.5 428,156.5 455,173 482,195 509,217 536,244.5"/>
+              <g class="pt">
+                <circle cx="320" cy="52" r="4.5"/><circle cx="347" cy="79.5" r="4.5"/><circle cx="374" cy="101.5" r="4.5"/><circle cx="401" cy="123.5" r="4.5"/><circle cx="428" cy="156.5" r="4.5"/>
+                <circle cx="455" cy="173" r="4.5"/><circle cx="482" cy="195" r="4.5"/><circle cx="509" cy="217" r="4.5"/><circle cx="536" cy="244.5" r="4.5"/>
+              </g>
+              <text x="150" y="284" text-anchor="middle">ARCADE: 20 STEPS</text>
+              <text class="y" x="428" y="284" text-anchor="middle">LEVELS 1&ndash;9</text>
+            </svg>
+            <figcaption id="c-levels-cap">The computer's reaction delay. Left: the arcade's 20 steps in the order of its settings (Easy, Normal, Hard, Hardest, each with skill 0 to 4) jump back up three times. Right: Hogg Squash's levels 1 to 9 only go down.</figcaption>
+          </figure>
+          <p>How the levels were checked, and how play-testing changed them, is on <a href="/findings/#data">Findings</a>.</p>
+        </div>
       </section>
 
       <nav class="pager" aria-label="Reading order">
