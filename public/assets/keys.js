@@ -5,8 +5,7 @@ document.addEventListener('keydown', e => {
   if (e.altKey || e.ctrlKey || e.metaKey || e.repeat) return;
   if (e.code === 'KeyF') {
     const focused = document.activeElement;
-    const target = focused instanceof HTMLAnchorElement || focused instanceof HTMLButtonElement
-      ? focused : document.querySelector('.menu a.on');
+    const target = focused?.matches('a, button, summary') ? focused : document.querySelector('.menu a.on');
     if (target) { e.preventDefault(); /** @type {HTMLElement} */ (target).click(); }
   } else if (e.code === 'KeyG' && location.pathname !== '/') {
     e.preventDefault();

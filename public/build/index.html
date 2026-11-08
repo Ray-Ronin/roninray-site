@@ -42,7 +42,7 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">HOW I<br>BUILT IT</h1>
-        <p>This log is my process record. The game is built in small steps: each one is a short work session that ends with a commit, a saved change on GitHub. Between some steps I play-test the game and decide what to fix next.</p>
+        <p>This log is my process record. The game is built in small steps: each one is a short work session that ends with a <a href="/sources/#g-commit">commit</a>, a saved change in <a href="/sources/#g-version-control">version control</a> on GitHub. Between some steps I <a href="/sources/#g-play-test">play-test</a> the game and decide what to fix next (each round is an <a href="/sources/#g-iteration">iteration</a>).</p>
         <p>It reads every commit straight from GitHub, so it&rsquo;s always up to date, and old versions stay playable so you can see how the game grew. All the code is open: <a href="https://github.com/Ray-Ronin/hogg-squash" target="_blank" rel="noopener">see how it works, or fork it and make your own version &rarr;</a></p>
         <p>New here? <a href="/about/">Start with the project and my guiding question</a>. The tools are on the <a href="/research/#tools">Research page</a>.</p>
       </header>
@@ -58,7 +58,7 @@
           <tbody>
             <tr id="fb-CP-A">
               <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-A">CP-A</a><span class="fb-date">Oct 18</span></td>
-              <td data-label="FEEDBACK">Plain Canvas needed about 150 lines of setup and nothing felt heavy. One fixed player size looked right at the back of the court but like a giant at the front wall.</td>
+              <td data-label="FEEDBACK">Plain <a href="/sources/#g-canvas">Canvas</a> needed about 150 lines of setup and nothing felt heavy. One fixed player size looked right at the back of the court but like a giant at the front wall.</td>
               <td data-label="REVISION OR DECISION">Stayed with plain Canvas and dropped Phaser. Kept the camera. Planned three player sizes.<span class="fb-play"><a href="/versions/s1/" target="_blank" rel="noopener">Play S1 &rarr;</a></span></td>
               <td data-label="WHY">Phaser was only the fallback if the test went badly. True perspective would halve the player&rsquo;s height from back to front, so the sizes split the difference.</td>
             </tr>
@@ -71,7 +71,7 @@
             <tr id="fb-CP-C">
               <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-C">CP-C</a><span class="fb-date">Oct 20</span></td>
               <td data-label="FEEDBACK">Lost 4&ndash;9 to the level 1 CPU. Levels 1, 5 and 9 felt about the same. SOFT in the front court ran too deep instead of dropping short. The CPU did nothing silly.</td>
-              <td data-label="REVISION OR DECISION">S6b: a slower CPU at the low levels, shot quality that grows with the level, and short front-court drops. The game&rsquo;s pace by level stayed the same.<span class="fb-play"><a href="/versions/s6b/" target="_blank" rel="noopener">Play S6b &rarr;</a></span></td>
+              <td data-label="REVISION OR DECISION">S6b: a slower CPU at the low levels, shot quality that grows with the level, and short front-court <a href="/sources/#g-drop-shot">drops</a>. The game&rsquo;s pace by level stayed the same.<span class="fb-play"><a href="/versions/s6b/" target="_blank" rel="noopener">Play S6b &rarr;</a></span></td>
               <td data-label="WHY">Level 1 has to be beatable. Only the pace and the reaction time changed between levels, and that wasn&rsquo;t enough to feel. The drops depart from the arcade&rsquo;s tables on purpose.</td>
             </tr>
             <tr id="fb-CP-D">
@@ -82,7 +82,7 @@
             </tr>
             <tr id="fb-CP-E">
               <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-E">CP-E</a><span class="fb-date">Oct 22</span></td>
-              <td data-label="FEEDBACK">Text readable, ball always visible, HUD not distracting, and no art needed for MISS or pause. The racket should look more like it hit the ball.</td>
+              <td data-label="FEEDBACK">Text readable, ball always visible, <a href="/sources/#g-hud">HUD</a> not distracting, and no art needed for MISS or pause. The racket should look more like it hit the ball.</td>
               <td data-label="REVISION OR DECISION">S12: a small sideways racket shift. Tried several settings in the running game and picked 1% up or down and 1% across.<span class="fb-play"><a href="/versions/s12/" target="_blank" rel="noopener">Play S12 &rarr;</a></span></td>
               <td data-label="WHY">At that setting the player stays on their spot, at most 1 px off, and the racket stays near where the art holds it.</td>
             </tr>
@@ -95,7 +95,7 @@
             <tr id="fb-CP-F-2">
               <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-F">CP-F</a><span class="fb-date">Oct 22, replay</span></td>
               <td data-label="FEEDBACK">The range should be &ldquo;more like a rectangle with curved corners&rdquo;. The school&rsquo;s shield should go in the match.</td>
-              <td data-label="REVISION OR DECISION">S12d: a squarer range, and the shield in the match&rsquo;s margin.</td>
+              <td data-label="REVISION OR DECISION">S12d: a squarer range (a <a href="/sources/#g-superellipse">superellipse</a>), and the shield in the match&rsquo;s margin.</td>
               <td data-label="WHY">The corner shape was picked by playing four options, not only from the map.</td>
             </tr>
             <tr id="fb-CP-F-3">
@@ -145,11 +145,11 @@
                   <p class="meta">Oct 18 · Research the original game</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Pulled the graphics and sound clips out of the game's ROM to study, for reference only.</p>
+                  <p class="sum">Pulled the graphics and sound clips out of the game's <a href="/sources/#g-rom">ROM</a> to study, for reference only.</p>
                   <p class="meta">Oct 18 · ROM graphics and sound extracted</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Ran the real game in an arcade emulator with a robot player to confirm the rules and measure the ball's speed, then decompiled its code to find the exact ball physics, shots and computer opponent.</p>
+                  <p class="sum">Ran the real game in an arcade <a href="/sources/#g-emulator">emulator</a> with a robot player to confirm the rules and measure the ball's speed, then <a href="/sources/#g-decompile">decompiled</a> its code to find the exact ball physics, shots and computer opponent.</p>
                   <p class="meta">Oct 18 · MAME test runs and Ghidra decompile</p>
                 </li>
                 <li class="commit">

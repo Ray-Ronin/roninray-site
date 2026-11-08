@@ -49,18 +49,18 @@
 
       <section id="original" aria-labelledby="original-h">
         <h2 id="original-h">THE 1992 ARCADE GAME</h2>
-        <p>Hogg Squash recreates how Gaelco's arcade game <i>Squash</i> plays. It uses none of the original's art, sound or code: these facts come from reading about the game, running it in an emulator and decompiling it (see <a href="#methods">Methods</a>).</p>
+        <p>Hogg Squash recreates how Gaelco's arcade game <i>Squash</i> plays. It uses none of the original's art or sound, and the original's <a href="/sources/#g-machine-code">machine code</a> doesn't run in it, but its ball physics is a <a href="/sources/#g-port">port</a> of the original's routines (see <a href="/findings/#e-copyright">Findings &rarr; Copyright</a>). These facts come from reading about the game, running it in an <a href="/sources/#g-emulator">emulator</a> and <a href="/sources/#g-decompile">decompiling</a> it (see <a href="#methods">Methods</a>).</p>
         <dl class="facts">
           <dt>MADE BY</dt>
           <dd>Gaelco S.A. of Barcelona, Spain, in June 1992. Directed by Luis Jonama; graphics by Esteve Polls and Xavi Fradera; software by Alexander Ekjanov.<!-- 1992 §1 (title screen and credits screen) --></dd>
           <dt>THE MACHINE</dt>
-          <dd>An arcade board with a Motorola 68000 processor at 10 MHz, drawing a 320&times;240 picture about 57.4 times a second.<!-- 1992 §5 --></dd>
+          <dd>An arcade board with a Motorola 68000 processor at 10 MHz, drawing a 320&times;240 picture about 57.4 times a second (its <a href="/sources/#g-frame-rate">frame rate</a>).<!-- 1992 §5 --></dd>
           <dt>CONTROLS</dt>
           <dd>A joystick to run and two buttons: HARD (fast drives) and SOFT (drops and low shots). The shot's angle comes from timing, not the joystick.<!-- 1992 §0 and §1; logic §4 ("aim is NOT the joystick") --></dd>
           <dt>THE VIEW</dt>
           <dd>A camera behind the glass back wall looks at the front wall, so you see your player from behind on a 3D court. A shadow and a landing arrow show where the ball is going.<!-- 1992 §0 --></dd>
           <dt>SCORING</dt>
-          <dd>First to 9 points, and every rally scores a point (rally scoring). Each point you lose also costs one of your 5 &ldquo;faults&rdquo;, which work like lives.<!-- 1992 §0 (confirmed in MAME); 5 faults is the default setting, §2 --></dd>
+          <dd>First to 9 points, and every rally scores a point (<a href="/sources/#g-rally-scoring">rally scoring</a>). Each point you lose also costs one of your 5 &ldquo;faults&rdquo;, which work like lives.<!-- 1992 §0 (confirmed in MAME); 5 faults is the default setting, §2 --></dd>
           <dt>PLAYERS</dt>
           <dd>One player against the computer, or two head to head. There are 8 players from 8 countries, shown only by a portrait and a flag. No differences in speed or power were found in the code.<!-- 1992 §0 and §3; logic §5 --></dd>
           <dt>TOURNAMENT</dt>
@@ -83,7 +83,7 @@
               <dt>WHAT IT IS</dt>
               <dd>Reading what others have already found: museum and archive records, reviews, the press kit and news of the re-release.</dd>
               <dt>WHO USES IT</dt>
-              <dd>Game designers studying other games before they design (competitive analysis), historians and journalists.</dd>
+              <dd>Game designers studying other games before they design (<a href="/sources/#g-competitive-analysis">competitive analysis</a>), historians and journalists.</dd>
               <dt>WHAT IT ANSWERED</dt>
               <dd>What the game is, who made it, its rules (first to 9, HARD and SOFT, 8 players, a tournament), what reviewers liked, and what to leave out. It also listed the questions only the real game could answer.<!-- 1992 §1–§3, 12 web sources plus the MAME source --></dd>
             </dl>
@@ -96,7 +96,7 @@
               <dt>WHAT IT IS</dt>
               <dd>An emulator (MAME) is a program that pretends to be the 1992 arcade machine, so its game runs on a normal computer. A script in the Lua language played the game by itself and recorded what happened on every frame.</dd>
               <dt>WHO USES IT</dt>
-              <dd>Game preservation projects that keep old games playable, and software testers who use scripts to play a game thousands of times (test automation).</dd>
+              <dd>Game preservation projects that keep old games playable, and software testers who use scripts to play a game thousands of times (<a href="/sources/#g-test-automation">test automation</a>).</dd>
               <dt>WHAT IT ANSWERED</dt>
               <dd>The scoring (rally scoring to 9), which button is HARD, how faults work, and how fast the ball goes: about 25 m/s toward the front wall and about 7 m/s coming back. The recordings, about 92,000 frames of game numbers, became the test data for the physics.<!-- 1992 §0 (MAME 0.289, ~3.5 min, 997 screenshots, ball timing table ±20%); physics "Run the tests" (~92,000 frames) --></dd>
             </dl>
@@ -107,11 +107,11 @@
             <h3>3 &middot; DECOMPILING</h3>
             <dl>
               <dt>WHAT IT IS</dt>
-              <dd>Turning a program's machine code (the numbers a processor runs) back into code a person can read. This is a kind of reverse engineering. The tool was Ghidra.</dd>
+              <dd>Turning a program's machine code (the numbers a processor runs) back into code a person can read. This is a kind of <a href="/sources/#g-reverse-engineering">reverse engineering</a>. The tool was Ghidra.</dd>
               <dt>WHO USES IT</dt>
               <dd>Security researchers studying viruses, engineers making old and new systems work together, and game preservation &ldquo;decomp&rdquo; projects. Ghidra was made by the U.S. National Security Agency and released free in 2019.</dd>
               <dt>WHAT IT ANSWERED</dt>
-              <dd>The exact ball physics, the shot tables (3 court zones &times; 12 kinds of contact &times; 2 buttons), how the computer player predicts the ball, and the difficulty tables. Gaelco had hidden parts of the code with encryption; 22 encrypted jump tables were decrypted to read it.<!-- logic §1, §3, §4, §6, §7; Ghidra 12.1.3 --></dd>
+              <dd>The exact ball physics, the shot tables (3 court zones &times; 12 kinds of contact &times; 2 buttons), how the computer player predicts the ball, and the difficulty tables. Gaelco had hidden parts of the code with <a href="/sources/#g-encryption">encryption</a>; 22 encrypted jump tables were decrypted to read it.<!-- logic §1, §3, §4, §6, §7; Ghidra 12.1.3 --></dd>
             </dl>
             <p class="why">Watching the game shows what happens, but only the code shows the exact numbers that make it feel the way it does.</p><!-- Ronin, 2026-11-07 -->
           </article>
@@ -120,7 +120,7 @@
             <h3>4 &middot; GOLDEN TESTS</h3>
             <dl>
               <dt>WHAT IT IS</dt>
-              <dd>Automatic tests that compare the new game's physics with frames recorded from the real one. The recordings are the &ldquo;golden&rdquo; answers. They run again after every change, so a change that breaks the match is caught at once (a regression test).</dd>
+              <dd>Automatic tests that compare the new game's physics with frames recorded from the real one. The recordings are the <a href="/sources/#g-golden-test">&ldquo;golden&rdquo;</a> answers. They run again after every change, so a change that breaks the match is caught at once (a <a href="/sources/#g-regression-test">regression test</a>).</dd>
               <dt>WHO USES IT</dt>
               <dd>Software engineers who rewrite old programs and must keep them behaving the same, and emulator developers who test against real hardware.</dd>
               <dt>WHAT IT ANSWERED</dt>
@@ -135,9 +135,9 @@
               <dt>WHAT IT IS</dt>
               <dd>Listing what the project needs, checking what each option provides, weighing the trade-offs, then testing the leading choice before building on it.</dd>
               <dt>WHO USES IT</dt>
-              <dd>Engineers (a trade study or decision matrix) and software teams, who record big choices in &ldquo;decision records&rdquo;.</dd>
+              <dd>Engineers (a <a href="/sources/#g-trade-study">trade study</a> or decision matrix) and software teams, who record big choices in &ldquo;decision records&rdquo;.</dd>
               <dt>WHAT IT ANSWERED</dt>
-              <dd>Whether to draw the game with plain HTML5 Canvas or the Phaser game framework. Phaser's physics is 2D only and can't do the arcade's rules, so it would only have helped with drawing. Plain Canvas was chosen and then proven by a small first build, which needed about 150 lines of setup code.<!-- phaser "Would Phaser's physics help the ball?" and "Leaning"; decisions "Build tooling" (CP-A, ~150 lines) --></dd>
+              <dd>Whether to draw the game with plain HTML5 <a href="/sources/#g-canvas">Canvas</a> or the Phaser <a href="/sources/#g-game-engine">game framework</a>. Phaser's physics is 2D only and can't do the arcade's rules, so it would only have helped with drawing. Plain Canvas was chosen and then proven by a small first build, which needed about 150 lines of setup code.<!-- phaser "Would Phaser's physics help the ball?" and "Leaning"; decisions "Build tooling" (CP-A, ~150 lines) --></dd>
             </dl>
             <p class="why">Picking a tool because it's popular could have cost days. Writing the needs down first made the choice clear.</p><!-- Ronin, 2026-11-07 -->
           </article>
@@ -146,11 +146,11 @@
             <h3>6 &middot; PLAY-TEST CHECKPOINTS</h3>
             <dl>
               <dt>WHAT IT IS</dt>
-              <dd>Stopping at planned points to play the game, write down what feels wrong, and plan fixes before going on. Each round of build, test and fix is an iteration.</dd>
+              <dd>Stopping at planned points to play the game, write down what feels wrong, and plan fixes before going on. Each round of build, test and fix is an <a href="/sources/#g-iteration">iteration</a>.</dd>
               <dt>WHO USES IT</dt>
-              <dd>Game studios (play-testing and user research) and designers of apps and products (usability testing).</dd>
+              <dd>Game studios (<a href="/sources/#g-play-test">play-testing</a> and user research) and designers of apps and products (<a href="/sources/#g-usability-testing">usability testing</a>).</dd>
               <dt>WHAT IT ANSWERED</dt>
-              <dd>The things only a person can judge: how the game feels, looks and sounds. There were 7 checkpoints, CP-A to CP-G, from October 18 to October 29, 2026, and each led to fix-up sessions. At CP-C, for example, Ronin lost 4&ndash;9 at the easiest level, so the computer player was made slower and clumsier at low levels.<!-- plan.md and plan-v2.md checkpoint sections; git log dates; decisions "CPU difficulty" (CP-C) --></dd>
+              <dd>The things only a person can judge: how the game feels, looks and sounds. There were 7 <a href="/sources/#g-checkpoint">checkpoints</a>, CP-A to CP-G, from October 18 to October 29, 2026, and each led to fix-up sessions. At CP-C, for example, Ronin lost 4&ndash;9 at the easiest level, so the computer player was made slower and clumsier at low levels.<!-- plan.md and plan-v2.md checkpoint sections; git log dates; decisions "CPU difficulty" (CP-C) --></dd>
             </dl>
             <p class="why">A test can say the ball moves correctly, but not whether the game is fun. I had to do that part.</p><!-- Ronin, 2026-11-07 -->
           </article>
@@ -159,11 +159,11 @@
             <h3>7 &middot; MEASURING WIN RATES</h3>
             <dl>
               <dt>WHAT IT IS</dt>
-              <dd>A robot &ldquo;reference player&rdquo;, built to play like a beginner, plays 1,000 rallies against the computer at each difficulty level, and a script counts the share of points it wins. Fixed random seeds make every run repeatable.</dd>
+              <dd>A robot &ldquo;reference player&rdquo;, built to play like a beginner, plays 1,000 rallies against the computer at each difficulty level, and a script counts the share of points it wins. Fixed <a href="/sources/#g-random-seed">random seeds</a> make every run repeatable.</dd>
               <dt>WHO USES IT</dt>
-              <dd>Game balance designers and data analysts, and chess-engine developers, who measure strength with thousands of automatic games (simulation).</dd>
+              <dd><a href="/sources/#g-game-balancing">Game balance</a> designers and data analysts, and chess-engine developers, who measure strength with thousands of automatic games (<a href="/sources/#g-simulation">simulation</a>).</dd>
               <dt>WHAT IT ANSWERED</dt>
-              <dd>Whether levels 1 to 9 really go from easy to hard in even steps, measured the same way after each change. The reference player was checked against Ronin first: it won 34% of points against the old level 1, close to his 4&ndash;9 loss. The results are charted on <a href="/findings/#data">Findings</a>.<!-- decisions "CPU difficulty" (reference player: 15-frame reaction, ±3 frames timing, ±16 units; 34% vs S6 level 1); test/measure-levels.js (1000 rallies, fixed seeds) --></dd>
+              <dd>Whether levels 1 to 9 really go from easy to hard in even steps, measured the same way after each change. The reference player was checked against Ronin first: it won 34% of points against the old level 1, close to Ronin's 4&ndash;9 loss. The results are charted on <a href="/findings/#data">Findings</a>.<!-- decisions "CPU difficulty" (reference player: 15-frame reaction, ±3 frames timing, ±16 units; 34% vs S6 level 1); test/measure-levels.js (1000 rallies, fixed seeds) --></dd>
             </dl>
             <p class="why">One person playing can't tell whether level 6 is a little or a lot harder than level 5. A thousand rallies can.</p><!-- Ronin, 2026-11-07 -->
           </article>
@@ -172,7 +172,7 @@
             <h3>8 &middot; VERSION CONTROL AND A PUBLIC LOG</h3>
             <dl>
               <dt>WHAT IT IS</dt>
-              <dd>Git saves every change to the code as a &ldquo;commit&rdquo; with a date and a message, so any earlier version can be brought back. The commits are public on GitHub.</dd>
+              <dd>Git, a <a href="/sources/#g-version-control">version control</a> system, saves every change to the code as a <a href="/sources/#g-commit">&ldquo;commit&rdquo;</a> with a date and a message, so any earlier version can be brought back. The commits are public on GitHub.</dd>
               <dt>WHO USES IT</dt>
               <dd>Almost every software team, and open-source projects. Scientists keep a dated lab notebook for the same reason.</dd>
               <dt>WHAT IT ANSWERED</dt>
@@ -205,9 +205,9 @@
           <li><a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a><p class="use">The AI coding assistant that wrote the game and this website, one session at a time.</p><p class="limit">It can't feel the game. Whether a change was right came from play-tests and Ronin's calls.</p></li>
           <li><a href="https://www.mamedev.org" target="_blank" rel="noopener">MAME</a><p class="use">Ran the 1992 arcade game on a computer, with a Lua script playing and recording every frame.</p><p class="limit">The robot player pressed buttons at random and never won, so later rounds weren't seen.</p></li>
           <li><a href="https://ghidra-sre.org" target="_blank" rel="noopener">Ghidra</a><p class="use">Decompiled the arcade's program to find its exact physics, shots and computer player.</p><p class="limit">Its output reads poorly in places, and some rules (like the tin and out-line checks) weren't found.<!-- logic §10, "Files" --></p></li>
-          <li><a href="https://www.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a><p class="use">Registers the roninray.com domain and hosts the game and this site.</p><p class="limit">A change goes live as soon as it's sent, so everything is checked before it's published.</p></li>
+          <li><a href="https://www.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a><p class="use">Registers the roninray.com domain and hosts the game and this site.</p><p class="limit">A change goes live as soon as it's sent (<a href="/sources/#g-deployment">deployment</a>), so everything is checked before it's published.</p></li>
           <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a><p class="use">Stores the code and every change to it. The build log is made from it.</p><p class="limit">It limits how often a web page can ask for data, so the site keeps its own copy of the log.</p></li>
-          <li><a href="https://www.spritecook.ai" target="_blank" rel="noopener">SpriteCook</a><p class="use">AI pixel-art generator for the player sprites and their animations.</p><p class="limit">Its art needs cleanup by hand, and each picture costs credits.</p></li>
+          <li><a href="https://www.spritecook.ai" target="_blank" rel="noopener">SpriteCook</a><p class="use">AI <a href="/sources/#g-pixel-art">pixel-art</a> generator for the player <a href="/sources/#g-sprite">sprites</a> and their animations.</p><p class="limit">Its art needs cleanup by hand, and each picture costs credits.</p></li>
           <li><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a><p class="use">Pixel-art editor for cleaning up the sprites: colors, sizes and exporting the animations.</p><p class="limit">Cleanup is done pixel by pixel, which is slow.</p></li>
           <li><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a><p class="use">AI sound-effect generator that made the game's sounds: racket hits, the ball on the walls and floor, and the menu sounds.</p><p class="limit">The free plan is for non-commercial use only and asks for this credit. Busy times can refuse a request.<!-- decisions "Audio" (A6) --></p></li>
         </ul>
@@ -221,7 +221,7 @@
           <h3>A 3D COURT ON A FLAT SCREEN</h3>
           <p>The game keeps track of the ball in three directions: across the court, how high, and how far from the front wall. The screen only has two. To draw it, the game imagines a camera 8.1 m behind the glass back wall and 4 m up, and works out where each point would appear on its picture. Things farther away are drawn smaller and closer to the middle.<!-- projection CAMERA; decisions "FROZEN: the wide camera" --></p>
           <p>That leaves a problem: a ball high up near you and a ball low down far away can land on the same spot on the screen. The ball's shadow, always drawn on the floor, tells you which.</p>
-          <p class="term">Field terms: <b>perspective projection</b> with a <b>pinhole camera</b>; the ball's position is a <b>3D coordinate</b> (x, y, z).</p>
+          <p class="term">Field terms: <b><a href="/sources/#g-perspective-projection">perspective projection</a></b> with a <b>pinhole camera</b>; the ball's position is a <b>3D coordinate</b> (x, y, z).</p>
           <figure class="fig">
             <svg viewBox="60 30 520 330" role="img" aria-labelledby="c-court-cap">
               <!-- Drawn from projection.js's frozen camera (8.1 m back, 4.0 m up, focal 557, widen 1.10). Front wall x 210–430, y 52–195; glass floor y 345, x 78–562. -->
@@ -250,7 +250,7 @@
           <h3>EXACT MATHS: THE SAME ANSWER EVERY TIME</h3>
           <p>The 1992 arcade's processor had no built-in way to do decimals, so its programmers stored numbers like 1.5 as whole numbers that count 65,536ths. Hogg Squash does its physics the same way. Whole-number maths has no rounding surprises, so the game gets exactly the arcade's numbers (which is why the tests can demand an exact match) and exactly the same result in every browser.<!-- logic §2 (16.16 fixed point); physics intro; hogg-squash CLAUDE.md --></p>
           <p>Getting the same result from the same start every time also matters for the computer player: its prediction of the ball (below) is only right if the real ball does exactly what the prediction did.<!-- decisions "Platform" --></p>
-          <p class="term">Field terms: <b>16.16 fixed-point</b> numbers (16 bits for the whole part, 16 for the fraction); a program that always gives the same output for the same input is <b>deterministic</b>.</p>
+          <p class="term">Field terms: <b><a href="/sources/#g-fixed-point">16.16 fixed-point</a></b> numbers (16 bits for the whole part, 16 for the fraction); a program that always gives the same output for the same input is <b><a href="/sources/#g-determinism">deterministic</a></b>.</p>
           <figure class="fig">
             <svg viewBox="0 0 540 210" role="img" aria-labelledby="c-fixed-cap">
               <text x="20" y="34">16 BITS: WHOLE</text>
@@ -269,7 +269,7 @@
         <div class="concept" id="c-wall">
           <h3>WHY THE FRONT WALL SLOWS THE BALL</h3>
           <p>In the recordings, a hard shot hit the front wall at about 25 m/s but came back at only about 7 m/s. That slowdown is what gives a player time to reach the ball. The code shows how: every bounce keeps a share of the ball's speed, from 68% for a slow ball down to 31% for a fast one, and the front wall counts each hit as if it were twice as fast. Harder levels make the ball a little &ldquo;deader&rdquo; still.<!-- 1992 §0 ball timing table; logic §3 (REST table 173/256 … 79/256, front wall damps at 2× impact speed, bounceOffset) --></p>
-          <p class="term">Field term: the share of speed a ball keeps after a bounce is its <b>coefficient of restitution</b>.</p>
+          <p class="term">Field term: the share of speed a ball keeps after a bounce is its <b><a href="/sources/#g-coefficient-of-restitution">coefficient of restitution</a></b>.</p>
           <figure class="fig">
             <svg viewBox="0 0 540 250" role="img" aria-labelledby="c-wall-cap">
               <defs>
@@ -291,7 +291,7 @@
         <div class="concept" id="c-ghost">
           <h3>HOW THE COMPUTER PLAYER KNOWS WHERE TO RUN</h3>
           <p>After every hit the game sends out an invisible copy of the ball, the &ldquo;ghost ball&rdquo;. It runs the same physics three steps for every frame of the real ball, so it races ahead. Once the ghost has hit the front wall and then the floor, the game notes up to 4 places where a player could meet it. That prediction places the red landing arrow, and it is also the computer player's plan: after a short reaction delay, it runs to the earliest of those places it can reach in time.<!-- logic §4 ("The landing arrow & CPU target") and §6 --></p>
-          <p class="term">Field terms: running a copy of the simulation ahead of time is a <b>look-ahead</b> or <b>prediction</b>; the computer player is the game's <b>AI</b> (artificial intelligence, the game-design meaning).</p>
+          <p class="term">Field terms: running a copy of the simulation ahead of time is a <b><a href="/sources/#g-look-ahead">look-ahead</a></b> or <b>prediction</b>; the computer player is the game's <b><a href="/sources/#g-game-ai">AI</a></b> (artificial intelligence, the game-design meaning).</p>
           <figure class="fig">
             <svg viewBox="0 -8 540 458" role="img" aria-labelledby="c-ghost-cap">
               <defs>
@@ -338,7 +338,7 @@
           <h3>DESIGNING LEVELS 1 TO 9</h3>
           <p>The arcade has 20 hidden difficulty steps: 4 settings the arcade owner picks (Easy, Normal, Hard, Hardest), each with 5 skill levels that rise as you win. They aren't in order from easy to hard. For example, the computer reacts more slowly at Normal skill 0 (16 frames) than at Easy skill 1 (12 frames). Hogg Squash replaces them with levels 1 to 9 that get harder every step.<!-- logic §7 difficulty table; decisions "CPU difficulty" --></p>
           <p>Each level sets the game's pace (ball speed, gravity, shot power, bounce) and how well the computer plays (how fast it reacts, how accurately it places itself and times its shots). Level 5 plays at the arcade's Normal pace. The computer's reaction time goes from 36 frames (about 0.6 s) at level 1 down to 1 frame at level 9.<!-- decisions "CPU difficulty": level 5 = Normal 0 pace; S6b reaction 36 … 1 frames at 57.4 fps --></p>
-          <p class="term">Field terms: a <b>difficulty curve</b>; one that only ever goes up is <b>monotonic</b>. Changing it after testing is <b>game balancing</b>.</p>
+          <p class="term">Field terms: a <b><a href="/sources/#g-difficulty-curve">difficulty curve</a></b>; one that only ever goes up is <b><a href="/sources/#g-monotonic">monotonic</a></b>. Changing it after testing is <b><a href="/sources/#g-game-balancing">game balancing</a></b>.</p>
           <figure class="fig">
             <svg viewBox="0 0 560 300" role="img" aria-labelledby="c-levels-cap">
               <!-- y = 250 − 5.5 × frames. Arcade: logic §7 (Easy, Normal, Hard, Hardest × skill 0–4). Levels: decisions "The CPU columns as built (S6b)". -->

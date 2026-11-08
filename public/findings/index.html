@@ -52,7 +52,7 @@
 
         <div class="concept" id="chart-levels">
           <h3>WIN RATE BY LEVEL</h3>
-          <p>A robot &ldquo;reference beginner&rdquo; plays 1,000 rallies against the computer at each level, and a script counts the share of points it wins (<a href="/research/#m-winrate">how it works</a>). S6 was the first table of levels. S6b came from the CP-C play-test. S12c and S12d came from the release play-test, and changed the hitting range.</p>
+          <p>A robot &ldquo;reference beginner&rdquo; plays 1,000 rallies against the computer at each level, and a script counts the share of points it wins (a <a href="/sources/#g-simulation">simulation</a>; <a href="/research/#m-winrate">how it works</a>). S6 was the first table of levels. S6b came from the CP-C play-test. S12c and S12d came from the release <a href="/sources/#g-play-test">play-test</a>, and changed the hitting range. Each line is the game&rsquo;s <a href="/sources/#g-difficulty-curve">difficulty curve</a> at that step.</p>
           <figure class="fig">
             <ul class="key" aria-hidden="true"><li><span class="sw ln-s12d"></span>S12d (Oct 22)</li><li><span class="sw ln-s12c"></span>S12c (Oct 22)</li><li><span class="sw ln-s6b"></span>S6b (Oct 20)</li><li><span class="sw pt-s6"></span>S6, level 1 only</li><li><span class="sw tgt"></span>the plan&rsquo;s target</li></ul>
             <svg viewBox="0 0 560 384" role="group" aria-labelledby="c-win-cap">
@@ -112,7 +112,7 @@
 
         <div class="concept" id="chart-physics">
           <h3>PHYSICS MATCH</h3>
-          <p>Two recordings of the real game were compared with the rebuilt physics. The flight test runs a whole flight with no corrections. The golden test steps one frame at a time. <a href="/research/#accuracy">Research explains each test</a>.</p>
+          <p>Two recordings of the real game were compared with the rebuilt physics. The flight test runs a whole flight with no corrections. The <a href="/sources/#g-golden-test">golden test</a> steps one frame at a time. <a href="/research/#accuracy">Research explains each test</a>.</p>
           <figure class="fig">
             <ul class="key" aria-hidden="true"><li><span class="sw ok"></span>exact match</li><li><span class="sw miss"></span>not exact</li></ul>
             <svg viewBox="0 0 560 294" role="group" aria-labelledby="c-phys-cap">
@@ -151,7 +151,7 @@
 
         <div class="concept" id="chart-drop">
           <h3>FRONT-COURT SOFT DROPS</h3>
-          <p>CP-C found that SOFT from the front court ran deep instead of dropping short. S6b capped its power and lift, which departs from the arcade&rsquo;s tables on purpose. These are shares of test shots at all nine levels, not shots from real matches.</p>
+          <p>CP-C found that SOFT from the front court ran deep instead of dropping short (a <a href="/sources/#g-drop-shot">drop shot</a>). S6b capped its power and lift, which departs from the arcade&rsquo;s tables on purpose. These are shares of test shots at all nine levels, not shots from real matches.</p>
           <figure class="fig">
             <ul class="key" aria-hidden="true"><li><span class="sw pt-before"></span>before S6b (the arcade&rsquo;s rows)</li><li><span class="sw pt-after"></span>after S6b</li></ul>
             <svg viewBox="0 0 560 306" role="group" aria-labelledby="c-drop-cap">
@@ -243,7 +243,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
               <dt>EVIDENCE</dt>
-              <dd>A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their baseline through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
+              <dd>A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> Session log; the game&rsquo;s git history; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -256,7 +256,7 @@
               <dt>FINDING</dt>
               <dd class="draft">The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
               <dt>EVIDENCE</dt>
-              <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are seeded from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-levels">the win-rate chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -269,7 +269,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Every level is harder than the one before it, so the order is right. But the jump from 5 to 6 is much bigger than the jumps at the top.</dd>
               <dt>EVIDENCE</dt>
-              <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo; and don&rsquo;t record a verdict. Volleys also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
+              <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo; and don&rsquo;t record a verdict. <a href="/sources/#g-volley">Volleys</a> also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -295,7 +295,7 @@
               <dt>FINDING</dt>
               <dd class="draft">I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
               <dt>EVIDENCE</dt>
-              <dd>Second bounces past the short line fell from about 70% to 0&ndash;6%, and tins from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd>Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-drop">the drop chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -381,7 +381,7 @@
             <h3>THE TEST PLAYER IS A BOT</h3>
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player calibrated to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
+              <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
               <dt>WHAT THIS MEANS</dt>
               <dd class="draft">The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
             </dl>
@@ -408,7 +408,7 @@
             <h3>THE ARCADE DATA COMES FROM ONE ROM VERSION</h3>
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd>All the arcade numbers come from one set in the MAME emulator: <code>squash</code>, World version 1.0. Other sets exist, such as USA version 1.1, and they weren&rsquo;t compared.<!-- 1992 "This ROM set" --> The two recordings were made in an emulator, not on a real machine, by a robot that pressed buttons at random and never won, so later rounds weren&rsquo;t seen.<!-- 1992 §0; research page Tools, MAME card --> Ghidra didn&rsquo;t find some rules, like the tin and out-line checks.<!-- logic §10, as on the research page Tools, Ghidra card --></dd>
+              <dd>All the arcade numbers come from one set in the MAME <a href="/sources/#g-emulator">emulator</a>: <code>squash</code>, World version 1.0. Other sets exist, such as USA version 1.1, and they weren&rsquo;t compared.<!-- 1992 "This ROM set" --> The two recordings were made in an emulator, not on a real machine, by a robot that pressed buttons at random and never won, so later rounds weren&rsquo;t seen.<!-- 1992 §0; research page Tools, MAME card --> Ghidra didn&rsquo;t find some rules, like the tin and out-line checks.<!-- logic §10, as on the research page Tools, Ghidra card --></dd>
               <dt>WHAT THIS MEANS</dt>
               <dd class="draft">&ldquo;Matches the arcade&rdquo; really means it matches this one version, as an emulator runs it, in the parts of the game my robot reached. I can&rsquo;t say anything about other versions or about parts of the game that weren&rsquo;t recorded.</dd>
             </dl>
@@ -431,7 +431,7 @@
             <h3>GAME DEVELOPERS</h3>
             <dl>
               <dt>THE EVIDENCE</dt>
-              <dd>In a 2026 survey of more than 2,300 game industry professionals, 52% said generative AI is having a negative impact on the industry, up from 30% and then 18% in the two years before. About 7% said positive, and 36% use it in their job. Among game programmers, 59% were negative (<a href="/sources/#src-gdc">Elderkin</a>).</dd>
+              <dd>In a 2026 survey of more than 2,300 game industry professionals, 52% said <a href="/sources/#g-generative-ai">generative AI</a> is having a negative impact on the industry, up from 30% and then 18% in the two years before. About 7% said positive, and 36% use it in their job. Among game programmers, 59% were negative (<a href="/sources/#src-gdc">Elderkin</a>).</dd>
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>A large industry survey, reported by the conference that runs it. It measures opinions about the whole industry, in a year of layoffs, not about student projects.</dd>
               <dt>MY VIEW</dt>
@@ -464,7 +464,7 @@
             <h3>PEOPLE WHO PRESERVE OLD GAMES</h3>
             <dl>
               <dt>THE EVIDENCE</dt>
-              <dd>A 2023 study by the Video Game History Foundation and the Software Preservation Network found that 87% of classic games released in the U.S. are out of print, with a margin of error of &plusmn;2.5%. It says piracy is often the easiest way, or the only way, to play many of them (<a href="/sources/#src-vghf">Salvador</a>).</dd>
+              <dd>A 2023 study by the Video Game History Foundation and the Software Preservation Network found that 87% of classic games released in the U.S. are out of print, with a <a href="/sources/#g-margin-of-error">margin of error</a> of &plusmn;2.5%. It says piracy is often the easiest way, or the only way, to play many of them (<a href="/sources/#src-vghf">Salvador</a>).</dd>
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>A random sample of 1,500 games with its method published. But the foundation argues for preservation, and the data stops in April 2023. It also doesn&rsquo;t quite fit here, because <i>Squash</i> is in print again.</dd>
               <dt>MY VIEW</dt>
@@ -504,9 +504,9 @@
             <h3>COPYRIGHT AND THE ORIGINAL GAME</h3>
             <dl>
               <dt>WHAT WAS DONE</dt>
-              <dd>The ROM, its graphics and its sounds are Gaelco&rsquo;s copyrighted work. They were studied for reference, kept out of the public code, and never shipped or traced. The AI art and sound tools were given nothing from the arcade game. The game doesn&rsquo;t use Gaelco&rsquo;s name or logo; this site names them to give credit.<!-- hogg-squash CLAUDE.md "IP rules"; rom_extracts/README.md --></dd>
+              <dd>The <a href="/sources/#g-rom">ROM</a>, its graphics and its sounds are Gaelco&rsquo;s copyrighted work. They were studied for reference, kept out of the public code, and never shipped or traced. The AI art and sound tools were given nothing from the arcade game. The game doesn&rsquo;t use Gaelco&rsquo;s name or logo; this site names them to give credit.<!-- hogg-squash CLAUDE.md "IP rules"; rom_extracts/README.md --></dd>
               <dt>THE QUESTION</dt>
-              <dd>The game does ship more than an idea. Its physics file is a port of the arcade&rsquo;s routines, using its shot tables and numbers, and the public code includes the recorded ball data used for testing.<!-- squash-physics.js header; test/fixtures --> The project&rsquo;s rule that &ldquo;recreating gameplay mechanics is fine&rdquo; is its own position, not a ruling.</dd>
+              <dd>The game does ship more than an idea. Its physics file is a <a href="/sources/#g-port">port</a> of the arcade&rsquo;s routines, using its shot tables and numbers, and the public code includes the recorded ball data used for testing.<!-- squash-physics.js header; test/fixtures --> The project&rsquo;s rule that &ldquo;recreating gameplay mechanics is fine&rdquo; is its own position, not a ruling.</dd>
               <dt>MY VIEW</dt>
               <dd class="draft">Ronin: say where the ROM file came from, and whether you&rsquo;re comfortable with that. Then: I think taking the art would clearly be wrong and copying how a ball bounces is much closer to fine, but a port sits somewhere in between.</dd>
             </dl>
@@ -515,9 +515,9 @@
             <h3>REVERSE ENGINEERING</h3>
             <dl>
               <dt>WHAT WAS DONE</dt>
-              <dd>The arcade&rsquo;s program was decompiled with Ghidra to read its rules, and parts that Gaelco had encrypted were decrypted to read them. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
+              <dd>The arcade&rsquo;s program was <a href="/sources/#g-decompile">decompiled</a> with Ghidra to read its rules (<a href="/sources/#g-reverse-engineering">reverse engineering</a>), and parts that Gaelco had <a href="/sources/#g-encryption">encrypted</a> were decrypted to read them. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
               <dt>THE QUESTION</dt>
-              <dd>In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was fair use. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
+              <dd>In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was <a href="/sources/#g-fair-use">fair use</a>. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
               <dt>MY VIEW</dt>
               <dd class="draft">Reverse engineering is how I found the real numbers, and I learned a lot from it. I think studying it is reasonable, but I can&rsquo;t say the law clearly covers everything that was done, so I would rather say that than pretend.</dd>
             </dl>
@@ -526,7 +526,7 @@
             <h3>WHO WROTE THE CODE</h3>
             <dl>
               <dt>WHAT WAS DONE</dt>
-              <dd>The site says plainly that Claude Code wrote the code. The AI tools are cited on the <a href="/sources/#cited">Sources page</a>, nearly all of the game&rsquo;s commits are marked as co-authored by it, and all of it is public on GitHub.</dd>
+              <dd>The site says plainly that Claude Code wrote the code. The AI tools are cited on the <a href="/sources/#cited">Sources page</a>, nearly all of the game&rsquo;s <a href="/sources/#g-commit">commits</a> are marked as co-authored by it, and all of it is public on GitHub.</dd>
               <dt>THE QUESTION</dt>
               <dd>If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
               <dt>MY VIEW</dt>

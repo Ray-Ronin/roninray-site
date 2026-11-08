@@ -63,13 +63,13 @@
 
       <section id="question" aria-labelledby="question-h">
         <h2 id="question-h">MY QUESTION</h2>
-        <!-- Ronin kept his original guiding question (2026-11-07); a proposed refinement was declined. -->
+        <!-- Ronin kept the original guiding question (2026-11-07); a proposed refinement was declined. -->
         <dl class="q-change">
           <dt>MY GUIDING QUESTION</dt>
           <dd>How can AI tools help one student research, design and build a complete video game?</dd>
         </dl>
         <p>Five smaller questions help answer the big one. Each links to where it&rsquo;s answered.</p>
-        <!-- Sub-questions approved by Ronin 2026-11-07 (the 5th is his pick, replacing "How can the process be made visible and checkable by others?"). -->
+        <!-- Sub-questions approved by Ronin 2026-11-07 (the 5th is Ronin's pick, replacing "How can the process be made visible and checkable by others?"). -->
         <div>
           <ol class="subq">
             <li>
@@ -102,13 +102,13 @@
         <dl class="about-facts">
           <dt>THE GAME</dt>
           <!-- Modes, controls and touch: hogg-squash/README.md and docs/decisions.md ("Scope of version 1", "Mobile and touch"). Levels 1-9: decisions.md ("CPU difficulty"). -->
-          <dd>Hogg Squash, a squash game that runs in any web browser, with nothing to install. Play alone against a computer opponent at one of 9 levels, or against a friend on one keyboard or two gamepads. On a phone or tablet, on-screen touch controls appear by themselves.</dd>
+          <dd>Hogg Squash, a squash game that runs in any web browser, with nothing to install. Play alone against a computer opponent (its <a href="/sources/#g-game-ai">game AI</a>) at one of 9 levels, or against a friend on one keyboard or two gamepads. On a phone or tablet, on-screen touch controls appear by themselves.</dd>
           <dt>HOW IT PLAYS</dt>
           <!-- hogg-squash/CLAUDE.md (intro, "Physics core"); research summary: docs/research/squash-1992-research.md -->
-          <dd>It plays like Gaelco&rsquo;s arcade game <i>Squash</i> (1992): first to 9 points, a HARD and a SOFT shot, and ball physics rebuilt from the original and tested against it. <a href="/research/#original">More about the 1992 game &rarr;</a></dd>
+          <dd>It plays like Gaelco&rsquo;s arcade game <i>Squash</i> (1992): first to 9 points (<a href="/sources/#g-rally-scoring">rally scoring</a>), a HARD and a SOFT shot, and ball physics rebuilt from the original by <a href="/sources/#g-reverse-engineering">reverse engineering</a> and tested against it. <a href="/research/#original">More about the 1992 game &rarr;</a></dd>
           <dt>THE LOOK AND SOUND</dt>
           <!-- Pixel art 640x360, palette, theme: docs/decisions.md ("Art"), docs/theme.md. Sound effects: decisions.md ("Audio"). -->
-          <dd>All-original pixel art in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (used with approval) and a nod to the Mission Success squash program that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
+          <dd>All-original <a href="/sources/#g-pixel-art">pixel art</a> in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (<a href="/findings/#e-logo">see the question about permission</a>) and a nod to the Mission Success squash program that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
           <dt>WHERE IT IS NOW</dt>
           <!-- Version 1.15.0: hogg-squash/public/hogg-squash/js/version.js; v1 1.0.0 at CP-F: docs/plan.md (Session log, 2026-10-23); next steps: docs/plan-v2.md (Status) -->
           <dd>Version 1.0 was released on Oct 23, 2026. Since then I&rsquo;ve added sound and a character select screen (version 1.15.0). A crowd and a tournament are planned next; <a href="/build/#next-section">see what&rsquo;s up next</a>.</dd>
@@ -126,23 +126,23 @@
         <!-- Roles: hogg-squash/CLAUDE.md, docs/decisions.md ("Art production", "Audio"), docs/plan.md and plan-v2.md (checkpoints CP-A to CP-G, spend approvals). -->
         <dl class="about-facts">
           <dt>ME</dt>
-          <dd>Chose the project and the arcade game to model it on. Directed the research. Decided what goes in the game and in what order. Play-tested it at six checkpoints (CP-B to CP-G) and decided what to fix after each one. Approved every use of the school&rsquo;s logo and every spend on AI art and sound.</dd>
+          <dd>Chose the project and the arcade game to model it on. Directed the research. Decided what goes in the game and in what order. <a href="/sources/#g-play-test">Play-tested</a> it at six <a href="/sources/#g-checkpoint">checkpoints</a> (CP-B to CP-G) and decided what to fix after each one. Approved every use of the school&rsquo;s logo and every spend on AI art and sound.</dd>
           <dt>CLAUDE AND CLAUDE CODE</dt>
           <dd>AI assistants from Anthropic. Claude helped research the arcade game and plan the build. Claude Code wrote the game&rsquo;s code and this website, one short session at a time, and cleaned up the pixel art in Aseprite.</dd>
           <dt>SPRITECOOK AND ELEVENLABS</dt>
-          <dd>AI generators. SpriteCook made the first versions of the player sprites and animations; ElevenLabs made the sound effects. Neither was given anything from the arcade game.</dd>
+          <dd>AI generators (<a href="/sources/#g-generative-ai">generative AI</a>). SpriteCook made the first versions of the player <a href="/sources/#g-sprite">sprites</a> and animations; ElevenLabs made the sound effects. Neither was given anything from the arcade game.</dd>
           <dt>HOW THE WORK WAS CHECKED</dt>
-          <dd>Automated tests compare the game&rsquo;s physics with recordings of the real arcade game. I play-tested every stage, and nothing went live without my OK.</dd>
+          <dd>Automated tests (<a href="/sources/#g-golden-test">golden tests</a>) compare the game&rsquo;s physics with recordings of the real arcade game. I play-tested every stage, and nothing went live without my OK.</dd>
         </dl>
         <p>More: <a href="/sources/#ai-check">how AI output was checked</a> and <a href="/findings/#ethics">the ethics of using AI and reverse engineering</a>.</p>
       </section>
 
       <section id="milestones" aria-labelledby="milestones-h">
         <h2 id="milestones-h">MILESTONES</h2>
-        <p>Dates come from the game&rsquo;s commit history on GitHub. Each play-test checkpoint (CP) is where I played the game and decided what to change.</p>
+        <p>Dates come from the game&rsquo;s <a href="/sources/#g-commit">commit</a> history on GitHub. Each play-test checkpoint (CP) is where I played the game and decided what to change.</p>
         <!-- All dates: git log of the game repo (Ray-Ronin/hogg-squash), checked 2026-11-07. Checkpoint names: docs/plan.md and docs/plan-v2.md (Status). -->
         <ol class="timeline">
-          <li><time datetime="2026-10-18">Oct 18</time><div><b>Research and first code.</b> Studied the 1992 arcade game, then built the first test court (S1) and the first two-player rally (S3). Checkpoint CP-A chose plain Canvas over a game engine.</div></li>
+          <li><time datetime="2026-10-18">Oct 18</time><div><b>Research and first code.</b> Studied the 1992 arcade game, then built the first test court (S1) and the first two-player rally (S3). Checkpoint CP-A chose plain <a href="/sources/#g-canvas">Canvas</a> over a <a href="/sources/#g-game-engine">game engine</a>.</div></li>
           <li><time datetime="2026-10-19">Oct 19</time><div><b>Play-test 1 (CP-B)</b> on two-player rallies, then a computer opponent (S5).</div></li>
           <li><time datetime="2026-10-20">Oct 20</time><div><b>Play-test 2 (CP-C)</b> against the computer at levels 1, 5 and 9 made the low levels gentler (S6b). Gamepads (S7) and the first pixel art (A1).</div></li>
           <li><time datetime="2026-10-21">Oct 21</time><div><b>The animated player arrives</b> (S8). Play-test 3 (CP-D) led to a wider court and a serve wind-up (S8b).</div></li>
@@ -157,7 +157,7 @@
 
       <section id="growth" aria-labelledby="growth-h">
         <h2 id="growth-h">HOW THE GAME GREW</h2>
-        <p>The game at five steps, from the first test screen to today. Click a picture to play that version.</p>
+        <p>The game at five steps (<a href="/sources/#g-iteration">iterations</a>), from the first test screen to today. Click a picture to play that version.</p>
         <!-- Screenshots: headless Edge at 1280x720, 2026-11-07. Titles and dates: content/versions.json and the game repo's git log. S15 is version 1.15.0 (js/version.js). -->
         <ol class="shots">
           <li>

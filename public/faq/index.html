@@ -37,15 +37,101 @@
       </nav>
     </header>
 
+    <!-- Each fact has its home on another page, so this page links to it and gives no numbers of its own.
+         Phaser and engine facts: hogg-squash docs/research/canvas-vs-phaser.md ("The two options", "Trade-offs"). -->
     <main class="page">
       <header class="intro">
         <h1 class="title">QUESTIONS</h1>
-        <p class="todo">This page is being written. Here is what it will cover.</p>
+        <p>The hard questions a judge might ask about this project. Each card gives a short answer, what the record shows, and where to check it.</p>
       </header>
 
       <section id="questions" aria-labelledby="questions-h">
         <h2 id="questions-h">THE HARD QUESTIONS</h2>
-        <p class="todo">Did you write the code? What did you learn if AI wrote it? Is this copying the arcade game? Is decompiling legal? Why not use a game engine? How do you know the physics is right? What would you do differently?</p>
+        <div class="findings">
+          <article class="method" id="q-code">
+            <h3>DID YOU WRITE THE CODE?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">No. Claude Code wrote it. I researched, planned, play-tested and made the decisions. I directed it, but I shouldn&rsquo;t say I programmed it.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The site says this plainly, and the game&rsquo;s <a href="/sources/#g-commit">commits</a> are public, nearly all of them marked as co-authored by Claude Code. Whether directing an AI counts as making something is still an open question, in copyright law as well.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/about/#roles">About &rarr; Who did what</a>; <a href="/findings/#e-authorship">Findings &rarr; Who wrote the code</a>; <a href="https://github.com/Ray-Ronin/hogg-squash/commits/main" target="_blank" rel="noopener">the commits on GitHub</a>.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-learn">
+            <h3>WHAT DID YOU LEARN IF AI WROTE IT?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">Ronin: only you can answer this, so nothing is drafted. Name two or three things you can explain without looking them up, and be honest about what you didn&rsquo;t learn because you didn&rsquo;t write the code. Expect a follow-up like &ldquo;explain that to me.&rdquo;</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The record shows the decisions and the <a href="/sources/#g-play-test">play-test</a> notes, with dates. It can&rsquo;t show what was learned. One study found that students who practiced with a plain AI tool did worse on a later exam without it, so this question deserves a real answer and not an assumed one.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/findings/#a-learned">Findings &rarr; Question 5</a>; <a href="/findings/#v-teachers">Findings &rarr; Teachers and students</a>; <a href="/findings/#open">Findings &rarr; Open questions</a>.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-copy">
+            <h3>IS THIS COPYING THE ARCADE GAME?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">Partly, and on purpose. The way it plays is modeled on the arcade game, and the ball physics is a port of its code. The art, the sound and the name aren&rsquo;t copied. Ronin: also say where the ROM file came from, because a judge may ask.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The physics file is a <a href="/sources/#g-port">port</a> of the arcade&rsquo;s routines, using its shot tables and numbers, so the game ships more than an idea. The <a href="/sources/#g-rom">ROM</a>, its graphics and its sounds stayed out of the public code, and the AI art and sound tools were given nothing from it. The game also departs from the original in places: its levels, its drop shots and its look. The original has been re-released, and the project&rsquo;s records show no contact with its maker.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/findings/#e-copyright">Findings &rarr; Copyright and the original game</a>; <a href="/findings/#v-gaelco">Findings &rarr; The people who made the original</a>; <a href="/findings/#p-accuracy-not-goal">Findings &rarr; The closest match wasn&rsquo;t always the best game</a>; <a href="/research/#c-levels">Research &rarr; Designing levels 1 to 9</a>.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-legal">
+            <h3>IS DECOMPILING LEGAL?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">I don&rsquo;t know for sure, and I would rather say that than pretend. Courts have allowed it for some purposes, but mine is different from those cases. Nobody with legal training has looked at this project.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The main U.S. case found <a href="/sources/#g-decompile">taking a program apart</a> to be <a href="/sources/#g-fair-use">fair use</a> when the goal was making games compatible, which isn&rsquo;t the goal here. A later law limits getting around access controls, and parts of this program were <a href="/sources/#g-encryption">encrypted</a> and then decrypted to read them, so that law may matter too. No lawyer has reviewed the project, and what the site says about the law is a student&rsquo;s reading, not legal advice.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/findings/#e-reverse">Findings &rarr; Reverse engineering</a>; <a href="/research/#m-decompile">Research &rarr; Decompiling</a>; <a href="/sources/#src-sega">the Sega case</a> and <a href="/sources/#src-circular92">the 1998 law</a> on Sources.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-engine">
+            <h3>WHY NOT USE A GAME ENGINE?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">The hard parts of this game had to be custom anyway. An engine&rsquo;s physics couldn&rsquo;t do what the arcade does, so it would mostly have helped with drawing. I tried plain Canvas first, it worked, so I kept it.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The project compared plain <a href="/sources/#g-canvas">Canvas</a> with one <a href="/sources/#g-game-engine">game framework</a>, Phaser, in a <a href="/sources/#g-trade-study">trade study</a>. Phaser&rsquo;s physics is 2D only and can&rsquo;t do the arcade&rsquo;s rules, so the game&rsquo;s own physics was needed either way. The choice had a cost: menus, animation and input all had to be written instead of coming ready-made. Other engines, such as Unity or Godot, weren&rsquo;t compared, so the record can&rsquo;t say they would have been worse.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/research/#m-compare">Research &rarr; Comparing options</a>; <a href="/build/#fb-CP-A">the CP-A row of the feedback table</a>.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-physics">
+            <h3>HOW DO YOU KNOW THE PHYSICS IS RIGHT?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">I tested it instead of trusting it. Tests compare my ball with recordings of the real arcade game. It matches exactly between racket hits and less exactly at the moment of a hit. &ldquo;Right&rdquo; here means it matches the arcade, not real-life squash.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd><a href="/sources/#g-golden-test">Golden tests</a> and flight tests compare the game with two recordings, and they run again after every change (<a href="/sources/#g-regression-test">regression testing</a>). There are limits. The AI also wrote the tests, so a test could share the code&rsquo;s mistake. The recordings come from one version of the game, run in an <a href="/sources/#g-emulator">emulator</a> and not on a real machine. Separately, the court&rsquo;s size was checked against the world governing body&rsquo;s official specification.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/research/#accuracy">Research &rarr; How close is the match?</a>; <a href="/findings/#p-physics">Findings &rarr; The physics is exact between hits</a>; <a href="/findings/#l-rom">Findings &rarr; One ROM version</a>; <a href="/sources/#ai-check">Sources &rarr; How AI work was checked</a>; <a href="/sources/#court-check">Sources &rarr; The court check</a>.</dd>
+            </dl>
+          </article>
+
+          <article class="method" id="q-different">
+            <h3>WHAT WOULD YOU DO DIFFERENTLY?</h3>
+            <dl>
+              <dt>SHORT ANSWER</dt>
+              <dd class="draft">Ronin: this one has to be yours, so nothing is drafted. Pick the one or two changes you really would make, and say why. The gaps below are there to help you think, not to answer for you.</dd>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The biggest gaps the project recorded: one person did all the play-testing, no squash players have given feedback yet, the records show no answer from the school on its logo and no contact with the arcade game&rsquo;s maker, and no one has tested whether Ronin could change the game without AI.</dd>
+              <dt>WHERE TO CHECK</dt>
+              <dd class="src"><a href="/findings/#l-one-person">Findings &rarr; One person did the play-testing</a>; <a href="/findings/#v-squash">Findings &rarr; Squash players</a>; <a href="/findings/#e-logo">Findings &rarr; The school&rsquo;s name and logo</a>; <a href="/findings/#open">Findings &rarr; Open questions</a>; <a href="/findings/#reflection">Findings &rarr; My reflection</a>.</dd>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <nav class="pager" aria-label="Reading order">
