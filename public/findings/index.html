@@ -43,7 +43,7 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">WHAT I<br>FOUND</h1>
-        <p class="todo">This page is being written. Here is what it will cover.</p>
+        <p>This page answers my question. First the data and what it shows, then my answers, what the evidence can&rsquo;t show, how other people see this kind of project, and the ethics.</p>
       </header>
 
       <section id="data" aria-labelledby="data-h">
@@ -320,7 +320,57 @@
 
       <section id="answers" aria-labelledby="answers-h">
         <h2 id="answers-h">ANSWERS TO MY QUESTIONS</h2>
-        <p class="todo">An answer to each smaller question, then to the guiding question.</p>
+        <p>Each answer is my conclusion. The evidence under it is what you can check for yourself.</p>
+        <div class="findings">
+          <article class="method" id="a-accuracy">
+            <h3>1. HOW ACCURATELY CAN A 1992 ARCADE GAME&rsquo;S RULES AND PHYSICS BE REBUILT?</h3>
+            <dl>
+              <dt>MY ANSWER</dt>
+              <dd class="draft">Very accurately for the ball in flight, less exactly at the moment the racket hits it, and not at all for the parts of the game my robot never reached.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>All 458 recorded flights match on every frame. The golden test matches 99.3% and 99.4% of frames, and its misses are the racket hits. Some rules, like the tin and out-line checks, weren&rsquo;t found in the code. See <a href="#p-physics">The physics is exact between hits</a> and <a href="#l-rom">The arcade data comes from one ROM version</a>.</dd>
+            </dl>
+          </article>
+          <article class="method" id="a-ai">
+            <h3>2. WHAT DID AI DO WELL, AND HOW WERE ITS MISTAKES CAUGHT?</h3>
+            <dl>
+              <dt>MY ANSWER</dt>
+              <dd class="draft">AI was good at work with a right answer you can test, like matching the arcade&rsquo;s numbers. Its first guesses about how a game should play were often off. Those were caught by measuring or by me playing, not by the AI noticing.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>The plan&rsquo;s first level table gave level 5 a 31% win rate, under its target. Its first cap on the drop shot still left 25&ndash;40% past the short line. The first test robot won only 19%. This site&rsquo;s build log also said the physics matched &ldquo;with zero error&rdquo;, which overstated the 99.3% golden test, and it was corrected on Nov 8. The AI also wrote the tests, so a test could share the code&rsquo;s mistake. See <a href="/sources/#ai-check">How AI work was checked</a> and <a href="#l-own-script">The win rates come from the project&rsquo;s own script</a>.</dd>
+            </dl>
+          </article>
+          <article class="method" id="a-person">
+            <h3>3. WHICH DECISIONS NEEDED A PERSON, AND HOW DID PLAY-TESTING CHANGE THE GAME?</h3>
+            <dl>
+              <dt>MY ANSWER</dt>
+              <dd class="draft">Anything about whether the game is fair, fun or right needed a person: how hard level 1 should be, when to leave the arcade&rsquo;s numbers behind, and when to stop. Play-testing changed how the game plays, looks and sounds, but it didn&rsquo;t touch the ball physics.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>By my count, 22 play-test points asked for a change, 21 were kept, and eight fix-up sessions followed. The corner shape, the racket shift and the wider court were each picked by trying options in the game. See <a href="#p-tests-vs-person">Tests and people check different things</a>, <a href="#p-playtests">About half of what I checked stayed the same</a> and the <a href="/build/#feedback">feedback table</a>.</dd>
+            </dl>
+          </article>
+          <article class="method" id="a-ethics">
+            <h3>4. WHAT ARE THE ETHICAL LIMITS OF REVERSE ENGINEERING AND AI-MADE ART AND SOUND?</h3>
+            <dl>
+              <dt>MY ANSWER</dt>
+              <dd class="draft">I started with a simple line: study how the game works, but don&rsquo;t take its art, sound or name. I still think that line is right, but it&rsquo;s less clear than I thought. My physics is a port of the arcade&rsquo;s math, and AI art raises questions I can&rsquo;t fully answer about what it learned from.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>See <a href="#ethics">Ethics</a> for what was done and which questions are still open, and <a href="#perspectives">Other perspectives</a> for how others see it.</dd>
+            </dl>
+          </article>
+          <article class="method" id="a-learned">
+            <h3>5. WHAT DID I LEARN BY BUILDING A GAME WITH AI THAT I WOULDN&rsquo;T HAVE LEARNED WITHOUT IT?</h3>
+            <dl>
+              <dt>MY ANSWER</dt>
+              <dd class="draft">Ronin: only you can answer this one, so nothing is drafted. Name two or three things you actually learned. Then be honest about the other side: what might you have learned if you&rsquo;d had to write the code yourself?</dd>
+              <dt>EVIDENCE</dt>
+              <dd>What the record can show: every decision and play-test note is dated in the <a href="/build/">build log</a>. It can&rsquo;t show what was learned. <a href="#v-teachers">One study</a> found students who used a plain AI tool for practice did worse on a later exam without it, so this question needs a real answer.</dd>
+            </dl>
+          </article>
+        </div>
+        <h3 id="a-guiding">MY GUIDING QUESTION: HOW CAN AI TOOLS HELP ONE STUDENT RESEARCH, DESIGN AND BUILD A COMPLETE VIDEO GAME?</h3>
+        <p class="draft">AI tools can do most of the making: reading and rebuilding old code, writing the game, and producing first versions of art and sound. That let one student finish something that would normally need a team. But AI couldn&rsquo;t decide what the game should be, or tell whether it was right. It helped most when I set the goal, tested the result and made the calls. So my answer is that AI can do the work, but a person still has to direct it and check it. It also has costs: I didn&rsquo;t write the code myself, and this is one student and one project, so it doesn&rsquo;t show how it would go for anyone else.</p>
+        <p><b>Evidence:</b> research began on Oct 18 and version 1.0 was released on Oct 23, 2026.<!-- plan.md; CP-F commit aa35d4a --> The rest is linked in the answers above and in <a href="#limits">Limitations</a>.</p>
       </section>
 
       <section id="limits" aria-labelledby="limits-h">
@@ -375,22 +425,175 @@
 
       <section id="perspectives" aria-labelledby="perspectives-h">
         <h2 id="perspectives-h">OTHER PERSPECTIVES</h2>
-        <p class="todo">How game developers, the original game&rsquo;s makers, artists, teachers and squash players might see this project.</p>
+        <p>People who know this field disagree about projects like this one. Each card keeps what they said or measured apart from my own opinion.</p>
+        <div class="findings">
+          <article class="method" id="v-developers">
+            <h3>GAME DEVELOPERS</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd>In a 2026 survey of more than 2,300 game industry professionals, 52% said generative AI is having a negative impact on the industry, up from 30% and then 18% in the two years before. About 7% said positive, and 36% use it in their job. Among game programmers, 59% were negative (<a href="/sources/#src-gdc">Elderkin</a>).</dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>A large industry survey, reported by the conference that runs it. It measures opinions about the whole industry, in a year of layoffs, not about student projects.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Many professionals would be skeptical of this project, and they have reasons. Nobody lost a job over it, but the same tools might do that somewhere else.</dd>
+            </dl>
+          </article>
+          <article class="method" id="v-artists">
+            <h3>ARTISTS</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd>Visual and technical artists were the most negative group in the same survey, at 64% (<a href="/sources/#src-gdc">Elderkin</a>). The U.S. Copyright Office says AI output can be protected by copyright only where a human author has determined enough of its expression, and that prompts alone aren&rsquo;t enough (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>). ElevenLabs says it fine-tuned its sound model on Shutterstock&rsquo;s licensed tracks (<a href="/sources/#src-elevenlabs-sfx">&ldquo;AI Generated&rdquo;</a>).</dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>&ldquo;Ethically-sourced&rdquo; is the companies&rsquo; own description, not an outside check. It also covers fine-tuning, and doesn&rsquo;t say what else the model learned from. What SpriteCook learned from wasn&rsquo;t checked for this project.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">I used AI for art and sound instead of paying an artist. For a school project with no money that felt fine, but it&rsquo;s the same thing artists are worried about, so I don&rsquo;t think I can just dismiss it.</dd>
+            </dl>
+          </article>
+          <article class="method" id="v-gaelco">
+            <h3>THE PEOPLE WHO MADE THE ORIGINAL</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd><i>Squash</i> is still being sold: it&rsquo;s in the Gaelco Sports Collection, which launched on Oct 22, 2026, four days after this project&rsquo;s research began (<a href="/sources/#src-timeextension">Moyse</a>). The 1992 game&rsquo;s credits name Luis Jonama (director), Esteve Polls and Xavi Fradera (graphics) and Alexander Ekjanov (software).<!-- Research Info/rom_extracts/README.md --> The project&rsquo;s records show no contact with Gaelco.</dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>Nobody has asked them, so what they would think isn&rsquo;t known.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">If I had made a game and someone rebuilt how it plays, I might be flattered or I might be annoyed. Crediting them here is the least I can do, but it isn&rsquo;t the same as asking.</dd>
+            </dl>
+          </article>
+          <article class="method" id="v-preservation">
+            <h3>PEOPLE WHO PRESERVE OLD GAMES</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd>A 2023 study by the Video Game History Foundation and the Software Preservation Network found that 87% of classic games released in the U.S. are out of print, with a margin of error of &plusmn;2.5%. It says piracy is often the easiest way, or the only way, to play many of them (<a href="/sources/#src-vghf">Salvador</a>).</dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>A random sample of 1,500 games with its method published. But the foundation argues for preservation, and the data stops in April 2023. It also doesn&rsquo;t quite fit here, because <i>Squash</i> is in print again.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Studying old games matters, and emulators make it possible. But I can&rsquo;t use &ldquo;the game is lost&rdquo; as my reason, because this one isn&rsquo;t.</dd>
+            </dl>
+          </article>
+          <article class="method" id="v-teachers">
+            <h3>TEACHERS AND STUDENTS</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd>In late 2023, a quarter of U.S. public K-12 teachers said AI tools do more harm than good in K-12 education, 6% said more good than harm, 32% said an equal mix, and 35% weren&rsquo;t sure (<a href="/sources/#src-pew-teachers">Lin</a>). In 2025, 54% of U.S. teens had used chatbots for schoolwork, 10% for all or most of it, and 59% thought AI cheating is a regular thing at their school (<a href="/sources/#src-pew-teens">McClain et al.</a>). In one experiment with nearly 1,000 high school math students in Turkey, those using plain ChatGPT did 48% better in practice but 17% worse on a later exam without it. A version built to give hints scored about the same as students with no AI (<a href="/sources/#src-wharton">Basiouny</a>).</dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>Pew&rsquo;s surveys are large and careful, but the teacher data is the oldest here. The experiment was one subject at one school, and the Wharton article describes an early version of the paper.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Using AI openly and saying so is different from cheating. But the math study still worries me, because getting a good result fast doesn&rsquo;t prove I learned how to do it.</dd>
+            </dl>
+          </article>
+          <article class="method" id="v-squash">
+            <h3>SQUASH PLAYERS AND MISSION SUCCESS</h3>
+            <dl>
+              <dt>THE EVIDENCE</dt>
+              <dd>None yet. The game is made for Hogg and the Mission Success squash program, but the project&rsquo;s records show no feedback from their players. One coach has agreed to be a character in the game, which isn&rsquo;t the same as reviewing it.<!-- plan-v2 A7z --></dd>
+              <dt>HOW FAR TO TRUST IT</dt>
+              <dd>This is the biggest gap in this section, since these are the people the game is for.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">I think they would care most about whether it feels like squash. I should ask them instead of guessing.</dd>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <section id="ethics" aria-labelledby="ethics-h">
         <h2 id="ethics-h">ETHICS</h2>
-        <p class="todo">Copyright and the original game, reverse engineering, permission for the school logo, privacy, AI-made art and sound, and being honest about who wrote the code.</p>
+        <p>What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
+        <div class="findings">
+          <article class="method" id="e-copyright">
+            <h3>COPYRIGHT AND THE ORIGINAL GAME</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>The ROM, its graphics and its sounds are Gaelco&rsquo;s copyrighted work. They were studied for reference, kept out of the public code, and never shipped or traced. The AI art and sound tools were given nothing from the arcade game. The game doesn&rsquo;t use Gaelco&rsquo;s name or logo; this site names them to give credit.<!-- hogg-squash CLAUDE.md "IP rules"; rom_extracts/README.md --></dd>
+              <dt>THE QUESTION</dt>
+              <dd>The game does ship more than an idea. Its physics file is a port of the arcade&rsquo;s routines, using its shot tables and numbers, and the public code includes the recorded ball data used for testing.<!-- squash-physics.js header; test/fixtures --> The project&rsquo;s rule that &ldquo;recreating gameplay mechanics is fine&rdquo; is its own position, not a ruling.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Ronin: say where the ROM file came from, and whether you&rsquo;re comfortable with that. Then: I think taking the art would clearly be wrong and copying how a ball bounces is much closer to fine, but a port sits somewhere in between.</dd>
+            </dl>
+          </article>
+          <article class="method" id="e-reverse">
+            <h3>REVERSE ENGINEERING</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>The arcade&rsquo;s program was decompiled with Ghidra to read its rules, and parts that Gaelco had encrypted were decrypted to read them. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
+              <dt>THE QUESTION</dt>
+              <dd>In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was fair use. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Reverse engineering is how I found the real numbers, and I learned a lot from it. I think studying it is reasonable, but I can&rsquo;t say the law clearly covers everything that was done, so I would rather say that than pretend.</dd>
+            </dl>
+          </article>
+          <article class="method" id="e-authorship">
+            <h3>WHO WROTE THE CODE</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>The site says plainly that Claude Code wrote the code. The AI tools are cited on the <a href="/sources/#cited">Sources page</a>, nearly all of the game&rsquo;s commits are marked as co-authored by it, and all of it is public on GitHub.</dd>
+              <dt>THE QUESTION</dt>
+              <dd>If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">I made the decisions, so I think it&rsquo;s fair to say I directed it, but I shouldn&rsquo;t say I programmed it. Being honest about that matters more than sounding impressive.</dd>
+            </dl>
+          </article>
+          <article class="method" id="e-ai-art">
+            <h3>AI-MADE ART AND SOUND</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>SpriteCook made the first versions of the player art, and ElevenLabs made the sound effects. The game is a non-commercial school project, so ElevenLabs&rsquo; free plan was chosen, and it asks for a credit, which is on the <a href="/research/#tools">Research page</a>. Each file&rsquo;s source and prompt are recorded in the repo.<!-- decisions "Audio"; plan-v2 rule 12 --></dd>
+              <dt>THE QUESTION</dt>
+              <dd>Those tools learned from other people&rsquo;s work. ElevenLabs names one licensed source and SpriteCook&rsquo;s wasn&rsquo;t checked. See <a href="#v-artists">Artists</a>.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">I think it&rsquo;s OK for a free school project if it&rsquo;s credited, but I wouldn&rsquo;t be as sure if I were selling the game.</dd>
+            </dl>
+          </article>
+          <article class="method" id="e-logo">
+            <h3>THE SCHOOL&rsquo;S NAME AND LOGO</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>The Hogg Razorbacks shield is on the title screen and in the match, and the court uses the school&rsquo;s colours and name.<!-- decisions "Theme" --> </dd>
+              <dt>THE QUESTION</dt>
+              <dd>The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Ronin: ask the school, then say what they answered. Until then, the honest wording is: it&rsquo;s my school and I meant it as a tribute, but that isn&rsquo;t the same as permission.</dd>
+            </dl>
+          </article>
+          <article class="method" id="e-privacy">
+            <h3>PRIVACY AND REAL PEOPLE</h3>
+            <dl>
+              <dt>WHAT WAS DONE</dt>
+              <dd>A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
+              <dt>THE QUESTION</dt>
+              <dd>Agreeing to be in a game isn&rsquo;t necessarily agreeing to have your photos sent to an AI service. It depends on what they were told.</dd>
+              <dt>MY VIEW</dt>
+              <dd class="draft">Ronin: say whether the coach knew the photos would go to an AI tool. Then: I think people should get to choose this, especially students, which is why I kept them out.</dd>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <section id="open" aria-labelledby="open-h">
         <h2 id="open-h">OPEN QUESTIONS</h2>
-        <p class="todo">What I still don&rsquo;t know, and what I would investigate next.</p>
+        <ul class="draft">
+          <li>Would real beginners do as well as my test robot at level 1? I would test with people who have never played it.</li>
+          <li>Does it feel like squash to people who play squash?</li>
+          <li>Why is the step from level 5 to 6 so big? Volleys start at level 6, but nothing has tested whether that&rsquo;s the cause.</li>
+          <li>What does the arcade do at the moment of a racket hit that the decompiled code didn&rsquo;t explain?</li>
+          <li>What did SpriteCook learn from?</li>
+          <li>What would Gaelco and the school say if they were asked? And what does my school district&rsquo;s AI guidance say about a project like this?</li>
+          <li>Could I change the game without AI? That might be the best test of what I actually learned.</li>
+        </ul>
       </section>
 
       <section id="reflection" aria-labelledby="reflection-h">
         <h2 id="reflection-h">MY REFLECTION</h2>
-        <p class="todo">What I learned, and what I would do differently.</p>
+        <div class="draft">
+          <p>Ronin: this section has to be all yours, so nothing is drafted. These are the capstone notebook&rsquo;s questions. Answer them in your own words, then replace this box:</p>
+          <ul>
+            <li>What is the strongest evidence you gathered, and why does it matter to your question?</li>
+            <li>How did your thinking change during the project?</li>
+            <li>Which feedback or revision had the greatest impact?</li>
+            <li>What surprised you, and what was hardest?</li>
+            <li>What would you do differently next time?</li>
+          </ul>
+        </div>
       </section>
 
       <nav class="pager" aria-label="Reading order">

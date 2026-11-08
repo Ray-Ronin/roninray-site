@@ -23,7 +23,7 @@ The reading pages share `assets/page.css`, the same site nav (in each page's HTM
 
 ## Checks before a deploy
 `npm run check` (also the first step of `npm run build`, so a failure stops the deploy; `npm run dev` lists drafts instead of failing, so they can be previewed):
-- **`class="draft"`** marks text Claude drafted that Ronin must rewrite in his own words. Any left fails the check, so it can't go live.
+- **`class="draft"`** marks text Claude drafted that Ronin must rewrite in their own words. Any left fails the check, so it can't go live.
 - **`class="todo"`** marks a section not written yet. It's listed, not failed (the page says "coming soon").
 - Internal links, files and `#anchors` must exist, and the site nav must match on every page.
 
@@ -37,7 +37,7 @@ Where the words come from:
 - **Playable versions:** `content/versions.json`. To add one, add an entry with the commit, a title, a short description and the controls, then push.
 - **Intro text:** `public/build/index.html`.
 - **Feedback & revisions table:** written by hand in `public/build/index.html`. Add a row for each play-test, and teacher feedback in its own group.
-- **Reflections:** `content/reflections.json`, one per step tag, in Ronin's own words (`"draft": true` marks a prompt he hasn't answered, and fails `npm run check`). Shown on the last step with that tag.
+- **Reflections:** `content/reflections.json`, one per step tag, in Ronin's own words (`"draft": true` marks a prompt not answered yet, and fails `npm run check`). Shown on the last step with that tag.
 - **Research entry** (the first step in the log, from before the game repo's code): written by hand in `public/build/index.html`, inside `<ol id="log">`. `build-page.js` keeps it at the top when it rebuilds the log.
 
 The page also asks GitHub for game commits made since the last deploy, so new commits show up without redeploying the site. New playable versions need a push here.

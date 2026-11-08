@@ -1,5 +1,5 @@
 // Checks the site's own pages before a deploy. Run by scripts/build.mjs (a failure stops the deploy) and by `npm run check`.
-//   Fails on: text still marked class="draft" or a reflection marked "draft": true (Ronin must put it in his own words first),
+//   Fails on: text still marked class="draft" or a reflection marked "draft": true (Ronin must put it in their own words first),
 //             internal links or files that don't exist, links to #anchors that aren't on the page,
 //             a site nav that differs from page to page, or one that doesn't mark its own page as current.
 //   Lists:    sections marked class="todo" (not written yet; safe to publish, since they say so).
@@ -88,7 +88,7 @@ export function check({ allowDrafts = false } = {}) {
     }
   }
 
-  // Reflections in the log (content/reflections.json) are Ronin's own words: a draft one is a prompt he hasn't answered yet.
+  // Reflections in the log (content/reflections.json) are Ronin's own words: a draft one is a prompt not answered yet.
   const reflections = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'reflections.json'), 'utf8'));
   for (const [tag, r] of Object.entries(reflections))
     if (r.draft) drafts.push(`content/reflections.json: ${tag}: draft reflection still to be written by Ronin`);

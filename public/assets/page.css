@@ -78,7 +78,7 @@ details pre {
 .status { margin: 0; font-size: 14px; color: var(--dim); }
 
 /* Writing still to do. scripts/check.mjs fails the build while any .draft is left, and lists every .todo.
-   .draft: text Claude drafted that Ronin must rewrite in his own words before it goes live.
+   .draft: text Claude drafted that Ronin must rewrite in their own words before it goes live.
    .todo: a section that hasn't been written yet (safe to publish: it says so). */
 .draft { outline: 2px dashed var(--dot); outline-offset: 6px; }
 .draft::before { content: "RONIN: REWRITE"; display: block; margin-bottom: 8px; font: 400 8px/1 var(--pixel); color: var(--dot); }
