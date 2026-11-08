@@ -214,3 +214,64 @@ details pre {
    minimum width of ~600 px, so phones zoomed the whole page out (seen on /build/ and /research/ at 375 px). */
 .page > *, .page section > * { min-width: 0; }
 @media (max-width: 600px) { .numbers td.n { white-space: normal; } }
+
+/* ---- Findings page (/findings/) ---- */
+/* Charts: marks wear the series colour, text stays in the text colours. Tooltips and focus only repeat the tables. */
+.fig text.tick { font-size: 16px; fill: var(--dim); }
+.fig text.lab { fill: var(--soft); }
+.fig text.v { fill: var(--white); }
+.fig .ln { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.fig .ln.s6b { stroke: var(--red); }
+.fig .ln.s12c { stroke: var(--soft); }
+.fig .ln.s12d { stroke: var(--dot); }
+.fig .mk { stroke: var(--panel); stroke-width: 2; }
+.fig .mk.s6 { fill: var(--white); }
+.fig .mk.s6b { fill: var(--red); }
+.fig .mk.s12c { fill: var(--soft); }
+.fig .mk.s12d { fill: var(--dot); }
+.fig .mk.before { fill: var(--soft); }
+.fig .ok { fill: var(--dot); }
+.fig .miss { fill: var(--red); }
+.fig .kept { fill: var(--dim); }
+.fig .link { stroke: var(--dim); stroke-width: 2; }
+.fig .jump { stroke: var(--white); stroke-width: 1; }
+.fig .target { fill: rgba(247, 246, 243, .11); }
+.fig .hit { fill: transparent; outline: none; }
+.fig .hit:hover, .fig .hit:focus { fill: rgba(247, 246, 243, .06); }
+.fig .hit:focus-visible { stroke: var(--dot); stroke-width: 2; }
+.fig .cross { stroke: var(--dim); stroke-width: 1; opacity: 0; pointer-events: none; }
+.fig .hit:hover + .cross, .fig .hit:focus + .cross { opacity: 1; }
+
+.key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--soft); }
+.key li { display: flex; align-items: center; gap: 7px; }
+.key .sw { flex: none; display: inline-block; width: 12px; height: 12px; background: var(--dim); }
+.key .sw.ok { background: var(--dot); }
+.key .sw.miss { background: var(--red); }
+.key .sw.kept { background: var(--dim); }
+.key .sw.tgt { background: rgba(247, 246, 243, .22); }
+.key .sw[class*="ln-"] { position: relative; width: 22px; height: 2px; }
+.key .sw[class*="ln-"]::after { content: ""; position: absolute; left: 7px; top: -3px; width: 8px; height: 8px; border-radius: 50%; background: inherit; }
+.key .sw.ln-s12d { background: var(--dot); }
+.key .sw.ln-s12c { background: var(--soft); }
+.key .sw.ln-s6b { background: var(--red); }
+.key .sw.ln-s6b::after { border-radius: 0; }
+.key .sw.pt-s6 { width: 10px; height: 10px; background: var(--white); transform: rotate(45deg); }
+.key .sw.pt-before, .key .sw.pt-after { border-radius: 50%; }
+.key .sw.pt-before { background: var(--soft); }
+.key .sw.pt-after { background: var(--dot); }
+
+.chart-tip { position: fixed; z-index: 20; max-width: min(320px, calc(100vw - 16px)); padding: 8px 10px; background: var(--black); border: 2px solid var(--line); font: 13px/1.5 var(--text); color: var(--soft); pointer-events: none; }
+.chart-tip b { display: block; color: var(--white); font-weight: 600; }
+
+.fig details { font-size: 13px; }
+.fig details p { margin: 8px 0 0; }
+.scroll { margin-top: 8px; overflow-x: auto; }
+.scroll .numbers { font-size: 13px; }
+.scroll .numbers th[scope="row"] { font: 400 13px/1.5 var(--text); color: var(--soft); }
+.numbers.tight th, .numbers.tight td { padding: 6px 5px; }
+.numbers.tight td.n { text-align: right; }
+
+/* Findings and limitations: the notebook's Evidence Synthesis form, one card per row. */
+.findings { display: grid; gap: 14px; }
+.method dd.src { font-size: 13px; color: var(--dim); }
+.method dd.draft { margin-bottom: 10px; }

@@ -37,6 +37,9 @@
       </nav>
     </header>
 
+    <!-- Every number on this page comes from a doc in the game repo (github.com/Ray-Ronin/hogg-squash); the comment next to it names the doc.
+         Short names: decisions = docs/decisions.md · plan = docs/plan.md · plan-v2 = docs/plan-v2.md · baselines = test/baselines.json ·
+         1992 = docs/research/squash-1992-research.md · logic = docs/research/squash-game-logic.md -->
     <main class="page">
       <header class="intro">
         <h1 class="title">WHAT I<br>FOUND</h1>
@@ -45,12 +48,274 @@
 
       <section id="data" aria-labelledby="data-h">
         <h2 id="data-h">THE DATA</h2>
-        <p class="todo">Charts of what was measured: how closely the physics matches the arcade, how the difficulty levels changed after play-testing, and more.</p>
+        <p>Four charts of what was measured. Each one says where its numbers come from and what&rsquo;s missing, and each has a table with every number. <a href="#limits">Limitations</a> says how far to trust them.</p>
+
+        <div class="concept" id="chart-levels">
+          <h3>WIN RATE BY LEVEL</h3>
+          <p>A robot &ldquo;reference beginner&rdquo; plays 1,000 rallies against the computer at each level, and a script counts the share of points it wins (<a href="/research/#m-winrate">how it works</a>). S6 was the first table of levels. S6b came from the CP-C play-test. S12c and S12d came from the release play-test, and changed the hitting range.</p>
+          <figure class="fig">
+            <ul class="key" aria-hidden="true"><li><span class="sw ln-s12d"></span>S12d (Oct 22)</li><li><span class="sw ln-s12c"></span>S12c (Oct 22)</li><li><span class="sw ln-s6b"></span>S6b (Oct 20)</li><li><span class="sw pt-s6"></span>S6, level 1 only</li><li><span class="sw tgt"></span>the plan&rsquo;s target</li></ul>
+            <svg viewBox="0 0 560 384" role="group" aria-labelledby="c-win-cap">
+              <!-- Marks computed from the table below. y = 20 + (100 - percent) x 3; x = 80 + (level - 1) x 56. -->
+              <g aria-hidden="true">
+                <line class="grid" x1="60" y1="320" x2="556" y2="320"/><text class="tick" x="52" y="326" text-anchor="end">0%</text>
+                <line class="grid" x1="60" y1="245" x2="556" y2="245"/><text class="tick" x="52" y="251" text-anchor="end">25%</text>
+                <line class="grid" x1="60" y1="170" x2="556" y2="170"/><text class="tick" x="52" y="176" text-anchor="end">50%</text>
+                <line class="grid" x1="60" y1="95" x2="556" y2="95"/><text class="tick" x="52" y="101" text-anchor="end">75%</text>
+                <line class="grid" x1="60" y1="20" x2="556" y2="20"/><text class="tick" x="52" y="26" text-anchor="end">100%</text>
+                <text class="tick" x="80" y="346" text-anchor="middle">1</text><text class="tick" x="136" y="346" text-anchor="middle">2</text><text class="tick" x="192" y="346" text-anchor="middle">3</text><text class="tick" x="248" y="346" text-anchor="middle">4</text><text class="tick" x="304" y="346" text-anchor="middle">5</text><text class="tick" x="360" y="346" text-anchor="middle">6</text><text class="tick" x="416" y="346" text-anchor="middle">7</text><text class="tick" x="472" y="346" text-anchor="middle">8</text><text class="tick" x="528" y="346" text-anchor="middle">9</text>
+                <text class="tick" x="304" y="376" text-anchor="middle">CPU LEVEL (1 = EASIEST)</text>
+                <rect class="target" x="66" y="20" width="28" height="120"/><rect class="target" x="290" y="155" width="28" height="60"/><rect class="target" x="514" y="260" width="28" height="60"/>
+                <polyline class="ln s6b" points="80,86 136,107 192,119 248,158 304,191 360,233 416,278 472,290 528,305"/><polyline class="ln s12c" points="80,65 136,86 192,104 248,143 304,197 360,251 416,284 472,299 528,308"/><polyline class="ln s12d" points="80,68 136,89 192,110 248,149 304,194 360,254 416,287 472,299 528,308"/>
+                <rect class="mk s6b" x="75" y="81" width="10" height="10"/><rect class="mk s6b" x="131" y="102" width="10" height="10"/><rect class="mk s6b" x="187" y="114" width="10" height="10"/><rect class="mk s6b" x="243" y="153" width="10" height="10"/><rect class="mk s6b" x="299" y="186" width="10" height="10"/><rect class="mk s6b" x="355" y="228" width="10" height="10"/><rect class="mk s6b" x="411" y="273" width="10" height="10"/><rect class="mk s6b" x="467" y="285" width="10" height="10"/><rect class="mk s6b" x="523" y="300" width="10" height="10"/>
+                <circle class="mk s12c" cx="80" cy="65" r="4"/><circle class="mk s12c" cx="136" cy="86" r="4"/><circle class="mk s12c" cx="192" cy="104" r="4"/><circle class="mk s12c" cx="248" cy="143" r="4"/><circle class="mk s12c" cx="304" cy="197" r="4"/><circle class="mk s12c" cx="360" cy="251" r="4"/><circle class="mk s12c" cx="416" cy="284" r="4"/><circle class="mk s12c" cx="472" cy="299" r="4"/><circle class="mk s12c" cx="528" cy="308" r="4"/>
+                <circle class="mk s12d" cx="80" cy="68" r="5"/><circle class="mk s12d" cx="136" cy="89" r="5"/><circle class="mk s12d" cx="192" cy="110" r="5"/><circle class="mk s12d" cx="248" cy="149" r="5"/><circle class="mk s12d" cx="304" cy="194" r="5"/><circle class="mk s12d" cx="360" cy="254" r="5"/><circle class="mk s12d" cx="416" cy="287" r="5"/><circle class="mk s12d" cx="472" cy="299" r="5"/><circle class="mk s12d" cx="528" cy="308" r="5"/>
+                <line class="jump" x1="80" y1="209" x2="80" y2="95"/>
+                <path class="mk s6" d="M80,210l8,8l-8,8l-8,-8z"/>
+                <text class="v" x="96" y="224">S6: 34%</text>
+                <text class="v" x="96" y="158">+44 points</text>
+                <text class="v" x="92" y="56">84%</text>
+                <text class="v" x="316" y="186">42%</text>
+                <text class="v" x="528" y="292" text-anchor="middle">4%</text>
+              </g>
+              <rect class="hit" x="52" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 1. S6 34%. S6b 78%. S12c 85%. S12d 84%. Target: at least 60%."/><line class="cross" x1="80" y1="20" x2="80" y2="320"/>
+              <rect class="hit" x="108" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 2. S6b 71%. S12c 78%. S12d 77%."/><line class="cross" x1="136" y1="20" x2="136" y2="320"/>
+              <rect class="hit" x="164" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 3. S6b 67%. S12c 72%. S12d 70%."/><line class="cross" x1="192" y1="20" x2="192" y2="320"/>
+              <rect class="hit" x="220" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 4. S6b 54%. S12c 59%. S12d 57%."/><line class="cross" x1="248" y1="20" x2="248" y2="320"/>
+              <rect class="hit" x="276" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 5. S6b 43%. S12c 41%. S12d 42%. Target: 35 to 55%."/><line class="cross" x1="304" y1="20" x2="304" y2="320"/>
+              <rect class="hit" x="332" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 6. S6b 29%. S12c 23%. S12d 22%."/><line class="cross" x1="360" y1="20" x2="360" y2="320"/>
+              <rect class="hit" x="388" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 7. S6b 14%. S12c 12%. S12d 11%."/><line class="cross" x1="416" y1="20" x2="416" y2="320"/>
+              <rect class="hit" x="444" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 8. S6b 10%. S12c 7%. S12d 7%."/><line class="cross" x1="472" y1="20" x2="472" y2="320"/>
+              <rect class="hit" x="500" y="20" width="56" height="300" tabindex="0" role="img" aria-label="Level 9. S6b 5%. S12c 4%. S12d 4%. Target: at most 20%."/><line class="cross" x1="528" y1="20" x2="528" y2="320"/>
+            </svg>
+            <figcaption id="c-win-cap">Share of points the reference beginner won at each CPU level. After the CP-C play-test, level 1 went from 34% to 78%. S12c and S12d nearly sit on top of each other. Only one S6 value was recorded, so there is no S6 line.</figcaption>
+            <details>
+              <summary>Every number in this chart</summary>
+              <div class="scroll">
+                <table class="numbers tight">
+                  <thead><tr><th scope="col">STEP</th><th scope="col">L1</th><th scope="col">L2</th><th scope="col">L3</th><th scope="col">L4</th><th scope="col">L5</th><th scope="col">L6</th><th scope="col">L7</th><th scope="col">L8</th><th scope="col">L9</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">S6</th><td class="n">34</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td class="n">&ndash;</td></tr><!-- decisions "CPU difficulty", S6b Measured: 34% against the S6 level 1. Levels 2-9 for S6 are not in the docs. -->
+                    <tr><th scope="row">S6b</th><td class="n">78</td><td class="n">71</td><td class="n">67</td><td class="n">54</td><td class="n">43</td><td class="n">29</td><td class="n">14</td><td class="n">10</td><td class="n">5</td></tr><!-- decisions "CPU difficulty", S6b Measured -->
+                    <tr><th scope="row">After S6b</th><td class="n">79</td><td class="n">74</td><td class="n">68</td><td class="n">52</td><td class="n">45</td><td class="n">28</td><td class="n">15</td><td class="n">10</td><td class="n">5</td></tr><!-- plan Session log, 2026-10-20 "after S6b" (smaller CPU reach). Not charted. -->
+                    <tr><th scope="row">S12b</th><td class="n">80</td><td class="n">74</td><td class="n">65</td><td class="n">54</td><td class="n">44</td><td class="n">23</td><td class="n">13</td><td class="n">8</td><td class="n">5</td></tr><!-- decisions "Hitting", S12c Measured. Not charted. -->
+                    <tr><th scope="row">S12c</th><td class="n">85</td><td class="n">78</td><td class="n">72</td><td class="n">59</td><td class="n">41</td><td class="n">23</td><td class="n">12</td><td class="n">7</td><td class="n">4</td></tr><!-- decisions "Hitting", S12d Measured -->
+                    <tr><th scope="row">S12d</th><td class="n">84</td><td class="n">77</td><td class="n">70</td><td class="n">57</td><td class="n">42</td><td class="n">22</td><td class="n">11</td><td class="n">7</td><td class="n">4</td></tr><!-- decisions "Hitting", S12d Measured -->
+                    <tr><th scope="row">S12e</th><td class="n">84</td><td class="n">78</td><td class="n">68</td><td class="n">54</td><td class="n">39</td><td class="n">23</td><td class="n">11</td><td class="n">8</td><td class="n">5</td></tr><!-- plan Session log, 2026-10-23 S12e Measured. Not charted; the latest measurement in the docs. -->
+                  </tbody>
+                </table>
+              </div>
+              <p>Percent of points. &ldquo;&ndash;&rdquo; means the docs don&rsquo;t give a number. The plan&rsquo;s targets were at least 60% at level 1, 35&ndash;55% at level 5 and at most 20% at level 9.<!-- decisions "CPU difficulty" --> Sources: <code>docs/decisions.md</code> and the Session log in <code>docs/plan.md</code>.</p>
+            </details>
+          </figure>
+        </div>
+
+        <div class="concept" id="chart-physics">
+          <h3>PHYSICS MATCH</h3>
+          <p>Two recordings of the real game were compared with the rebuilt physics. The flight test runs a whole flight with no corrections. The golden test steps one frame at a time. <a href="/research/#accuracy">Research explains each test</a>.</p>
+          <figure class="fig">
+            <ul class="key" aria-hidden="true"><li><span class="sw ok"></span>exact match</li><li><span class="sw miss"></span>not exact</li></ul>
+            <svg viewBox="0 0 560 294" role="group" aria-labelledby="c-phys-cap">
+              <!-- Bar widths are the exact share from test/baselines.json. The red tips are 81 and 111 frames. -->
+              <g aria-hidden="true">
+                <line class="grid" x1="20" y1="8" x2="20" y2="260"/><text class="tick" x="20" y="282" text-anchor="start">0%</text><line class="grid" x1="280" y1="8" x2="280" y2="260"/><text class="tick" x="280" y="282" text-anchor="middle">50%</text><line class="grid" x1="540" y1="8" x2="540" y2="260"/><text class="tick" x="540" y="282" text-anchor="end">100%</text>
+                <text class="lab" x="20" y="26">FLIGHT, RUN 2</text><text class="v" x="540" y="26" text-anchor="end">164 / 164 flights</text><path class="ok" d="M20,36h516a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-516z"/>
+                <text class="lab" x="20" y="88">FLIGHT, RUN 3</text><text class="v" x="540" y="88" text-anchor="end">294 / 294 flights</text><path class="ok" d="M20,98h516a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-516z"/>
+                <text class="lab" x="20" y="150">GOLDEN, RUN 2</text><text class="v" x="540" y="150" text-anchor="end">12,309 / 12,390 frames (99.3%)</text><rect class="ok" x="20" y="160" width="513.6" height="18"/><rect class="miss" x="535.6" y="160" width="4.4" height="18"/>
+                <text class="lab" x="20" y="212">GOLDEN, RUN 3</text><text class="v" x="540" y="212" text-anchor="end">17,452 / 17,563 frames (99.4%)</text><rect class="ok" x="20" y="222" width="513.7" height="18"/><rect class="miss" x="535.7" y="222" width="4.3" height="18"/>
+              </g>
+              <rect class="hit" x="10" y="10" width="540" height="56" tabindex="0" role="img" aria-label="Flight test, run 2. 164 of 164 flights match on every frame (12,274 frames)."/>
+              <rect class="hit" x="10" y="72" width="540" height="56" tabindex="0" role="img" aria-label="Flight test, run 3. 294 of 294 flights match on every frame (17,360 frames)."/>
+              <rect class="hit" x="10" y="134" width="540" height="56" tabindex="0" role="img" aria-label="Golden test, run 2. 12,309 of 12,390 frames exact, 99.3%. 81 misses, and 81 racket hits."/>
+              <rect class="hit" x="10" y="196" width="540" height="56" tabindex="0" role="img" aria-label="Golden test, run 3. 17,452 of 17,563 frames exact, 99.4%. 111 misses, and 111 racket hits."/>
+            </svg>
+            <figcaption id="c-phys-cap">Every flight matches on every frame. The golden test&rsquo;s misses (the thin red tips) are 81 and 111 frames, the same as the number of racket hits in each recording.</figcaption>
+            <details>
+              <summary>Every number in this chart</summary>
+              <div class="scroll">
+                <table class="numbers">
+                  <thead><tr><th scope="col">TEST</th><th scope="col">RUN 2</th><th scope="col">RUN 3</th></tr></thead>
+                  <tbody>
+                    <!-- baselines: flight.test.js --><tr><th scope="row">Flights matched</th><td class="n">164 / 164</td><td class="n">294 / 294</td></tr>
+                    <!-- baselines: flight.test.js --><tr><th scope="row">Frames in those flights</th><td class="n">12,274</td><td class="n">17,360</td></tr>
+                    <!-- baselines: golden.test.js --><tr><th scope="row">Golden frames exact</th><td class="n">12,309 / 12,390</td><td class="n">17,452 / 17,563</td></tr>
+                    <!-- baselines: golden tested minus exact --><tr><th scope="row">Golden misses</th><td class="n">81</td><td class="n">111</td></tr>
+                    <!-- baselines: hits.test.js --><tr><th scope="row">Racket hits</th><td class="n">81</td><td class="n">111</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Source: <code>test/baselines.json</code>, recorded Oct 18, 2026. The exact-match shares are 99.3% and 99.4%.</p>
+            </details>
+          </figure>
+        </div>
+
+        <div class="concept" id="chart-drop">
+          <h3>FRONT-COURT SOFT DROPS</h3>
+          <p>CP-C found that SOFT from the front court ran deep instead of dropping short. S6b capped its power and lift, which departs from the arcade&rsquo;s tables on purpose. These are shares of test shots at all nine levels, not shots from real matches.</p>
+          <figure class="fig">
+            <ul class="key" aria-hidden="true"><li><span class="sw pt-before"></span>before S6b (the arcade&rsquo;s rows)</li><li><span class="sw pt-after"></span>after S6b</li></ul>
+            <svg viewBox="0 0 560 306" role="group" aria-labelledby="c-drop-cap">
+              <!-- x = 20 + percent x 6.5. Values: decisions "Hitting", SOFT from the front court, as built (S6b). -->
+              <g aria-hidden="true">
+                <line class="grid" x1="20" y1="8" x2="20" y2="272"/><text class="tick" x="20" y="294" text-anchor="start">0%</text><line class="grid" x1="150" y1="8" x2="150" y2="272"/><text class="tick" x="150" y="294" text-anchor="middle">20%</text><line class="grid" x1="280" y1="8" x2="280" y2="272"/><text class="tick" x="280" y="294" text-anchor="middle">40%</text><line class="grid" x1="410" y1="8" x2="410" y2="272"/><text class="tick" x="410" y="294" text-anchor="middle">60%</text><line class="grid" x1="540" y1="8" x2="540" y2="272"/><text class="tick" x="540" y="294" text-anchor="end">80%</text>
+                <text class="lab" x="20" y="26">PAST THE SHORT LINE</text><text class="v" x="540" y="26" text-anchor="end">~70% &rarr; 0&ndash;6%</text><line class="link" x1="59" y1="48" x2="475" y2="48"/><circle class="mk before" cx="475" cy="48" r="7"/><rect class="ok" x="20" y="41" width="39" height="14" rx="4"/>
+                <text class="lab" x="20" y="92">INTO THE TIN</text><text class="v" x="540" y="92" text-anchor="end">~22% &rarr; ~8%</text><line class="link" x1="72" y1="114" x2="163" y2="114"/><circle class="mk before" cx="163" cy="114" r="7"/><circle class="mk s12d" cx="72" cy="114" r="7"/>
+                <text class="lab" x="20" y="158">SHORT OF THE FRONT WALL</text><text class="v" x="540" y="158" text-anchor="end">not recorded &rarr; ~14%</text><circle class="mk s12d" cx="111" cy="180" r="7"/>
+                <text class="lab" x="20" y="224">ALL LOST, TIN + SHORT</text><text class="v" x="540" y="224" text-anchor="end">21&ndash;25%, about the same</text><rect class="ok" x="156.5" y="239" width="26" height="14" rx="4"/>
+              </g>
+              <rect class="hit" x="10" y="10" width="540" height="60" tabindex="0" role="img" aria-label="Second bounce past the short line. Before: about 70%. After: 0% off a ball coming at up to 3 units a frame, 0 to 6% off a fast one."/>
+              <rect class="hit" x="10" y="76" width="540" height="60" tabindex="0" role="img" aria-label="Into the tin. Before: about 22%. After: about 8%."/>
+              <rect class="hit" x="10" y="142" width="540" height="60" tabindex="0" role="img" aria-label="Short of the front wall. Before: the docs give no number. After: about 14%."/>
+              <rect class="hit" x="10" y="208" width="540" height="60" tabindex="0" role="img" aria-label="All lost together. 21 to 25%. The docs say this stayed about as before."/>
+            </svg>
+            <figcaption id="c-drop-cap">What happened to front-court SOFT drops before and after S6b. The docs give no &ldquo;before&rdquo; number for balls falling short of the front wall, so that row has no gray dot. They say all lost together stayed &ldquo;about as before&rdquo;, without a separate before number.</figcaption>
+            <details>
+              <summary>Every number in this chart</summary>
+              <div class="scroll">
+                <table class="numbers">
+                  <thead><tr><th scope="col">MEASURE</th><th scope="col">BEFORE S6b</th><th scope="col">AFTER S6b</th></tr></thead>
+                  <tbody>
+                    <!-- decisions "Hitting": about 70% past it; every drop in front of the line off a ball at up to 3 units/frame; 94-100% off a fast one (5) --><tr><th scope="row">Second bounce past the short line</th><td>about 70%</td><td>0% off a ball at up to 3 units a frame; 0&ndash;6% off a fast one (5)</td></tr>
+                    <!-- decisions "Hitting": deepest at z 112; the arcade's rows up to z 189 --><tr><th scope="row">Deepest second bounce</th><td>z 189</td><td>z 112</td></tr>
+                    <!-- decisions "Hitting": tins fall from about 22% to 8% --><tr><th scope="row">Into the tin</th><td>about 22%</td><td>about 8%</td></tr>
+                    <!-- decisions "Hitting": about 14% now fall short. No before number. --><tr><th scope="row">Short of the front wall</th><td>not recorded</td><td>about 14% (about a quarter from the back of the front court)</td></tr>
+                    <!-- decisions "Hitting": all lost together stay about as before (21-25%) --><tr><th scope="row">All lost together</th><td>&ldquo;about as before&rdquo;</td><td>21&ndash;25%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Options tried and not used: the plan&rsquo;s first cap left 25&ndash;40% past the short line. A cap that grew with distance lost fewer shots (14%) but put 4&ndash;5% past the line.<!-- decisions "Hitting" --> Source: <code>docs/decisions.md</code>, &ldquo;Hitting&rdquo;. Depth (z) is in game units from the front wall.</p>
+            </details>
+          </figure>
+        </div>
+
+        <div class="concept" id="chart-playtests">
+          <h3>WHAT PLAY-TESTING CHANGED</h3>
+          <p>For each play-test, the number of points that asked for a change and the number that were checked and kept, with the fix-up sessions that followed. <a href="/build/#feedback">The build log has the full table</a>.</p>
+          <p>The docs don&rsquo;t give these counts, so this is my own count of their notes. A numbered answer or a separately named point counts once. A point with a good part and a bad part counts as a change.</p>
+          <figure class="fig">
+            <ul class="key" aria-hidden="true"><li><span class="sw ok"></span>asked for a change</li><li><span class="sw kept"></span>checked and kept</li></ul>
+            <svg viewBox="0 0 560 384" role="group" aria-labelledby="c-play-cap">
+              <!-- Bar width = count x 19. Every counted point is listed in the table below. -->
+              <g aria-hidden="true">
+                <text class="lab" x="20" y="26">CP-B &middot; OCT 19</text><text class="v" x="540" y="26" text-anchor="end">S4b</text><rect class="ok" x="20" y="36" width="56" height="18"/><path class="kept" d="M78,36h71a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-71z"/><text class="v" x="163" y="51">3 changed, 4 kept</text>
+                <text class="lab" x="20" y="88">CP-C &middot; OCT 20</text><text class="v" x="540" y="88" text-anchor="end">S6b</text><rect class="ok" x="20" y="98" width="56" height="18"/><path class="kept" d="M78,98h52a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-52z"/><text class="v" x="144" y="113">3 changed, 3 kept</text>
+                <text class="lab" x="20" y="150">CP-D &middot; OCT 21</text><text class="v" x="540" y="150" text-anchor="end">S8b</text><path class="ok" d="M20,160h72a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-72z"/><text class="v" x="106" y="175">4 changed, 0 kept</text>
+                <text class="lab" x="20" y="212">CP-E &middot; OCT 22</text><text class="v" x="540" y="212" text-anchor="end">no fix-up session</text><rect class="ok" x="20" y="222" width="18" height="18"/><path class="kept" d="M40,222h71a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-71z"/><text class="v" x="125" y="237">1 changed, 4 kept</text>
+                <text class="lab" x="20" y="274">CP-F &middot; OCT 22&ndash;23</text><text class="v" x="540" y="274" text-anchor="end">S12c, S12d, S12e</text><path class="ok" d="M20,284h91a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-91z"/><text class="v" x="125" y="299">5 changed, 0 kept</text>
+                <text class="lab" x="20" y="336">CP-G &middot; OCT 29</text><text class="v" x="540" y="336" text-anchor="end">A6b, S14b</text><rect class="ok" x="20" y="346" width="113" height="18"/><path class="kept" d="M135,346h185a4,4 0 0 1 4,4v10a4,4 0 0 1 -4,4h-185z"/><text class="v" x="334" y="361">6 changed, 10 kept</text>
+              </g>
+              <rect class="hit" x="10" y="10" width="540" height="56" tabindex="0" role="img" aria-label="CP-B, Oct 19. 3 asked for a change. 4 checked and kept. Fix-up: S4b."/>
+              <rect class="hit" x="10" y="72" width="540" height="56" tabindex="0" role="img" aria-label="CP-C, Oct 20. 3 asked for a change. 3 checked and kept. Fix-up: S6b."/>
+              <rect class="hit" x="10" y="134" width="540" height="56" tabindex="0" role="img" aria-label="CP-D, Oct 21. 4 asked for a change. 0 checked and kept. Fix-up: S8b."/>
+              <rect class="hit" x="10" y="196" width="540" height="56" tabindex="0" role="img" aria-label="CP-E, Oct 22. 1 asked for a change. 4 checked and kept. No fix-up session."/>
+              <rect class="hit" x="10" y="258" width="540" height="56" tabindex="0" role="img" aria-label="CP-F, Oct 22 to 23. 5 asked for a change. 0 checked and kept. Fix-up: S12c, S12d, S12e."/>
+              <rect class="hit" x="10" y="320" width="540" height="56" tabindex="0" role="img" aria-label="CP-G, Oct 29. 6 asked for a change. 10 checked and kept. Fix-up: A6b, S14b."/>
+            </svg>
+            <figcaption id="c-play-cap">22 points asked for a change and 21 were checked and kept, across six play-tests. Eight fix-up sessions followed. The final CP-F pass found nothing to fix, and it isn&rsquo;t counted as a point.</figcaption>
+            <details>
+              <summary>Every point counted</summary>
+              <div class="scroll">
+                <table class="numbers">
+                  <thead><tr><th scope="col">PLAY-TEST</th><th scope="col">ASKED FOR A CHANGE</th><th scope="col">CHECKED AND KEPT</th></tr></thead>
+                  <tbody>
+                    <!-- plan CP-B Answers (7 numbered) --><tr><th scope="row">CP-B<br>Oct 19<br>S4b</th><td>How long a dive keeps you on the ground (2.5 s to 2 s); Aim the serve by where the server stands, with different depths for HARD and SOFT; Make the player&rsquo;s height grow smoothly with depth</td><td>The view; The pace; The planted swing; Sharpness in a normal window</td></tr>
+                    <!-- plan CP-C Answers (6 numbered); Session log 2026-10-20 --><tr><th scope="row">CP-C<br>Oct 20<br>S6b</th><td>Level 1 too strong (lost 4&ndash;9); Levels 1, 5 and 9 felt about the same; SOFT in the front court ran too deep</td><td>The CPU did nothing silly; The 2-player pace (no verdict, so it stayed); The height curve</td></tr>
+                    <!-- plan CP-D Answers (4 points; questions 1 and 3 got no notes, so they are not counted) --><tr><th scope="row">CP-D<br>Oct 21<br>S8b</th><td>Racket height at contact; A wind-up on the serve; Use the overhead swing; A wider court</td><td>none named</td></tr>
+                    <!-- plan Session log 2026-10-22 CP-E (5 numbered) --><tr><th scope="row">CP-E<br>Oct 22<br>no fix-up</th><td>The racket should look more like it hit the ball</td><td>Text and HUD readable; Ball always visible; HUD not distracting; No art for MISS or pause</td></tr>
+                    <!-- plan Session log CP-F first pass, replay, second replay and final --><tr><th scope="row">CP-F<br>Oct 22&ndash;23<br>S12c, S12d, S12e</th><td>Hitting range by direction; Squarer corners on the range; The school&rsquo;s shield in the match; Front-wall words stay up longer; A FIRST TO notice</td><td>none named</td></tr>
+                    <!-- plan-v2 Session log 2026-10-29; decisions "Audio", Settled at CP-G --><tr><th scope="row">CP-G<br>Oct 29<br>A6b, S14b</th><td>Miss whoosh too quiet; Lower the starting volume; A real dive sound; Real menu sounds; Shoe squeaks; Menu music (planned, then put on hold Nov 3)</td><td>Timing; Bounce pitch by surface; The glass; Speed shaping; HARD against SOFT; Jingle levels; Sound on/off in the pause menu; The speaker button; The gamepad-only note; The silent switch muting the game</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Not counted because they came between checkpoints: a smaller CPU reach after S6b, and S12b, a smaller hitting range after S12.<!-- plan Session log 2026-10-20 "after S6b"; plan list line S12b "the owner's request after S12" --> CP-A isn&rsquo;t counted either: it chose the renderer and camera, and isn&rsquo;t one of the play-tests.</p>
+            </details>
+          </figure>
+        </div>
       </section>
 
       <section id="patterns" aria-labelledby="patterns-h">
         <h2 id="patterns-h">WHAT THE DATA SHOWS</h2>
-        <p class="todo">The patterns in the evidence, with the source for each.</p>
+        <p>The patterns I found in the evidence. Each one gives the finding, the evidence, where it comes from, and why it matters.</p>
+        <div class="findings">
+          <article class="method" id="p-tests-vs-person">
+            <h3>TESTS AND PEOPLE CHECK DIFFERENT THINGS</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their baseline through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>docs/plan.md</code> Session log; the game&rsquo;s git history; <a href="#chart-playtests">the play-test chart</a>.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">This goes to my third smaller question. The tests answered &ldquo;is it correct?&rdquo; and only a person could answer &ldquo;is it right?&rdquo;. I needed both.</dd>
+            </dl>
+          </article>
+          <article class="method" id="p-biggest-change">
+            <h3>ONE PLAY-TEST MOVED THE NUMBERS MOST</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are seeded from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-levels">the win-rate chart</a>.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">S12e didn&rsquo;t change how the game plays and the numbers still moved 3 points. So I don&rsquo;t trust a change of 3 points or less to mean anything, and that includes the gap between S12c and S12d.</dd>
+            </dl>
+          </article>
+          <article class="method" id="p-uneven-steps">
+            <h3>THE LEVELS ARE IN ORDER, BUT THE STEPS AREN&rsquo;T EVEN</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">Every level is harder than the one before it, so the order is right. But the jump from 5 to 6 is much bigger than the jumps at the top.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo; and don&rsquo;t record a verdict. Volleys also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">A &ldquo;smooth&rdquo; difficulty curve was what I wanted, and this one is smooth in order but not in size. The top levels are also hard to compare, because a robot that barely wins has little room left to fall.</dd>
+            </dl>
+          </article>
+          <article class="method" id="p-physics">
+            <h3>THE PHYSICS IS EXACT BETWEEN HITS</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">Between racket hits, my physics matches the recordings exactly. The weak spot is the moment the racket hits the ball.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>All 458 flights (164 + 294) match on every frame.<!-- baselines flight.test.js --> The golden test matches 99.3% and 99.4% of frames, and its 81 and 111 misses equal the 81 and 111 racket hits.<!-- baselines golden.test.js, hits.test.js --> On its own, the racket-hit formula matches 67 of 81 and 73 of 111 hits.<!-- baselines hits.test.js; re-run 2026-11-08 and unchanged --> Those counts include the 24 serves that the table on the Research page leaves out.<!-- physics-core.md: 98 human + 24 serves + 70 CPU = 192 = 81 + 111 --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>test/baselines.json</code>; <a href="/research/#accuracy">Research &rarr; How close is the match?</a>; <a href="#chart-physics">the physics chart</a>.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">This is my best answer to &ldquo;how accurately can it be rebuilt?&rdquo;. It&rsquo;s exact where the code could be read and tested, and less exact where the arcade does extra things to a hit that decompiling didn&rsquo;t fully explain.</dd>
+            </dl>
+          </article>
+          <article class="method" id="p-accuracy-not-goal">
+            <h3>THE CLOSEST MATCH WASN&rsquo;T ALWAYS THE BEST GAME</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>Second bounces past the short line fell from about 70% to 0&ndash;6%, and tins from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>docs/decisions.md</code> &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-drop">the drop chart</a>.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">My goal was to play like the arcade, and here I chose not to. A measurement can show what a change costs, but deciding if the cost is worth it was my call.</dd>
+            </dl>
+          </article>
+          <article class="method" id="p-playtests">
+            <h3>ABOUT HALF OF WHAT I CHECKED STAYED THE SAME</h3>
+            <dl>
+              <dt>FINDING</dt>
+              <dd class="draft">Play-testing wasn&rsquo;t only finding problems. About half of it was deciding that something was already right, and the changes were mostly about how the game feels, looks and sounds.</dd>
+              <dt>EVIDENCE</dt>
+              <dd>By my count, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
+              <dt>SOURCE</dt>
+              <dd class="src"><code>docs/plan.md</code> and <code>docs/plan-v2.md</code>; <code>docs/decisions.md</code>; <a href="/build/#feedback">the feedback table</a>; <a href="#chart-playtests">the play-test chart</a>.</dd>
+              <dt>WHY IT MATTERS</dt>
+              <dd class="draft">AI wrote every fix, but it didn&rsquo;t pick them. Saying &ldquo;that&rsquo;s fine, leave it&rdquo; was a decision too. These counts are my own, and CP-G has 10 of the kept points by itself, so they show a rough pattern and not a real measurement.</dd>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <section id="answers" aria-labelledby="answers-h">
@@ -60,7 +325,52 @@
 
       <section id="limits" aria-labelledby="limits-h">
         <h2 id="limits-h">LIMITATIONS</h2>
-        <p class="todo">What this evidence can and can&rsquo;t show.</p>
+        <p>What this evidence can and can&rsquo;t show.</p>
+        <div class="findings">
+          <article class="method" id="l-bot">
+            <h3>THE TEST PLAYER IS A BOT</h3>
+            <dl>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player calibrated to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
+              <dt>WHAT THIS MEANS</dt>
+              <dd class="draft">The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
+            </dl>
+          </article>
+          <article class="method" id="l-one-person">
+            <h3>ONE PERSON DID THE PLAY-TESTING</h3>
+            <dl>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>Every point on the play-test chart came from me, playing on my own computer and, at CP-G, a phone.<!-- plan and plan-v2 Session logs ("the owner"); plan-v2 2026-10-29 "on a computer and a phone" --> The teacher feedback section of the <a href="/build/#feedback">feedback table</a> is still empty.</dd>
+              <dt>WHAT THIS MEANS</dt>
+              <dd class="draft">I know this game better than anyone, and I got better at it while I built it. Someone new might find level 1 too hard, or be confused by things I stopped noticing. So &ldquo;feels right&rdquo; on this page means it felt right to me.</dd>
+            </dl>
+          </article>
+          <article class="method" id="l-own-script">
+            <h3>THE WIN RATES COME FROM THE PROJECT&rsquo;S OWN SCRIPT</h3>
+            <dl>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>The numbers come from <code>test/measure-levels.js</code>, which is in the game&rsquo;s repo and is run by hand. It isn&rsquo;t part of the automatic tests.<!-- test/measure-levels.js header --> Claude Code wrote it, as it wrote the game. The levels were also tuned against the same robot: the plan&rsquo;s first table gave level 5 31%, under its target, so the table was changed.<!-- plan Session log 2026-10-20 S6b --> Fixed seeds make a run repeatable. The latest measurement is S12e, on Oct 23.<!-- plan Session log 2026-10-23 --></dd>
+              <dt>WHAT THIS MEANS</dt>
+              <dd class="draft">Repeatable doesn&rsquo;t mean right, because a bug in the script would repeat too. And since the levels were adjusted until they met the targets, meeting them doesn&rsquo;t prove much by itself. Nobody outside the project has checked this, though the code is public, so anyone could. By my calculation, the usual margin-of-error formula gives about 3 points for 1,000 rallies near 50%, which fits the 3 points S12e moved.</dd>
+            </dl>
+          </article>
+          <article class="method" id="l-rom">
+            <h3>THE ARCADE DATA COMES FROM ONE ROM VERSION</h3>
+            <dl>
+              <dt>WHAT THE RECORD SHOWS</dt>
+              <dd>All the arcade numbers come from one set in the MAME emulator: <code>squash</code>, World version 1.0. Other sets exist, such as USA version 1.1, and they weren&rsquo;t compared.<!-- 1992 "This ROM set" --> The two recordings were made in an emulator, not on a real machine, by a robot that pressed buttons at random and never won, so later rounds weren&rsquo;t seen.<!-- 1992 §0; research page Tools, MAME card --> Ghidra didn&rsquo;t find some rules, like the tin and out-line checks.<!-- logic §10, as on the research page Tools, Ghidra card --></dd>
+              <dt>WHAT THIS MEANS</dt>
+              <dd class="draft">&ldquo;Matches the arcade&rdquo; really means it matches this one version, as an emulator runs it, in the parts of the game my robot reached. I can&rsquo;t say anything about other versions or about parts of the game that weren&rsquo;t recorded.</dd>
+            </dl>
+          </article>
+        </div>
+        <h3 id="missing">WHAT&rsquo;S MISSING</h3>
+        <ul>
+          <li>S6&rsquo;s win rates at levels 2 to 9, and how many rallies the 34% at level 1 used.<!-- decisions "CPU difficulty" gives only the one number --></li>
+          <li>How many drops fell short of the front wall before S6b, and the total lost before S6b as its own number.<!-- decisions "Hitting" --></li>
+          <li>Any person&rsquo;s measured win rate after CP-C. The later notes say how the levels felt, not what the score was.<!-- plan Session log 2026-10-20 "after S6b" --></li>
+          <li>A verdict on whether the step from level 5 to 6 is too big.<!-- decisions "Hitting" S12c Measured: "for the owner to judge in play"; plan S12b "Not checked" --></li>
+        </ul>
       </section>
 
       <section id="perspectives" aria-labelledby="perspectives-h">
@@ -93,6 +403,38 @@
       <span>&copy; 2026 RONIN RAY</span>
       <span>GT CAPSTONE &middot; HOGG MIDDLE SCHOOL</span>
     </footer>
+    <div class="chart-tip" id="chart-tip" hidden></div>
+    <script>
+      // Chart tooltips: hover, tap or Tab onto a mark to read it. They only repeat the tables under each chart.
+      (() => {
+        const tip = document.getElementById('chart-tip');
+        const place = (x, y) => {
+          const w = tip.offsetWidth, h = tip.offsetHeight;
+          tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - w - 8)) + 'px';
+          tip.style.top = (y - h - 12 < 8 ? y + 18 : y - h - 12) + 'px';
+        };
+        const show = (el, x, y) => {
+          const [head, ...rest] = el.getAttribute('aria-label').split(/\.\s+|\.$/).filter(Boolean);
+          tip.replaceChildren();
+          const b = document.createElement('b'); b.textContent = head; tip.append(b);
+          for (const line of rest) { const d = document.createElement('div'); d.textContent = line; tip.append(d); }
+          tip.hidden = false;
+          place(x, y);
+        };
+        const hide = () => { tip.hidden = true; };
+        for (const el of document.querySelectorAll('.hit')) {
+          el.addEventListener('pointermove', e => show(el, e.clientX, e.clientY));
+          el.addEventListener('pointerleave', () => { if (document.activeElement !== el) hide(); });
+          el.addEventListener('focus', () => {
+            const r = el.getBoundingClientRect();
+            show(el, r.left + r.width / 2, r.top + 8);
+          });
+          el.addEventListener('blur', hide);
+        }
+        addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+        addEventListener('scroll', () => { if (!document.activeElement?.classList?.contains('hit')) hide(); }, { passive: true });
+      })();
+    </script>
   </div>
 </body>
 </html>
