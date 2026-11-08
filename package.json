@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
-    "dev": "npm run build && npx wrangler dev --port 8788"
+    "dev": "node scripts/build.mjs --allow-drafts && npx wrangler dev --port 8788"
   },
   "type": "module"
 }

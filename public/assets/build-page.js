@@ -38,6 +38,11 @@ function render(data) {
   const commits = data.commits;
   const groups = groupCommits(commits);
   const byTag = new Map((data.versions ?? []).map((/** @type {any} */ v) => [v.tag, v]));
+  /** @type {Record<string, { text: string, draft?: boolean }>} */
+  const reflections = data.reflections ?? {};
+  // A tag can come back later in the log (CP-F was replayed). Its anchor goes on the first step, its reflection on the last.
+  const lastOfTag = new Map(groups.map((g, i) => [g.tag, i]));
+  const usedIds = new Set();
 
   document.getElementById('hud-commits')?.replaceChildren(`COMMITS ${commits.length}`);
 
@@ -60,7 +65,13 @@ function render(data) {
     const first = g.commits[0].date, last = g.commits[g.commits.length - 1].date;
     const when = day(first) === day(last) ? day(first, true) : `${day(first)} – ${day(last, true)}`;
     const v = g.tag ? byTag.get(g.tag) : null;
-    return h('li', { class: 'step', id: i === groups.length - 1 ? 'latest' : `step-${g.tag ?? 'setup'}` },
+    const id = i === groups.length - 1 ? 'latest' : `step-${g.tag ?? 'setup'}`;
+    const firstUse = !usedIds.has(id);
+    usedIds.add(id);
+    const reflection = g.tag && lastOfTag.get(g.tag) === i ? reflections[g.tag] : null;
+    // Play-tests link to their row in the feedback table, when it has one.
+    const row = g.kind === 'checkpoint' && document.getElementById(`fb-${g.tag}`);
+    return h('li', { class: `step${g.kind === 'checkpoint' ? ' step-checkpoint' : ''}`, id: firstUse ? id : null },
       h('div', { class: 'step-side' },
         h('span', { class: `tag kind-${g.kind}` }, g.tag ?? 'GO'),
         h('span', { class: 'kind' }, KIND_LABEL[/** @type {keyof KIND_LABEL} */ (g.kind)] ?? ''),
@@ -75,6 +86,11 @@ function render(data) {
             ` · ${day(c.date)}, ${time(c.date)}`, c.summary ? ` · ${c.subject}` : null),
           c.details ? h('details', {}, h('summary', {}, 'Technical notes'), h('pre', {}, c.details)) : null,
         ))),
+        reflection ? h('div', { class: `reflection${reflection.draft ? ' draft' : ''}` },
+          h('p', { class: 'reflection-label' }, 'MY REFLECTION'),
+          h('p', {}, reflection.text),
+        ) : null,
+        row ? h('a', { class: 'step-link', href: `#${row.id}` }, 'What this play-test changed ↑') : null,
         v ? h('a', { class: 'play', href: `/versions/${v.id}/`, ...NEW_TAB }, 'Play this version') : null,
       ),
     );

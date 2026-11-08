@@ -42,24 +42,86 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">HOW I<br>BUILT IT</h1>
-        <p>Hogg Squash is a squash game for the Hogg Middle School Razorbacks that plays in any web browser. It&rsquo;s my GT Capstone project.</p>
-        <p class="question"><b>My guiding question:</b> How can AI tools help one student research, design and build a complete video game?</p>
-        <p>I research, plan, play-test and make the decisions; Claude Code writes the code. The game is built in small steps. Each step is a short work session that ends with a commit: a saved change on GitHub. Between some steps I play-test the game and decide what to fix next.</p>
-        <p>This log is my process record. It reads every commit straight from GitHub, so it&rsquo;s always up to date, and old versions stay playable so you can see how the game grew.</p>
-        <p>All the code is open on GitHub. <a href="https://github.com/Ray-Ronin/hogg-squash" target="_blank" rel="noopener">See how it works, or fork it and make your own version &rarr;</a></p>
+        <p>This log is my process record. The game is built in small steps: each one is a short work session that ends with a commit, a saved change on GitHub. Between some steps I play-test the game and decide what to fix next.</p>
+        <p>It reads every commit straight from GitHub, so it&rsquo;s always up to date, and old versions stay playable so you can see how the game grew. All the code is open: <a href="https://github.com/Ray-Ronin/hogg-squash" target="_blank" rel="noopener">see how it works, or fork it and make your own version &rarr;</a></p>
+        <p>New here? <a href="/about/">Start with the project and my guiding question</a>. The tools are on the <a href="/research/#tools">Research page</a>.</p>
       </header>
 
-      <section id="tools" aria-labelledby="tools-h">
-        <h2 id="tools-h">THE TOOLS</h2>
-        <ul class="tools">
-          <li><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a><p>AI help: researching the 1992 arcade game, planning the build, and answering questions along the way.</p></li>
-          <li><a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a><p>The AI coding assistant that wrote the game and this website, one session at a time.</p></li>
-          <li><a href="https://www.cloudflare.com" target="_blank" rel="noopener">Cloudflare</a><p>Registers the roninray.com domain and hosts the game and this site.</p></li>
-          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a><p>Stores the code and every change to it. This page reads its log from there.</p></li>
-          <li><a href="https://www.spritecook.ai" target="_blank" rel="noopener">SpriteCook</a><p>AI pixel-art generator for the player sprites and their animations.</p></li>
-          <li><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a><p>Pixel-art editor for cleaning up the sprites: colors, sizes and exporting the animations.</p></li>
-          <li><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a><p>AI sound-effect generator for the game's sounds: racket hits, the ball on the walls and floor, and the menu sounds.</p></li>
-        </ul>
+      <section id="feedback" aria-labelledby="feedback-h">
+        <h2 id="feedback-h">FEEDBACK &amp; REVISIONS</h2>
+        <p>What each play-test found, what changed because of it, and why. All the feedback so far comes from my own play-tests. Not every idea was used: some things were tested and kept as they were.</p>
+        <!-- Sources: the Answers/Outcome blocks in hogg-squash docs/plan.md (CP-A to CP-F) and docs/plan-v2.md (CP-G), the CP commit messages, and docs/decisions.md. "Why" only gives reasons those docs record. -->
+        <table class="fb">
+          <thead>
+            <tr><th scope="col">PLAY-TEST</th><th scope="col">FEEDBACK</th><th scope="col">REVISION OR DECISION</th><th scope="col">WHY</th></tr>
+          </thead>
+          <tbody>
+            <tr id="fb-CP-A">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-A">CP-A</a><span class="fb-date">Oct 18</span></td>
+              <td data-label="FEEDBACK">Plain Canvas needed about 150 lines of setup and nothing felt heavy. One fixed player size looked right at the back of the court but like a giant at the front wall.</td>
+              <td data-label="REVISION OR DECISION">Stayed with plain Canvas and dropped Phaser. Kept the camera. Planned three player sizes.<span class="fb-play"><a href="/versions/s1/" target="_blank" rel="noopener">Play S1 &rarr;</a></span></td>
+              <td data-label="WHY">Phaser was only the fallback if the test went badly. True perspective would halve the player&rsquo;s height from back to front, so the sizes split the difference.</td>
+            </tr>
+            <tr id="fb-CP-B">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-B">CP-B</a><span class="fb-date">Oct 19</span></td>
+              <td data-label="FEEDBACK">View readable, pace right. Dives came at the right moments, but 2.5 s on the ground was too long. The serve should land in different spots depending on where the server stands, and at different depths for HARD and SOFT. The player&rsquo;s size range was right, but the growth didn&rsquo;t look natural.</td>
+              <td data-label="REVISION OR DECISION">S4b: an aimed serve, a 2 s dive and one smooth height curve. Kept as they were: the planted swing, and a press before the ball reaches the front wall still being a miss.<span class="fb-play"><a href="/versions/s4b/" target="_blank" rel="noopener">Play S4b &rarr;</a></span></td>
+              <td data-label="WHY">The plan offered a way to shuffle during a swing. It wasn&rsquo;t needed, because the planted swing felt fine.</td>
+            </tr>
+            <tr id="fb-CP-C">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-C">CP-C</a><span class="fb-date">Oct 20</span></td>
+              <td data-label="FEEDBACK">Lost 4&ndash;9 to the level 1 CPU. Levels 1, 5 and 9 felt about the same. SOFT in the front court ran too deep instead of dropping short. The CPU did nothing silly.</td>
+              <td data-label="REVISION OR DECISION">S6b: a slower CPU at the low levels, shot quality that grows with the level, and short front-court drops. The game&rsquo;s pace by level stayed the same.<span class="fb-play"><a href="/versions/s6b/" target="_blank" rel="noopener">Play S6b &rarr;</a></span></td>
+              <td data-label="WHY">Level 1 has to be beatable. Only the pace and the reaction time changed between levels, and that wasn&rsquo;t enough to feel. The drops depart from the arcade&rsquo;s tables on purpose.</td>
+            </tr>
+            <tr id="fb-CP-D">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-D">CP-D</a><span class="fb-date">Oct 21</span></td>
+              <td data-label="FEEDBACK">The racket&rsquo;s height at contact needed fixing. The serve needed a wind-up so its animation shows. The overhead swing should be used. &ldquo;I want to make the court a little wider.&rdquo;</td>
+              <td data-label="REVISION OR DECISION">S8b: a small racket shift by ball height instead of new art, a 7-frame serve wind-up, the overhead swing, and a wider camera, picked from two options and then frozen.<span class="fb-play"><a href="/versions/s8b/" target="_blank" rel="noopener">Play S8b &rarr;</a></span></td>
+              <td data-label="WHY">The camera had to be frozen before the court was painted to match it.</td>
+            </tr>
+            <tr id="fb-CP-E">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-E">CP-E</a><span class="fb-date">Oct 22</span></td>
+              <td data-label="FEEDBACK">Text readable, ball always visible, HUD not distracting, and no art needed for MISS or pause. The racket should look more like it hit the ball.</td>
+              <td data-label="REVISION OR DECISION">S12: a small sideways racket shift. Tried several settings in the running game and picked 1% up or down and 1% across.<span class="fb-play"><a href="/versions/s12/" target="_blank" rel="noopener">Play S12 &rarr;</a></span></td>
+              <td data-label="WHY">At that setting the player stays on their spot, at most 1 px off, and the racket stays near where the art holds it.</td>
+            </tr>
+            <tr id="fb-CP-F">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-F">CP-F</a><span class="fb-date">Oct 22, first pass</span></td>
+              <td data-label="FEEDBACK">The hitting range should be more realistic: less reach behind, a slightly wider backhand and a slightly shorter forehand.</td>
+              <td data-label="REVISION OR DECISION">S12c: reach set by direction, in the shape of an oval.</td>
+              <td data-label="WHY">The oval means the far corners can&rsquo;t be hit.</td>
+            </tr>
+            <tr id="fb-CP-F-2">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-F">CP-F</a><span class="fb-date">Oct 22, replay</span></td>
+              <td data-label="FEEDBACK">The range should be &ldquo;more like a rectangle with curved corners&rdquo;. The school&rsquo;s shield should go in the match.</td>
+              <td data-label="REVISION OR DECISION">S12d: a squarer range, and the shield in the match&rsquo;s margin.</td>
+              <td data-label="WHY">The corner shape was picked by playing four options, not only from the map.</td>
+            </tr>
+            <tr id="fb-CP-F-3">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-F">CP-F</a><span class="fb-date">Oct 23, second replay</span></td>
+              <td data-label="FEEDBACK">The words on the front wall should stay up longer, and the wall should say when a close game needs more points.</td>
+              <td data-label="REVISION OR DECISION">S12e: callouts of about 1.5 s each, and a FIRST TO notice.</td>
+              <td data-label="WHY">Win by 2 can raise the score needed to win, so the wall now says when it does.</td>
+            </tr>
+            <tr id="fb-CP-F-4">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-F">CP-F</a><span class="fb-date">Oct 23, final</span></td>
+              <td data-label="FEEDBACK">One 1-player and one 2-player match from the title screen, at least one past 10&ndash;10. Nothing to fix.</td>
+              <td data-label="REVISION OR DECISION">Released version 1.0.<span class="fb-play"><a href="/hogg-squash/" target="_blank" rel="noopener">Play the current game &rarr;</a></span></td>
+              <td data-label="WHY">The release test found nothing left to fix.</td>
+            </tr>
+            <tr id="fb-CP-G">
+              <td data-label="PLAY-TEST"><a class="tag kind-checkpoint" href="#step-CP-G">CP-G</a><span class="fb-date">Oct 29</span></td>
+              <td data-label="FEEDBACK">Timing, surfaces, speed, HARD against SOFT and the jingles were all right. The miss whoosh was too quiet and the starting volume needed to come down. Asked for menu music.</td>
+              <td data-label="REVISION OR DECISION">A6b and S14b: a louder whoosh, Effects level 5 by default, shoe squeaks, and real dive and menu sounds. Kept the iPhone silent switch muting the game. Menu music was planned, then put on hold on Nov 3.<span class="fb-play"><a href="/hogg-squash/" target="_blank" rel="noopener">Play the current game &rarr;</a></span></td>
+              <td data-label="WHY">Music is on hold to decide later whether the game wants it at all.</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr><th colspan="4" scope="colgroup">TEACHER FEEDBACK</th></tr>
+            <tr><td colspan="4"><p class="todo">Feedback from my teacher&rsquo;s review will go here, with what I did about it.</p></td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section aria-labelledby="log-h">
@@ -83,41 +145,19 @@
                   <p class="meta">Oct 18 · Research the original game</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Found out what the original runs on: a 1992 arcade board with a Motorola 68000 processor, running code written for that chip alone.</p>
-                  <p class="meta">Oct 18 · The original's hardware</p>
-                </li>
-                <li class="commit">
                   <p class="sum">Pulled the graphics and sound clips out of the game's ROM to study, for reference only.</p>
                   <p class="meta">Oct 18 · ROM graphics and sound extracted</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Ran the real game in an arcade emulator with a robot player to confirm the rules and measure the ball's speed.</p>
-                  <p class="meta">Oct 18 · MAME test runs</p>
+                  <p class="sum">Ran the real game in an arcade emulator with a robot player to confirm the rules and measure the ball's speed, then decompiled its code to find the exact ball physics, shots and computer opponent.</p>
+                  <p class="meta">Oct 18 · MAME test runs and Ghidra decompile</p>
                 </li>
                 <li class="commit">
-                  <p class="sum">Decompiled the game's code to find the exact ball physics, shots and computer opponent.</p>
-                  <p class="meta">Oct 18 · Ghidra decompile</p>
-                  <details><summary>Technical notes</summary><pre>- Ghidra 12.1.3 on the 68000 program ROM
-- Turned the arcade's machine code back into readable code
-- Found the ball physics, shot tables, CPU "ghost ball" predictor and difficulty tables</pre></details>
-                </li>
-                <li class="commit">
-                  <p class="sum">Chose JavaScript, the language every web browser runs, so Hogg Squash is a complete rewrite that plays on any computer, tablet or phone with nothing to install.</p>
-                  <p class="meta">Oct 18 · Platform: browser and JavaScript</p>
-                </li>
-                <li class="commit">
-                  <p class="sum">Rebuilt the ball physics in JavaScript and checked it against about 30,000 frames of the real game, with zero error.</p>
+                  <p class="sum">Rebuilt the ball physics in JavaScript and checked it against about 30,000 recorded frames of the real game: all 458 ball flights matched frame for frame.</p>
                   <p class="meta">Oct 18 · Physics core and tests</p>
-                  <details><summary>Technical notes</summary><pre>- 16.16 fixed-point maths like the original, so every browser gets identical results
-- 458 ball flights, 29,634 frames: zero error
-- 244 / 244 shot choices identical
-- Moved into the game repo in adb444c</pre></details>
-                </li>
-                <li class="commit">
-                  <p class="sum">Wrote design notes on what to keep, what to change and what to leave out.</p>
-                  <p class="meta">Oct 18 · Design notes</p>
                 </li>
               </ol>
+              <p><a href="/research/">Full write-up: methods, tools and how close the match is &rarr;</a></p>
             </div>
           </li>
         </ol>

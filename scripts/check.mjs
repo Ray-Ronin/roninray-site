@@ -1,5 +1,5 @@
 // Checks the site's own pages before a deploy. Run by scripts/build.mjs (a failure stops the deploy) and by `npm run check`.
-//   Fails on: text still marked class="draft" (Claude drafted it; Ronin must rewrite it in his own words first),
+//   Fails on: text still marked class="draft" or a reflection marked "draft": true (Ronin must put it in his own words first),
 //             internal links or files that don't exist, links to #anchors that aren't on the page,
 //             a site nav that differs from page to page, or one that doesn't mark its own page as current.
 //   Lists:    sections marked class="todo" (not written yet; safe to publish, since they say so).
@@ -40,10 +40,14 @@ function resolve(target, fromFile) {
   return tries.find(f => fs.existsSync(f) && fs.statSync(f).isFile()) ?? null;
 }
 
-/** @returns {boolean} true when every check passes */
-export function check() {
+/**
+ * @param {{ allowDrafts?: boolean }} [options] allowDrafts: list drafts without failing (npm run dev only, to preview them)
+ * @returns {boolean} true when every check passes
+ */
+export function check({ allowDrafts = false } = {}) {
   const files = htmlFiles(PUB);
   /** @type {string[]} */ const errors = [];
+  /** @type {string[]} */ const drafts = [];
   /** @type {string[]} */ const todos = [];
   /** @type {Map<string, string>} */ const htmlCache = new Map();
   const read = (/** @type {string} */ f) => htmlCache.get(f) ?? (htmlCache.set(f, fs.readFileSync(f, 'utf8')), htmlCache.get(f) ?? '');
@@ -54,7 +58,7 @@ export function check() {
     const name = rel(file);
 
     for (const m of html.matchAll(/class="[^"]*\bdraft\b[^"]*"/g))
-      errors.push(`${name}:${lineOf(html, m.index)}: draft text still to be rewritten by Ronin`);
+      drafts.push(`${name}:${lineOf(html, m.index)}: draft text still to be rewritten by Ronin`);
     const todoCount = [...html.matchAll(/class="[^"]*\btodo\b[^"]*"/g)].length;
     if (todoCount) todos.push(`${name} ${todoCount}`);
 
@@ -84,7 +88,14 @@ export function check() {
     }
   }
 
+  // Reflections in the log (content/reflections.json) are Ronin's own words: a draft one is a prompt he hasn't answered yet.
+  const reflections = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'reflections.json'), 'utf8'));
+  for (const [tag, r] of Object.entries(reflections))
+    if (r.draft) drafts.push(`content/reflections.json: ${tag}: draft reflection still to be written by Ronin`);
+
   if (todos.length) console.log(`Check: sections not written yet (class="todo"): ${todos.join(', ')}`);
+  if (allowDrafts) for (const d of drafts) console.log(`Check (allowed for preview): ${d}`);
+  else errors.push(...drafts);
   for (const e of errors) console.error(`Check: ${e}`);
   console.log(errors.length ? `Check failed: ${errors.length} problem(s).` : `Check passed: ${files.length} pages.`);
   return errors.length === 0;

@@ -10,7 +10,8 @@ import { parseMessage, parsePlan } from '../public/assets/buildlog.js';
 import { check } from './check.mjs';
 
 // 0. The site's own pages: no drafts left for Ronin to rewrite, no broken links. A failure stops the deploy.
-if (!check()) process.exit(1);
+// Only `npm run dev` passes --allow-drafts, so drafts can be previewed locally; Cloudflare runs plain `npm run build`.
+if (!check({ allowDrafts: process.argv.includes('--allow-drafts') })) process.exit(1);
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPO = 'Ray-Ronin/hogg-squash';
@@ -78,6 +79,7 @@ fs.writeFileSync(OUT_DATA, JSON.stringify({
   commits,
   versions,
   next: plan.next,
+  reflections: readJson('content/reflections.json'),
 }, null, 1));
 
 const missing = commits.filter(c => !c.summary).map(c => c.short);
