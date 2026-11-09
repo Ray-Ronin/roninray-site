@@ -40,8 +40,8 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">ABOUT THE<br>PROJECT</h1>
-        <p>Hogg Squash is a squash game for the Hogg Middle School Razorbacks that plays in any web browser. It&rsquo;s my GT Capstone project.</p>
-        <p>Start here. This page says why I made it, the question behind it and what I made. The other pages show <a href="/research/">how I researched it</a>, <a href="/build/">how it was built, step by step</a>, and <a href="/findings/">what I found</a>.</p>
+        <p class="draft">Hogg Squash is a squash game for the Hogg Middle School Razorbacks that plays in any web browser. It&rsquo;s my GT Capstone project.</p>
+        <p class="draft">Start here. This page says why I made it, the question behind it and what I made. The other pages show <a href="/research/">how I researched it</a>, <a href="/build/">how it was built, step by step</a>, and <a href="/findings/">what I found</a>.</p>
         <a class="play" href="/hogg-squash/">PLAY HOGG SQUASH</a>
       </header>
 
@@ -111,11 +111,11 @@
           <dd>All-original <a href="/sources/#g-pixel-art">pixel art</a> in Hogg red, black and white, with the school&rsquo;s Razorbacks shield (<a href="/findings/#e-logo">see the question about permission</a>) and a nod to the Mission Success squash program that plays at Hogg. Original sound effects. Nothing is copied from the arcade game.</dd>
           <dt>WHERE IT IS NOW</dt>
           <!-- Version 1.15.0: hogg-squash/public/hogg-squash/js/version.js; v1 1.0.0 at CP-F: docs/plan.md (Session log, 2026-10-23); next steps: docs/plan-v2.md (Status) -->
-          <dd>Version 1.0 was released on Oct 23, 2026. Since then I&rsquo;ve added sound and a character select screen (version 1.15.0). A crowd and a tournament are planned next; <a href="/build/#next-section">see what&rsquo;s up next</a>.</dd>
+          <dd class="draft">Version 1.0 was released on Oct 23, 2026. Since then I&rsquo;ve added sound and a character select screen (version 1.15.0). A crowd and a tournament are planned next; <a href="/build/#next-section">see what&rsquo;s up next</a>.</dd>
           <dt>THIS WEBSITE</dt>
           <dd>Explains the project for someone reading it on their own: the <a href="/research/">research and methods</a>, the <a href="/build/">build log</a> of every step with playable old versions, <a href="/findings/">what I found</a>, the <a href="/sources/">sources</a> and a <a href="/faq/">FAQ</a>.</dd>
           <dt>WHO IT&rsquo;S FOR</dt>
-          <dd>My classmates, squash players at Hogg, and GT judges and teachers. The game is for anyone who wants to play; the website is for anyone who wants to know how it was made.</dd>
+          <dd class="draft">My classmates, squash players at Hogg, and GT judges and teachers. The game is for anyone who wants to play; the website is for anyone who wants to know how it was made.</dd>
         </dl>
       </section>
 
@@ -126,20 +126,20 @@
         <!-- Roles: hogg-squash/CLAUDE.md, docs/decisions.md ("Art production", "Audio"), docs/plan.md and plan-v2.md (checkpoints CP-A to CP-G, spend approvals). -->
         <dl class="about-facts">
           <dt>ME</dt>
-          <dd>Chose the project and the arcade game to model it on. Directed the research. Decided what goes in the game and in what order. <a href="/sources/#g-play-test">Play-tested</a> it at six <a href="/sources/#g-checkpoint">checkpoints</a> (CP-B to CP-G) and decided what to fix after each one. Approved every use of the school&rsquo;s logo and every spend on AI art and sound.</dd>
+          <dd class="draft">Chose the project and the arcade game to model it on. Directed the research. Decided what goes in the game and in what order. <a href="/sources/#g-play-test">Play-tested</a> it at six <a href="/sources/#g-checkpoint">checkpoints</a> (CP-B to CP-G) and decided what to fix after each one. Approved every use of the school&rsquo;s logo and every spend on AI art and sound.</dd>
           <dt>CLAUDE AND CLAUDE CODE</dt>
           <dd>AI assistants from Anthropic. Claude helped research the arcade game and plan the build. Claude Code wrote the game&rsquo;s code and this website, one short session at a time, and cleaned up the pixel art in Aseprite.</dd>
           <dt>SPRITECOOK AND ELEVENLABS</dt>
           <dd>AI generators (<a href="/sources/#g-generative-ai">generative AI</a>). SpriteCook made the first versions of the player <a href="/sources/#g-sprite">sprites</a> and animations; ElevenLabs made the sound effects. Neither was given anything from the arcade game.</dd>
           <dt>HOW THE WORK WAS CHECKED</dt>
-          <dd>Automated tests (<a href="/sources/#g-golden-test">golden tests</a>) compare the game&rsquo;s physics with recordings of the real arcade game. I play-tested every stage, and nothing went live without my OK.</dd>
+          <dd class="draft">Automated tests (<a href="/sources/#g-golden-test">golden tests</a>) compare the game&rsquo;s physics with recordings of the real arcade game. I play-tested every stage, and nothing went live without my OK.</dd>
         </dl>
         <p>More: <a href="/sources/#ai-check">how AI output was checked</a> and <a href="/findings/#ethics">the ethics of using AI and reverse engineering</a>.</p>
       </section>
 
       <section id="milestones" aria-labelledby="milestones-h">
         <h2 id="milestones-h">MILESTONES</h2>
-        <p>Dates come from the game&rsquo;s <a href="/sources/#g-commit">commit</a> history on GitHub. Each play-test checkpoint (CP) is where I played the game and decided what to change.</p>
+        <p class="draft">Dates come from the game&rsquo;s <a href="/sources/#g-commit">commit</a> history on GitHub. Each play-test checkpoint (CP) is where I played the game and decided what to change.</p>
         <!-- All dates: git log of the game repo (Ray-Ronin/hogg-squash), checked 2026-11-07. Checkpoint names: docs/plan.md and docs/plan-v2.md (Status). -->
         <ol class="timeline">
           <li><time datetime="2026-10-18">Oct 18</time><div><b>Research and first code.</b> Studied the 1992 arcade game, then built the first test court (S1) and the first two-player rally (S3). Checkpoint CP-A chose plain <a href="/sources/#g-canvas">Canvas</a> over a <a href="/sources/#g-game-engine">game engine</a>.</div></li>

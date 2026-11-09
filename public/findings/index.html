@@ -43,7 +43,7 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">WHAT I<br>FOUND</h1>
-        <p>This page answers my question. First the data and what it shows, then my answers, what the evidence can&rsquo;t show, how other people see this kind of project, and the ethics.</p>
+        <p class="draft">This page answers my question. First the data and what it shows, then my answers, what the evidence can&rsquo;t show, how other people see this kind of project, and the ethics.</p>
       </header>
 
       <section id="data" aria-labelledby="data-h">
@@ -191,7 +191,7 @@
         <div class="concept" id="chart-playtests">
           <h3>WHAT PLAY-TESTING CHANGED</h3>
           <p>For each play-test, the number of points that asked for a change and the number that were checked and kept, with the fix-up sessions that followed. <a href="/build/#feedback">The build log has the full table</a>.</p>
-          <p>The docs don&rsquo;t give these counts, so this is my own count of their notes. A numbered answer or a separately named point counts once. A point with a good part and a bad part counts as a change.</p>
+          <p class="draft">The docs don&rsquo;t give these counts, so this is my own count of their notes. A numbered answer or a separately named point counts once. A point with a good part and a bad part counts as a change.</p>
           <figure class="fig">
             <ul class="key" aria-hidden="true"><li><span class="sw ok"></span>asked for a change</li><li><span class="sw kept"></span>checked and kept</li></ul>
             <svg viewBox="0 0 560 384" role="group" aria-labelledby="c-play-cap">
@@ -235,7 +235,7 @@
 
       <section id="patterns" aria-labelledby="patterns-h">
         <h2 id="patterns-h">WHAT THE DATA SHOWS</h2>
-        <p>The patterns I found in the evidence. Each one gives the finding, the evidence, where it comes from, and why it matters.</p>
+        <p class="draft">The patterns I found in the evidence. Each one gives the finding, the evidence, where it comes from, and why it matters.</p>
         <div class="findings">
           <article class="method" id="p-tests-vs-person">
             <h3>TESTS AND PEOPLE CHECK DIFFERENT THINGS</h3>
@@ -243,7 +243,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
               <dt>EVIDENCE</dt>
-              <dd>A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
+              <dd class="draft">A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> Session log; the game&rsquo;s git history; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -256,7 +256,7 @@
               <dt>FINDING</dt>
               <dd class="draft">The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
               <dt>EVIDENCE</dt>
-              <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd class="draft">At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-levels">the win-rate chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -295,7 +295,7 @@
               <dt>FINDING</dt>
               <dd class="draft">I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
               <dt>EVIDENCE</dt>
-              <dd>Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd class="draft">Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-drop">the drop chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -308,7 +308,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Play-testing wasn&rsquo;t only finding problems. About half of it was deciding that something was already right, and the changes were mostly about how the game feels, looks and sounds.</dd>
               <dt>EVIDENCE</dt>
-              <dd>By my count, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
+              <dd class="draft">By my count, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> and <code>docs/plan-v2.md</code>; <code>docs/decisions.md</code>; <a href="/build/#feedback">the feedback table</a>; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -320,7 +320,7 @@
 
       <section id="answers" aria-labelledby="answers-h">
         <h2 id="answers-h">ANSWERS TO MY QUESTIONS</h2>
-        <p>Each answer is my conclusion. The evidence under it is what you can check for yourself.</p>
+        <p class="draft">Each answer is my conclusion. The evidence under it is what you can check for yourself.</p>
         <div class="findings">
           <article class="method" id="a-accuracy">
             <h3>1. HOW ACCURATELY CAN A 1992 ARCADE GAME&rsquo;S RULES AND PHYSICS BE REBUILT?</h3>
@@ -346,7 +346,7 @@
               <dt>MY ANSWER</dt>
               <dd class="draft">Anything about whether the game is fair, fun or right needed a person: how hard level 1 should be, when to leave the arcade&rsquo;s numbers behind, and when to stop. Play-testing changed how the game plays, looks and sounds, but it didn&rsquo;t touch the ball physics.</dd>
               <dt>EVIDENCE</dt>
-              <dd>By my count, 22 play-test points asked for a change, 21 were kept, and eight fix-up sessions followed. The corner shape, the racket shift and the wider court were each picked by trying options in the game. See <a href="#p-tests-vs-person">Tests and people check different things</a>, <a href="#p-playtests">About half of what I checked stayed the same</a> and the <a href="/build/#feedback">feedback table</a>.</dd>
+              <dd class="draft">By my count, 22 play-test points asked for a change, 21 were kept, and eight fix-up sessions followed. The corner shape, the racket shift and the wider court were each picked by trying options in the game. See <a href="#p-tests-vs-person">Tests and people check different things</a>, <a href="#p-playtests">About half of what I checked stayed the same</a> and the <a href="/build/#feedback">feedback table</a>.</dd>
             </dl>
           </article>
           <article class="method" id="a-ethics">
@@ -381,7 +381,7 @@
             <h3>THE TEST PLAYER IS A BOT</h3>
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
+              <dd class="draft">The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
               <dt>WHAT THIS MEANS</dt>
               <dd class="draft">The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
             </dl>
@@ -390,7 +390,7 @@
             <h3>ONE PERSON DID THE PLAY-TESTING</h3>
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd>Every point on the play-test chart came from me, playing on my own computer and, at CP-G, a phone.<!-- plan and plan-v2 Session logs ("the owner"); plan-v2 2026-10-29 "on a computer and a phone" --> The teacher feedback section of the <a href="/build/#feedback">feedback table</a> is still empty.</dd>
+              <dd class="draft">Every point on the play-test chart came from me, playing on my own computer and, at CP-G, a phone.<!-- plan and plan-v2 Session logs ("the owner"); plan-v2 2026-10-29 "on a computer and a phone" --> The teacher feedback section of the <a href="/build/#feedback">feedback table</a> is still empty.</dd>
               <dt>WHAT THIS MEANS</dt>
               <dd class="draft">I know this game better than anyone, and I got better at it while I built it. Someone new might find level 1 too hard, or be confused by things I stopped noticing. So &ldquo;feels right&rdquo; on this page means it felt right to me.</dd>
             </dl>
@@ -425,7 +425,7 @@
 
       <section id="perspectives" aria-labelledby="perspectives-h">
         <h2 id="perspectives-h">OTHER PERSPECTIVES</h2>
-        <p>People who know this field disagree about projects like this one. Each card keeps what they said or measured apart from my own opinion.</p>
+        <p class="draft">People who know this field disagree about projects like this one. Each card keeps what they said or measured apart from my own opinion.</p>
         <div class="findings">
           <article class="method" id="v-developers">
             <h3>GAME DEVELOPERS</h3>
@@ -498,7 +498,7 @@
 
       <section id="ethics" aria-labelledby="ethics-h">
         <h2 id="ethics-h">ETHICS</h2>
-        <p>What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
+        <p class="draft">What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
         <div class="findings">
           <article class="method" id="e-copyright">
             <h3>COPYRIGHT AND THE ORIGINAL GAME</h3>
@@ -517,7 +517,7 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The arcade&rsquo;s program was <a href="/sources/#g-decompile">decompiled</a> with Ghidra to read its rules (<a href="/sources/#g-reverse-engineering">reverse engineering</a>), and parts that Gaelco had <a href="/sources/#g-encryption">encrypted</a> were decrypted to read them. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
               <dt>THE QUESTION</dt>
-              <dd>In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was <a href="/sources/#g-fair-use">fair use</a>. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
+              <dd class="draft">In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was <a href="/sources/#g-fair-use">fair use</a>. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
               <dt>MY VIEW</dt>
               <dd class="draft">Reverse engineering is how I found the real numbers, and I learned a lot from it. I think studying it is reasonable, but I can&rsquo;t say the law clearly covers everything that was done, so I would rather say that than pretend.</dd>
             </dl>
@@ -528,7 +528,7 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The site says plainly that Claude Code wrote the code. The AI tools are cited on the <a href="/sources/#cited">Sources page</a>, nearly all of the game&rsquo;s <a href="/sources/#g-commit">commits</a> are marked as co-authored by it, and all of it is public on GitHub.</dd>
               <dt>THE QUESTION</dt>
-              <dd>If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
+              <dd class="draft">If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
               <dt>MY VIEW</dt>
               <dd class="draft">I made the decisions, so I think it&rsquo;s fair to say I directed it, but I shouldn&rsquo;t say I programmed it. Being honest about that matters more than sounding impressive.</dd>
             </dl>
@@ -550,7 +550,7 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The Hogg Razorbacks shield is on the title screen and in the match, and the court uses the school&rsquo;s colours and name.<!-- decisions "Theme" --> </dd>
               <dt>THE QUESTION</dt>
-              <dd>The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
+              <dd class="draft">The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
               <dt>MY VIEW</dt>
               <dd class="draft">Ronin: ask the school, then say what they answered. Until then, the honest wording is: it&rsquo;s my school and I meant it as a tribute, but that isn&rsquo;t the same as permission.</dd>
             </dl>
@@ -559,7 +559,7 @@
             <h3>PRIVACY AND REAL PEOPLE</h3>
             <dl>
               <dt>WHAT WAS DONE</dt>
-              <dd>A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
+              <dd class="draft">A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
               <dt>THE QUESTION</dt>
               <dd>Agreeing to be in a game isn&rsquo;t necessarily agreeing to have your photos sent to an AI service. It depends on what they were told.</dd>
               <dt>MY VIEW</dt>
