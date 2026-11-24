@@ -43,7 +43,7 @@
     <main class="page">
       <header class="intro">
         <h1 class="title">WHAT I<br>FOUND</h1>
-        <p class="draft">This page answers my question. First the data and what it shows, then my answers, what the evidence can&rsquo;t show, how other people see this kind of project, and the ethics.</p>
+        <p>This page answers my question. First the data and what it shows, then my answers, what the evidence can&rsquo;t show, how other people see this kind of project, and the ethics.</p>
       </header>
 
       <section id="data" aria-labelledby="data-h">
@@ -241,78 +241,78 @@
             <h3>TESTS AND PEOPLE CHECK DIFFERENT THINGS</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
+              <dd>Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
               <dt>EVIDENCE</dt>
               <dd>A scripted player beat level 1 by 9&ndash;2 at S6. Ronin lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> Session log; the game&rsquo;s git history; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">This goes to my third smaller question. The tests answered &ldquo;is it correct?&rdquo; and only a person could answer &ldquo;is it right?&rdquo;. I needed both.</dd>
+              <dd>This goes to my third smaller question. The tests answered &ldquo;is it correct?&rdquo; and only a person could answer &ldquo;is it right?&rdquo;. I needed both.</dd>
             </dl>
           </article>
           <article class="method" id="p-biggest-change">
             <h3>ONE PLAY-TEST MOVED THE NUMBERS MOST</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
+              <dd>The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
               <dt>EVIDENCE</dt>
               <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b, Ronin said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-levels">the win-rate chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">S12e didn&rsquo;t change how the game plays and the numbers still moved 3 points. So I don&rsquo;t trust a change of 3 points or less to mean anything, and that includes the gap between S12c and S12d.</dd>
+              <dd>S12e didn&rsquo;t change how the game plays and the numbers still moved 3 points. So I don&rsquo;t trust a change of 3 points or less to mean anything, and that includes the gap between S12c and S12d.</dd>
             </dl>
           </article>
           <article class="method" id="p-uneven-steps">
             <h3>THE LEVELS ARE IN ORDER, BUT THE STEPS AREN&rsquo;T EVEN</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">Every level is harder than the one before it, so the order is right. But the jump from 5 to 6 is much bigger than the jumps at the top.</dd>
+              <dd>Every level is harder than the one before it, so the order is right. But the jump from 5 to 6 is much bigger than the jumps at the top.</dd>
               <dt>EVIDENCE</dt>
               <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo;. When Ronin plays it, level 6 feels much harder than level 5.<!-- Ronin, 2026-11-13: "Yes, much harder" --> <a href="/sources/#g-volley">Volleys</a> also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">A &ldquo;smooth&rdquo; difficulty curve was what I wanted, and this one is smooth in order but not in size. The top levels are also hard to compare, because a robot that barely wins has little room left to fall.</dd>
+              <dd>A &ldquo;smooth&rdquo; difficulty curve was what I wanted, and this one is smooth in order but not in size. The top levels are also hard to compare, because a robot that barely wins has little room left to fall.</dd>
             </dl>
           </article>
           <article class="method" id="p-physics">
             <h3>THE PHYSICS IS EXACT BETWEEN HITS</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">Between racket hits, my physics matches the recordings exactly. The weak spot is the moment the racket hits the ball.</dd>
+              <dd>Between racket hits, my physics matches the recordings exactly. The weak spot is the moment the racket hits the ball.</dd>
               <dt>EVIDENCE</dt>
               <dd>All 458 flights (164 + 294) match on every frame.<!-- baselines flight.test.js --> The golden test matches 99.3% and 99.4% of frames, and its 81 and 111 misses equal the 81 and 111 racket hits.<!-- baselines golden.test.js, hits.test.js --> On its own, the racket-hit formula matches 67 of 81 and 73 of 111 hits.<!-- baselines hits.test.js; re-run 2026-11-08 and unchanged --> Those counts include the 24 serves that the table on the Research page leaves out.<!-- physics-core.md: 98 human + 24 serves + 70 CPU = 192 = 81 + 111 --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>test/baselines.json</code>; <a href="/research/#accuracy">Research &rarr; How close is the match?</a>; <a href="#chart-physics">the physics chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">This is my best answer to &ldquo;how accurately can it be rebuilt?&rdquo;. It&rsquo;s exact where the code could be read and tested, and less exact where the arcade does extra things to a hit that decompiling didn&rsquo;t fully explain.</dd>
+              <dd>This is my best answer to &ldquo;how accurately can it be rebuilt?&rdquo;. It&rsquo;s exact where the code could be read and tested, and less exact where the arcade does extra things to a hit that decompiling didn&rsquo;t fully explain.</dd>
             </dl>
           </article>
           <article class="method" id="p-accuracy-not-goal">
             <h3>THE CLOSEST MATCH WASN&rsquo;T ALWAYS THE BEST GAME</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
+              <dd>I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
               <dt>EVIDENCE</dt>
               <dd>Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b, Ronin called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-drop">the drop chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">My goal was to play like the arcade, and here I chose not to. A measurement can show what a change costs, but deciding if the cost is worth it was my call.</dd>
+              <dd>My goal was to play like the arcade, and here I chose not to. A measurement can show what a change costs, but deciding if the cost is worth it was my call.</dd>
             </dl>
           </article>
           <article class="method" id="p-playtests">
             <h3>ABOUT HALF OF WHAT I CHECKED STAYED THE SAME</h3>
             <dl>
               <dt>FINDING</dt>
-              <dd class="draft">Play-testing wasn&rsquo;t only finding problems. About half of it was deciding that something was already right, and the changes were mostly about how the game feels, looks and sounds.</dd>
+              <dd>Play-testing wasn&rsquo;t only finding problems. About half of it was deciding that something was already right, and the changes were mostly about how the game feels, looks and sounds.</dd>
               <dt>EVIDENCE</dt>
               <dd>Counted from the notes, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> and <code>docs/plan-v2.md</code>; <code>docs/decisions.md</code>; <a href="/build/#feedback">the feedback table</a>; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
-              <dd class="draft">AI wrote every fix, but it didn&rsquo;t pick them. Saying &ldquo;that&rsquo;s fine, leave it&rdquo; was a decision too. These counts are my own, and CP-G has 10 of the kept points by itself, so they show a rough pattern and not a real measurement.</dd>
+              <dd>AI wrote every fix, but it didn&rsquo;t pick them. Saying &ldquo;that&rsquo;s fine, leave it&rdquo; was a decision too. These counts are my own, and CP-G has 10 of the kept points by itself, so they show a rough pattern and not a real measurement.</dd>
             </dl>
           </article>
         </div>
@@ -320,13 +320,13 @@
 
       <section id="answers" aria-labelledby="answers-h">
         <h2 id="answers-h">ANSWERS TO MY QUESTIONS</h2>
-        <p class="draft">Each answer is my conclusion. The evidence under it is what you can check for yourself.</p>
+        <p>Each answer is my conclusion. The evidence under it is what you can check for yourself.</p>
         <div class="findings">
           <article class="method" id="a-accuracy">
             <h3>1. HOW ACCURATELY CAN A 1992 ARCADE GAME&rsquo;S RULES AND PHYSICS BE REBUILT?</h3>
             <dl>
               <dt>MY ANSWER</dt>
-              <dd class="draft">Very accurately for the ball in flight, less exactly at the moment the racket hits it, and not at all for the parts of the game my robot never reached.</dd>
+              <dd>Very accurately for the ball in flight, less exactly at the moment the racket hits it, and not at all for the parts of the game my robot never reached.</dd>
               <dt>EVIDENCE</dt>
               <dd>All 458 recorded flights match on every frame. The golden test matches 99.3% and 99.4% of frames, and its misses are the racket hits. Some rules, like the tin and out-line checks, weren&rsquo;t found in the code. See <a href="#p-physics">The physics is exact between hits</a> and <a href="#l-rom">The arcade data comes from one ROM version</a>.</dd>
             </dl>
@@ -335,7 +335,7 @@
             <h3>2. WHAT DID AI DO WELL, AND HOW WERE ITS MISTAKES CAUGHT?</h3>
             <dl>
               <dt>MY ANSWER</dt>
-              <dd class="draft">AI was good at work with a right answer you can test, like matching the arcade&rsquo;s numbers. Its first guesses about how a game should play were often off. Those were caught by measuring or by me playing, not by the AI noticing.</dd>
+              <dd>AI was good at work with a right answer you can test, like matching the arcade&rsquo;s numbers. Its first guesses about how a game should play were often off. Those were caught by measuring or by me playing, not by the AI noticing.</dd>
               <dt>EVIDENCE</dt>
               <dd>The plan&rsquo;s first level table gave level 5 a 31% win rate, under its target. Its first cap on the drop shot still left 25&ndash;40% past the short line. The first test robot won only 19%. This site&rsquo;s build log also said the physics matched &ldquo;with zero error&rdquo;, which overstated the 99.3% golden test, and it was corrected on Nov 8. The AI also wrote the tests, so a test could share the code&rsquo;s mistake. See <a href="/sources/#ai-check">How AI work was checked</a> and <a href="#l-own-script">The win rates come from the project&rsquo;s own script</a>.</dd>
             </dl>
@@ -344,16 +344,16 @@
             <h3>3. WHICH DECISIONS NEEDED A PERSON, AND HOW DID PLAY-TESTING CHANGE THE GAME?</h3>
             <dl>
               <dt>MY ANSWER</dt>
-              <dd class="draft">Anything about whether the game is fair, fun or right needed a person: how hard level 1 should be, when to leave the arcade&rsquo;s numbers behind, and when to stop. Play-testing changed how the game plays, looks and sounds, but it didn&rsquo;t touch the ball physics.</dd>
+              <dd>Anything about whether the game is fair, fun or right needed a person: how hard level 1 should be, when to leave the arcade&rsquo;s numbers behind, and when to stop. Play-testing changed how the game plays, looks and sounds, but it didn&rsquo;t touch the ball physics.</dd>
               <dt>EVIDENCE</dt>
-              <dd class="draft">By my count, 22 play-test points asked for a change, 21 were kept, and eight fix-up sessions followed. The corner shape, the racket shift and the wider court were each picked by trying options in the game. See <a href="#p-tests-vs-person">Tests and people check different things</a>, <a href="#p-playtests">About half of what I checked stayed the same</a> and the <a href="/build/#feedback">feedback table</a>.</dd>
+              <dd>By my count, 22 play-test points asked for a change, 21 were kept, and eight fix-up sessions followed. The corner shape, the racket shift and the wider court were each picked by trying options in the game. See <a href="#p-tests-vs-person">Tests and people check different things</a>, <a href="#p-playtests">About half of what I checked stayed the same</a> and the <a href="/build/#feedback">feedback table</a>.</dd>
             </dl>
           </article>
           <article class="method" id="a-ethics">
             <h3>4. WHAT ARE THE ETHICAL LIMITS OF REVERSE ENGINEERING AND AI-MADE ART AND SOUND?</h3>
             <dl>
               <dt>MY ANSWER</dt>
-              <dd class="draft">I started with a simple line: study how the game works, but don&rsquo;t take its art, sound or name. I still think that line is right, but it&rsquo;s less clear than I thought. My physics is a port of the arcade&rsquo;s math, and AI art raises questions I can&rsquo;t fully answer about what it learned from.</dd>
+              <dd>I started with a simple line: study how the game works, but don&rsquo;t take its art, sound or name. I still think that line is right, but it&rsquo;s less clear than I thought. My physics is a port of the arcade&rsquo;s math, and AI art raises questions I can&rsquo;t fully answer about what it learned from.</dd>
               <dt>EVIDENCE</dt>
               <dd>See <a href="#ethics">Ethics</a> for what was done and which questions are still open, and <a href="#perspectives">Other perspectives</a> for how others see it.</dd>
             </dl>
@@ -369,7 +369,7 @@
           </article>
         </div>
         <h3 id="a-guiding">MY GUIDING QUESTION: HOW CAN AI TOOLS HELP ONE STUDENT RESEARCH, DESIGN AND BUILD A COMPLETE VIDEO GAME?</h3>
-        <p class="draft">AI tools can do most of the making: reading and rebuilding old code, writing the game, and producing first versions of art and sound. That let one student finish something that would normally need a team. But AI couldn&rsquo;t decide what the game should be, or tell whether it was right. It helped most when I set the goal, tested the result and made the calls. So my answer is that AI can do the work, but a person still has to direct it and check it. It also has costs: I didn&rsquo;t write the code myself, and this is one student and one project, so it doesn&rsquo;t show how it would go for anyone else.</p>
+        <p>AI tools can do most of the making: reading and rebuilding old code, writing the game, and producing first versions of art and sound. That let one student finish something that would normally need a team. But AI couldn&rsquo;t decide what the game should be, or tell whether it was right. It helped most when I set the goal, tested the result and made the calls. So my answer is that AI can do the work, but a person still has to direct it and check it. It also has costs: I didn&rsquo;t write the code myself, and this is one student and one project, so it doesn&rsquo;t show how it would go for anyone else.</p>
         <p><b>Evidence:</b> research began on Oct 18 and version 1.0 was released on Oct 23, 2026.<!-- plan.md; CP-F commit aa35d4a --> The rest is linked in the answers above and in <a href="#limits">Limitations</a>.</p>
       </section>
 
@@ -383,7 +383,7 @@
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and Ronin won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
               <dt>WHAT THIS MEANS</dt>
-              <dd class="draft">The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
+              <dd>The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
             </dl>
           </article>
           <article class="method" id="l-one-person">
@@ -402,7 +402,7 @@
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The numbers come from <code>test/measure-levels.js</code>, which is in the game&rsquo;s repo and is run by hand. It isn&rsquo;t part of the automatic tests.<!-- test/measure-levels.js header --> Claude Code wrote it, as it wrote the game. The levels were also tuned against the same robot: the plan&rsquo;s first table gave level 5 31%, under its target, so the table was changed.<!-- plan Session log 2026-10-20 S6b --> Fixed seeds make a run repeatable. The latest measurement is S12e, on Oct 23.<!-- plan Session log 2026-10-23 --></dd>
               <dt>WHAT THIS MEANS</dt>
-              <dd class="draft">Repeatable doesn&rsquo;t mean right, because a bug in the script would repeat too. And since the levels were adjusted until they met the targets, meeting them doesn&rsquo;t prove much by itself. Nobody outside the project has checked this, though the code is public, so anyone could. By my calculation, the usual margin-of-error formula gives about 3 points for 1,000 rallies near 50%, which fits the 3 points S12e moved.</dd>
+              <dd>Repeatable doesn&rsquo;t mean right, because a bug in the script would repeat too. And since the levels were adjusted until they met the targets, meeting them doesn&rsquo;t prove much by itself. Nobody outside the project has checked this, though the code is public, so anyone could. By my calculation, the usual margin-of-error formula gives about 3 points for 1,000 rallies near 50%, which fits the 3 points S12e moved.</dd>
             </dl>
           </article>
           <article class="method" id="l-rom">
@@ -411,7 +411,7 @@
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>All the arcade numbers come from one set in the MAME <a href="/sources/#g-emulator">emulator</a>: <code>squash</code>, World version 1.0. Other sets exist, such as USA version 1.1, and they weren&rsquo;t compared.<!-- 1992 "This ROM set" --> The two recordings were made in an emulator, not on a real machine, by a robot that pressed buttons at random and never won, so later rounds weren&rsquo;t seen.<!-- 1992 §0; research page Tools, MAME card --> Ghidra didn&rsquo;t find some rules, like the tin and out-line checks.<!-- logic §10, as on the research page Tools, Ghidra card --></dd>
               <dt>WHAT THIS MEANS</dt>
-              <dd class="draft">&ldquo;Matches the arcade&rdquo; really means it matches this one version, as an emulator runs it, in the parts of the game my robot reached. I can&rsquo;t say anything about other versions or about parts of the game that weren&rsquo;t recorded.</dd>
+              <dd>&ldquo;Matches the arcade&rdquo; really means it matches this one version, as an emulator runs it, in the parts of the game my robot reached. I can&rsquo;t say anything about other versions or about parts of the game that weren&rsquo;t recorded.</dd>
             </dl>
           </article>
         </div>
@@ -425,7 +425,7 @@
 
       <section id="perspectives" aria-labelledby="perspectives-h">
         <h2 id="perspectives-h">OTHER PERSPECTIVES</h2>
-        <p class="draft">People who know this field disagree about projects like this one. Each card keeps what they said or measured apart from my own opinion.</p>
+        <p>People who know this field disagree about projects like this one. Each card keeps what they said or measured apart from my own opinion.</p>
         <div class="findings">
           <article class="method" id="v-developers">
             <h3>GAME DEVELOPERS</h3>
@@ -435,7 +435,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>A large industry survey, reported by the conference that runs it. It measures opinions about the whole industry, in a year of layoffs, not about student projects.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Many professionals would be skeptical of this project, and they have reasons. Nobody lost a job over it, but the same tools might do that somewhere else.</dd>
+              <dd>Many professionals would be skeptical of this project, and they have reasons. Nobody lost a job over it, but the same tools might do that somewhere else.</dd>
             </dl>
           </article>
           <article class="method" id="v-artists">
@@ -446,7 +446,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>&ldquo;Ethically-sourced&rdquo; is the companies&rsquo; own description, not an outside check. It also covers fine-tuning, and doesn&rsquo;t say what else the model learned from. What SpriteCook learned from wasn&rsquo;t checked for this project.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">I used AI for art and sound instead of paying an artist. For a school project with no money that felt fine, but it&rsquo;s the same thing artists are worried about, so I don&rsquo;t think I can just dismiss it.</dd>
+              <dd>I used AI for art and sound instead of paying an artist. For a school project with no money that felt fine, but it&rsquo;s the same thing artists are worried about, so I don&rsquo;t think I can just dismiss it.</dd>
             </dl>
           </article>
           <article class="method" id="v-gaelco">
@@ -457,7 +457,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>Nobody has asked them, so what they would think isn&rsquo;t known.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">If I had made a game and someone rebuilt how it plays, I might be flattered or I might be annoyed. Crediting them here is the least I can do, but it isn&rsquo;t the same as asking.</dd>
+              <dd>If I had made a game and someone rebuilt how it plays, I might be flattered or I might be annoyed. Crediting them here is the least I can do, but it isn&rsquo;t the same as asking.</dd>
             </dl>
           </article>
           <article class="method" id="v-preservation">
@@ -468,7 +468,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>A random sample of 1,500 games with its method published. But the foundation argues for preservation, and the data stops in April 2023. It also doesn&rsquo;t quite fit here, because <i>Squash</i> is in print again.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Studying old games matters, and emulators make it possible. But I can&rsquo;t use &ldquo;the game is lost&rdquo; as my reason, because this one isn&rsquo;t.</dd>
+              <dd>Studying old games matters, and emulators make it possible. But I can&rsquo;t use &ldquo;the game is lost&rdquo; as my reason, because this one isn&rsquo;t.</dd>
             </dl>
           </article>
           <article class="method" id="v-teachers">
@@ -479,7 +479,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>Pew&rsquo;s surveys are large and careful, but the teacher data is the oldest here. The experiment was one subject at one school, and the Wharton article describes an early version of the paper.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Using AI openly and saying so is different from cheating. But the math study still worries me, because getting a good result fast doesn&rsquo;t prove I learned how to do it.</dd>
+              <dd>Using AI openly and saying so is different from cheating. But the math study still worries me, because getting a good result fast doesn&rsquo;t prove I learned how to do it.</dd>
             </dl>
           </article>
           <article class="method" id="v-squash">
@@ -490,7 +490,7 @@
               <dt>HOW FAR TO TRUST IT</dt>
               <dd>This is the biggest gap in this section, since these are the people the game is for.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">I think they would care most about whether it feels like squash. I should ask them instead of guessing.</dd>
+              <dd>I think they would care most about whether it feels like squash. I should ask them instead of guessing.</dd>
             </dl>
           </article>
         </div>
@@ -498,7 +498,7 @@
 
       <section id="ethics" aria-labelledby="ethics-h">
         <h2 id="ethics-h">ETHICS</h2>
-        <p class="draft">What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
+        <p>What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
         <div class="findings">
           <article class="method" id="e-copyright">
             <h3>COPYRIGHT AND THE ORIGINAL GAME</h3>
@@ -508,7 +508,7 @@
               <dt>THE QUESTION</dt>
               <dd>The game does ship more than an idea. Its physics file is a <a href="/sources/#g-port">port</a> of the arcade&rsquo;s routines, using its shot tables and numbers, and the public code includes the recorded ball data used for testing.<!-- squash-physics.js header; test/fixtures --> The project&rsquo;s rule that &ldquo;recreating gameplay mechanics is fine&rdquo; is its own position, not a ruling.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: say where the ROM file came from, and whether you&rsquo;re comfortable with that. Then: I think taking the art would clearly be wrong and copying how a ball bounces is much closer to fine, but a port sits somewhere in between.</dd>
+              <dd>Ronin: say where the ROM file came from, and whether you&rsquo;re comfortable with that. Then: I think taking the art would clearly be wrong and copying how a ball bounces is much closer to fine, but a port sits somewhere in between.</dd>
             </dl>
           </article>
           <article class="method" id="e-reverse">
@@ -517,9 +517,9 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The arcade&rsquo;s program was <a href="/sources/#g-decompile">decompiled</a> with Ghidra to read its rules (<a href="/sources/#g-reverse-engineering">reverse engineering</a>), and parts that Gaelco had <a href="/sources/#g-encryption">encrypted</a> were decrypted to read them. See <a href="/research/#methods">Research &rarr; Methods</a>.</dd>
               <dt>THE QUESTION</dt>
-              <dd class="draft">In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was <a href="/sources/#g-fair-use">fair use</a>. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
+              <dd>In <i>Sega v. Accolade</i> (1992), a U.S. appeals court ruled that disassembling a program for a legitimate reason, with no other way to reach its unprotected elements, was <a href="/sources/#g-fair-use">fair use</a>. That case was about making games compatible with a console (<a href="/sources/#src-sega">&ldquo;Sega Enters.&rdquo;</a>). Rebuilding how a game plays is a different purpose. A later law, from 1998, separately says no one may get around a technological measure that controls access to a protected work. Its reverse-engineering exception is limited to making programs work together (<a href="/sources/#src-circular92">&ldquo;Chapter 12&rdquo;</a>). I don&rsquo;t know how either applies to a 1992 arcade game studied for a school project.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Reverse engineering is how I found the real numbers, and I learned a lot from it. I think studying it is reasonable, but I can&rsquo;t say the law clearly covers everything that was done, so I would rather say that than pretend.</dd>
+              <dd>Reverse engineering is how I found the real numbers, and I learned a lot from it. I think studying it is reasonable, but I can&rsquo;t say the law clearly covers everything that was done, so I would rather say that than pretend.</dd>
             </dl>
           </article>
           <article class="method" id="e-authorship">
@@ -528,9 +528,9 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The site says plainly that Claude Code wrote the code. The AI tools are cited on the <a href="/sources/#cited">Sources page</a>, nearly all of the game&rsquo;s <a href="/sources/#g-commit">commits</a> are marked as co-authored by it, and all of it is public on GitHub.</dd>
               <dt>THE QUESTION</dt>
-              <dd class="draft">If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
+              <dd>If I didn&rsquo;t type the code, in what sense did I make the game? The Copyright Office says prompts alone don&rsquo;t make someone the author of AI output, though a person&rsquo;s creative choices and changes can count (<a href="/sources/#src-copyright-ai">&ldquo;Copyright Office Releases&rdquo;</a>).</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">I made the decisions, so I think it&rsquo;s fair to say I directed it, but I shouldn&rsquo;t say I programmed it. Being honest about that matters more than sounding impressive.</dd>
+              <dd>I made the decisions, so I think it&rsquo;s fair to say I directed it, but I shouldn&rsquo;t say I programmed it. Being honest about that matters more than sounding impressive.</dd>
             </dl>
           </article>
           <article class="method" id="e-ai-art">
@@ -541,7 +541,7 @@
               <dt>THE QUESTION</dt>
               <dd>Those tools learned from other people&rsquo;s work. ElevenLabs names one licensed source and SpriteCook&rsquo;s wasn&rsquo;t checked. See <a href="#v-artists">Artists</a>.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">I think it&rsquo;s OK for a free school project if it&rsquo;s credited, but I wouldn&rsquo;t be as sure if I were selling the game.</dd>
+              <dd>I think it&rsquo;s OK for a free school project if it&rsquo;s credited, but I wouldn&rsquo;t be as sure if I were selling the game.</dd>
             </dl>
           </article>
           <article class="method" id="e-logo">
@@ -550,20 +550,20 @@
               <dt>WHAT WAS DONE</dt>
               <dd>The Hogg Razorbacks shield is on the title screen and in the match, and the court uses the school&rsquo;s colours and name.<!-- decisions "Theme" --> </dd>
               <dt>THE QUESTION</dt>
-              <dd class="draft">The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
+              <dd>The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: ask the school, then say what they answered. Until then, the honest wording is: it&rsquo;s my school and I meant it as a tribute, but that isn&rsquo;t the same as permission.</dd>
+              <dd>Ronin: ask the school, then say what they answered. Until then, the honest wording is: it&rsquo;s my school and I meant it as a tribute, but that isn&rsquo;t the same as permission.</dd>
             </dl>
           </article>
           <article class="method" id="e-privacy">
             <h3>PRIVACY AND REAL PEOPLE</h3>
             <dl>
               <dt>WHAT WAS DONE</dt>
-              <dd class="draft">A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
+              <dd>A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
               <dt>THE QUESTION</dt>
               <dd>Agreeing to be in a game isn&rsquo;t necessarily agreeing to have your photos sent to an AI service. It depends on what they were told.</dd>
               <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: say whether the coach knew the photos would go to an AI tool. Then: I think people should get to choose this, especially students, which is why I kept them out.</dd>
+              <dd>Ronin: say whether the coach knew the photos would go to an AI tool. Then: I think people should get to choose this, especially students, which is why I kept them out.</dd>
             </dl>
           </article>
         </div>
@@ -571,7 +571,7 @@
 
       <section id="open" aria-labelledby="open-h">
         <h2 id="open-h">OPEN QUESTIONS</h2>
-        <ul class="draft">
+        <ul>
           <li>Would real beginners do as well as my test robot at level 1? I would test with people who have never played it.</li>
           <li>Does it feel like squash to people who play squash?</li>
           <li>Why is the step from level 5 to 6 so big? Volleys start at level 6, but nothing has tested whether that&rsquo;s the cause.</li>

@@ -1,14 +1,11 @@
 {
   "CP-B": {
-    "draft": true,
-    "text": "Ronin: replace this with your own words. What did the first real play-test teach you that the plan couldn't? Which change mattered most?"
+    "text": "I thought it was kind-of boring without anyone else."
   },
   "CP-C": {
-    "draft": true,
-    "text": "Ronin: replace this with your own words. You lost 4-9 to level 1, the easiest level. What did that tell you about the first version of the levels, and what did you decide?"
+    "text": "It was really hard and I decided to make it easier."
   },
   "CP-F": {
-    "draft": true,
-    "text": "Ronin: replace this with your own words. The release test took four rounds before it passed. What did that teach you about calling something finished?"
+    "text": "It taught me things are never really finished and you can always add something."
   }
 }

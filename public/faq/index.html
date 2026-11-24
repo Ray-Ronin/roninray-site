@@ -52,7 +52,7 @@
             <h3>DID YOU WRITE THE CODE?</h3>
             <dl>
               <dt>SHORT ANSWER</dt>
-              <dd class="draft">No. Claude Code wrote it. I researched, planned, play-tested and made the decisions. I directed it, but I shouldn&rsquo;t say I programmed it.</dd>
+              <dd>No. Claude Code wrote it. I researched, planned, play-tested and made the decisions. I directed it, but I shouldn&rsquo;t say I programmed it.</dd>
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The site says this plainly, and the game&rsquo;s <a href="/sources/#g-commit">commits</a> are public, nearly all of them marked as co-authored by Claude Code. Whether directing an AI counts as making something is still an open question, in copyright law as well.</dd>
               <dt>WHERE TO CHECK</dt>
@@ -76,7 +76,7 @@
             <h3>IS THIS COPYING THE ARCADE GAME?</h3>
             <dl>
               <dt>SHORT ANSWER</dt>
-              <dd class="draft">Partly, and on purpose. The way it plays is modeled on the arcade game, and the ball physics is a port of its code. The art, the sound and the name aren&rsquo;t copied. Ronin: also say where the ROM file came from, because a judge may ask.</dd>
+              <dd>Partly, and on purpose. The way it plays is modeled on the arcade game, and the ball physics is a port of its code. The art, the sound and the name aren&rsquo;t copied. Ronin: also say where the ROM file came from, because a judge may ask.</dd>
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The physics file is a <a href="/sources/#g-port">port</a> of the arcade&rsquo;s routines, using its shot tables and numbers, so the game ships more than an idea. The <a href="/sources/#g-rom">ROM</a>, its graphics and its sounds stayed out of the public code, and the AI art and sound tools were given nothing from it. The game also departs from the original in places: its levels, its drop shots and its look. The original has been re-released, and the project&rsquo;s records show no contact with its maker.</dd>
               <dt>WHERE TO CHECK</dt>
@@ -88,7 +88,7 @@
             <h3>IS DECOMPILING LEGAL?</h3>
             <dl>
               <dt>SHORT ANSWER</dt>
-              <dd class="draft">I don&rsquo;t know for sure, and I would rather say that than pretend. Courts have allowed it for some purposes, but mine is different from those cases. Nobody with legal training has looked at this project.</dd>
+              <dd>I don&rsquo;t know for sure, and I would rather say that than pretend. Courts have allowed it for some purposes, but mine is different from those cases. Nobody with legal training has looked at this project.</dd>
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The main U.S. case found <a href="/sources/#g-decompile">taking a program apart</a> to be <a href="/sources/#g-fair-use">fair use</a> when the goal was making games compatible, which isn&rsquo;t the goal here. A later law limits getting around access controls, and parts of this program were <a href="/sources/#g-encryption">encrypted</a> and then decrypted to read them, so that law may matter too. No lawyer has reviewed the project, and what the site says about the law is a student&rsquo;s reading, not legal advice.</dd>
               <dt>WHERE TO CHECK</dt>
@@ -100,7 +100,7 @@
             <h3>WHY NOT USE A GAME ENGINE?</h3>
             <dl>
               <dt>SHORT ANSWER</dt>
-              <dd class="draft">The hard parts of this game had to be custom anyway. An engine&rsquo;s physics couldn&rsquo;t do what the arcade does, so it would mostly have helped with drawing. I tried plain Canvas first, it worked, so I kept it.</dd>
+              <dd>The hard parts of this game had to be custom anyway. An engine&rsquo;s physics couldn&rsquo;t do what the arcade does, so it would mostly have helped with drawing. I tried plain Canvas first, it worked, so I kept it.</dd>
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd>The project compared plain <a href="/sources/#g-canvas">Canvas</a> with one <a href="/sources/#g-game-engine">game framework</a>, Phaser, in a <a href="/sources/#g-trade-study">trade study</a>. Phaser&rsquo;s physics is 2D only and can&rsquo;t do the arcade&rsquo;s rules, so the game&rsquo;s own physics was needed either way. The choice had a cost: menus, animation and input all had to be written instead of coming ready-made. Other engines, such as Unity or Godot, weren&rsquo;t compared, so the record can&rsquo;t say they would have been worse.</dd>
               <dt>WHERE TO CHECK</dt>
@@ -112,7 +112,7 @@
             <h3>HOW DO YOU KNOW THE PHYSICS IS RIGHT?</h3>
             <dl>
               <dt>SHORT ANSWER</dt>
-              <dd class="draft">I tested it instead of trusting it. Tests compare my ball with recordings of the real arcade game. It matches exactly between racket hits and less exactly at the moment of a hit. &ldquo;Right&rdquo; here means it matches the arcade, not real-life squash.</dd>
+              <dd>I tested it instead of trusting it. Tests compare my ball with recordings of the real arcade game. It matches exactly between racket hits and less exactly at the moment of a hit. &ldquo;Right&rdquo; here means it matches the arcade, not real-life squash.</dd>
               <dt>WHAT THE RECORD SHOWS</dt>
               <dd><a href="/sources/#g-golden-test">Golden tests</a> and flight tests compare the game with two recordings, and they run again after every change (<a href="/sources/#g-regression-test">regression testing</a>). There are limits. The AI also wrote the tests, so a test could share the code&rsquo;s mistake. The recordings come from one version of the game, run in an <a href="/sources/#g-emulator">emulator</a> and not on a real machine. Separately, the court&rsquo;s size was checked against the world governing body&rsquo;s official specification.</dd>
               <dt>WHERE TO CHECK</dt>
