@@ -65,8 +65,6 @@
           <dd>One player against the computer, or two head to head. There are 8 players from 8 countries, shown only by a portrait and a flag. No differences in speed or power were found in the code.<!-- 1992 §0 and §3; logic §5 --></dd>
           <dt>TOURNAMENT</dt>
           <dd>Five rounds against harder and harder opponents: Qualify Game, 8th Final, Quarter-Final, Semi-Final and Final. Winning a round gives 2 extra faults.<!-- logic §7 --></dd>
-          <dt>LEFT OUT</dt>
-          <dd>Between points the original shows pin-up pictures of women, which the 2026 re-release covers with a flag. Hogg Squash leaves them out.<!-- 1992 §2 --></dd>
           <dt>TODAY</dt>
           <dd>Re-released on the Evercade <i>Gaelco Arcade 2</i> cartridge (2022) and in the <i>Gaelco Sports Collection</i> (October 22, 2026).<!-- 1992 §1 --></dd>
         </dl>
@@ -211,6 +209,50 @@
           <li><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a><p class="use">Pixel-art editor for cleaning up the sprites: colors, sizes and exporting the animations.</p><p class="limit">Cleanup is done pixel by pixel, which is slow.</p></li>
           <li><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a><p class="use">AI sound-effect generator that made the game's sounds: racket hits, the ball on the walls and floor, and the menu sounds.</p><p class="limit">The free plan is for non-commercial use only and asks for this credit. Busy times can refuse a request.<!-- decisions "Audio" (A6) --></p></li>
         </ul>
+      </section>
+
+      <section id="spending" aria-labelledby="spending-h">
+        <h2 id="spending-h">WHAT IT COST</h2>
+        <p>My dad paid for everything in this project. Every AI art and sound job was approved before it ran, and its cost was written down.</p>
+
+        <h3>MONEY</h3>
+        <!-- Worked out 2026-11-24 from list prices, not receipts. Claude: the account is on Pro ($20/month, support.claude.com), Oct and Nov 2026.
+             SpriteCook: Apprentice $12/month for 800 credits (spritecook.ai/pricing); 1,428 spent + 172 left = 1,600 = two months (Oct 20, Nov 20), no top-ups.
+             Aseprite: $19.99 (Steam / itch.io). Domain: Cloudflare Registrar .com, about $10.46 a year at cost. Hosting assumed on Cloudflare's free Workers plan.
+             TODO Ronin: check these with your dad (a sale price, an older Aseprite copy or a paid Cloudflare plan would change them). -->
+        <table class="numbers draft">
+          <thead><tr><th scope="col">WHAT</th><th scope="col">FOR</th><th scope="col">COST</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Claude Pro ($20 a month, 2 months)</th><td>Claude and Claude Code</td><td class="n">$40</td></tr>
+            <tr><th scope="row">SpriteCook Apprentice ($12 a month, 2 months)</th><td>Player art and animations</td><td class="n">$24</td></tr>
+            <tr><th scope="row">Aseprite (bought once)</th><td>Cleaning up the pixel art</td><td class="n">$20</td></tr>
+            <tr><th scope="row">roninray.com domain (1 year)</th><td>The website&rsquo;s address</td><td class="n">$10</td></tr>
+            <tr><th scope="row">Cloudflare hosting (free plan)</th><td>Running the game and this site</td><td class="n">$0</td></tr>
+            <tr><th scope="row">ElevenLabs (free plan)</th><td>Sound effects</td><td class="n">$0</td></tr><!-- elevenlabs-manifest.md: Plan: ElevenLabs Free -->
+            <tr><th scope="row">MAME, Ghidra, GitHub</th><td>Research and storing the code</td><td class="n">$0</td></tr>
+            <tr><th scope="row">TOTAL SO FAR</th><td>Oct&ndash;Nov 2026</td><td class="n">about $94</td></tr>
+          </tbody>
+        </table>
+        <p>Costs are rounded to the nearest dollar, from each tool&rsquo;s listed price.</p>
+
+        <h3>AI CREDITS</h3>
+        <!-- All figures: hogg-squash art/spritecook-manifest.md and audio/elevenlabs-manifest.md, checked 2026-11-23. -->
+        <table class="numbers">
+          <thead><tr><th scope="col">WHAT WAS MADE</th><th scope="col">TOOL</th><th scope="col">CREDITS</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">First player designs</th><td>SpriteCook</td><td class="n">32</td></tr><!-- A1 -->
+            <tr><th scope="row">Player animations</th><td>SpriteCook</td><td class="n">240</td></tr><!-- A2 120 + A3 120 -->
+            <tr><th scope="row">Wood floor</th><td>SpriteCook</td><td class="n">8</td></tr><!-- A4 -->
+            <tr><th scope="row">Razorback mascot designs</th><td>SpriteCook</td><td class="n">32</td></tr><!-- A5 -->
+            <tr><th scope="row">Coach Zain and his animations</th><td>SpriteCook</td><td class="n">392</td></tr><!-- A7z 192 + A8z 200 -->
+            <tr><th scope="row">Coach Zain&rsquo;s trophy pose</th><td>SpriteCook</td><td class="n">68</td></tr><!-- A19z -->
+            <tr><th scope="row">A new character and his animations (racket, then trombone)</th><td>SpriteCook</td><td class="n">656</td></tr><!-- A13 192 + A14 464 -->
+            <tr><th scope="row">SpriteCook total</th><td></td><td class="n">1,428</td></tr>
+            <tr><th scope="row">Sound effects</th><td>ElevenLabs</td><td class="n">222</td></tr><!-- A6 -->
+            <tr><th scope="row">More sound effects</th><td>ElevenLabs</td><td class="n">90</td></tr><!-- A6b -->
+            <tr><th scope="row">ElevenLabs total (free)</th><td></td><td class="n">312</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section id="concepts" aria-labelledby="concepts-h">
