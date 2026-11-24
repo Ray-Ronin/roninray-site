@@ -191,7 +191,7 @@
         <div class="concept" id="chart-playtests">
           <h3>WHAT PLAY-TESTING CHANGED</h3>
           <p>For each play-test, the number of points that asked for a change and the number that were checked and kept, with the fix-up sessions that followed. <a href="/build/#feedback">The build log has the full table</a>.</p>
-          <p class="draft">The docs don&rsquo;t give these counts, so this is my own count of their notes. A numbered answer or a separately named point counts once. A point with a good part and a bad part counts as a change.</p>
+          <p>The project&rsquo;s docs don&rsquo;t give these counts, so they come from counting the notes by hand. A numbered answer or a separately named point counts once. A point with a good part and a bad part counts as a change. Ronin checked the full list on Nov 13, 2026.<!-- Ronin confirmed the counts and the list, 2026-11-13 --></p>
           <figure class="fig">
             <ul class="key" aria-hidden="true"><li><span class="sw ok"></span>asked for a change</li><li><span class="sw kept"></span>checked and kept</li></ul>
             <svg viewBox="0 0 560 384" role="group" aria-labelledby="c-play-cap">
@@ -235,7 +235,7 @@
 
       <section id="patterns" aria-labelledby="patterns-h">
         <h2 id="patterns-h">WHAT THE DATA SHOWS</h2>
-        <p class="draft">The patterns I found in the evidence. Each one gives the finding, the evidence, where it comes from, and why it matters.</p>
+        <p>The patterns in the evidence. Each one gives the finding, the evidence, where it comes from, and why it matters.</p>
         <div class="findings">
           <article class="method" id="p-tests-vs-person">
             <h3>TESTS AND PEOPLE CHECK DIFFERENT THINGS</h3>
@@ -243,7 +243,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Tests can tell me the ball moves like the arcade&rsquo;s. They can&rsquo;t tell me if the game is fair or fun. When I played it I found problems the tests had no way to see.</dd>
               <dt>EVIDENCE</dt>
-              <dd class="draft">A scripted player beat level 1 by 9&ndash;2 at S6. I lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
+              <dd>A scripted player beat level 1 by 9&ndash;2 at S6. Ronin lost to the same level 4&ndash;9 at CP-C.<!-- plan Session log 2026-10-20 CP-C --> None of the 22 changes on the chart touched the file with the ball physics. It was last changed on Oct 18, before the first play-test.<!-- git log -- public/hogg-squash/js/squash-physics.js: last commit c6a99f6, 2026-10-18 --> The physics test numbers stayed at their <a href="/sources/#g-baseline">baseline</a> through the S4b, S6b, S8b and S12b&ndash;e fix-ups.<!-- plan Session log entries for each session --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> Session log; the game&rsquo;s git history; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -256,7 +256,7 @@
               <dt>FINDING</dt>
               <dd class="draft">The CP-C play-test changed the win rates far more than anything after it. The later changes were small, and some of them might be noise.</dd>
               <dt>EVIDENCE</dt>
-              <dd class="draft">At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b I said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd>At level 1, the same robot went from 34% against S6 to 78% against S6b, up 44 points.<!-- decisions "CPU difficulty" --> After that, S12c moved levels 1, 3 and 4 by 5&ndash;7 points and S12d moved nothing more than 2.<!-- decisions "Hitting" --> S12e moved up to 3 points, and it only made the words on the wall stay up longer. It did shift the frame numbers the CPU&rsquo;s choices are <a href="/sources/#g-random-seed">seeded</a> from.<!-- plan S12e section ("expected: noise only") and Session log 2026-10-23 --> After S6b, Ronin said levels 1, 5 and 9 feel clearly different. At CP-C they had felt about the same.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-levels">the win-rate chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -269,7 +269,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Every level is harder than the one before it, so the order is right. But the jump from 5 to 6 is much bigger than the jumps at the top.</dd>
               <dt>EVIDENCE</dt>
-              <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo; and don&rsquo;t record a verdict. <a href="/sources/#g-volley">Volleys</a> also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
+              <dd>Every measured curve falls at every level, and S6b, S12c, S12d and S12e all meet the plan&rsquo;s three targets.<!-- decisions and plan: checked against the targets 60 / 35-55 / 20 --> In S12d the steps run from 3 to 20 points. The step from level 5 to 6 was 14 points in S6b, 18 in S12c, 20 in S12d and 16 in S12e. From level 7 to 8 to 9 the steps are 4 and 3.<!-- worked out from the win-rate table above --> The docs left the 5 to 6 step &ldquo;for the owner to judge in play&rdquo;. When Ronin plays it, level 6 feels much harder than level 5.<!-- Ronin, 2026-11-13: "Yes, much harder" --> <a href="/sources/#g-volley">Volleys</a> also start at level 6, but no test checked whether that causes the jump.<!-- decisions "Hitting" S12c Measured; "The CPU columns as built" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;CPU difficulty&rdquo; and &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -295,7 +295,7 @@
               <dt>FINDING</dt>
               <dd class="draft">I changed the drop shot so it no longer matches the arcade, on purpose, because the game played better. Fixing it also moved part of the problem somewhere else.</dd>
               <dt>EVIDENCE</dt>
-              <dd class="draft">Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b I called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
+              <dd>Second bounces past the <a href="/sources/#g-short-line">short line</a> fell from about 70% to 0&ndash;6%, and <a href="/sources/#g-tin">tins</a> from about 22% to 8%. But about 14% of drops now fall short of the front wall, so all lost together stayed about the same, at 21&ndash;25%.<!-- decisions "Hitting" --> The first cap the plan tried still left 25&ndash;40% past the line.<!-- decisions "Hitting" --> After S6b, Ronin called the drop &ldquo;perfect&rdquo;.<!-- plan Session log 2026-10-20 "after S6b" --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/decisions.md</code> &ldquo;Hitting&rdquo;; <code>docs/plan.md</code> Session log; <a href="#chart-drop">the drop chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -308,7 +308,7 @@
               <dt>FINDING</dt>
               <dd class="draft">Play-testing wasn&rsquo;t only finding problems. About half of it was deciding that something was already right, and the changes were mostly about how the game feels, looks and sounds.</dd>
               <dt>EVIDENCE</dt>
-              <dd class="draft">By my count, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
+              <dd>Counted from the notes, 22 points asked for a change and 21 were kept. Eight fix-up sessions followed, and S12b came from a request between checkpoints. CP-E needed no fix-up session. CP-F took three rounds of fixes, and its last pass found nothing.<!-- plan and plan-v2 lists and Session logs; counts listed under the chart --></dd>
               <dt>SOURCE</dt>
               <dd class="src"><code>docs/plan.md</code> and <code>docs/plan-v2.md</code>; <code>docs/decisions.md</code>; <a href="/build/#feedback">the feedback table</a>; <a href="#chart-playtests">the play-test chart</a>.</dd>
               <dt>WHY IT MATTERS</dt>
@@ -381,18 +381,19 @@
             <h3>THE TEST PLAYER IS A BOT</h3>
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd class="draft">The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and I won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
+              <dd>The reference beginner always reacts in 15 frames and never learns or gets tired. It was checked against one result: it wins 34% of points against the S6 level 1, and Ronin won 4 of 13 points (31%) in one match. A first version won only 19%, so it was changed.<!-- decisions "CPU difficulty"; plan Session log 2026-10-20 S6b ("the owner lost 4-9, 31%"; "won only 19%") --> The log itself says &ldquo;beatable at level 1&rdquo; rests on a player <a href="/sources/#g-calibration">calibrated</a> to that one result.<!-- plan Session log 2026-10-20 S6b, "Not checked in real time" --></dd>
               <dt>WHAT THIS MEANS</dt>
               <dd class="draft">The win-rate chart shows how the levels compare for one robot. It doesn&rsquo;t show what a real beginner would score. One 13-point match is very little to calibrate it with, and I don&rsquo;t know if real beginners play like it.</dd>
             </dl>
           </article>
           <article class="method" id="l-one-person">
-            <h3>ONE PERSON DID THE PLAY-TESTING</h3>
+            <h3>THE PLAY-TESTERS WERE THE PEOPLE BUILDING IT</h3>
+            <!-- Ronin's own words (2026-11-12), spelling and punctuation only. The docs record only "the owner"; Ronin added his dad and the two friends' play-test. -->
             <dl>
               <dt>WHAT THE RECORD SHOWS</dt>
-              <dd class="draft">Every point on the play-test chart came from me, playing on my own computer and, at CP-G, a phone.<!-- plan and plan-v2 Session logs ("the owner"); plan-v2 2026-10-29 "on a computer and a phone" --> The teacher feedback section of the <a href="/build/#feedback">feedback table</a> is still empty.</dd>
+              <dd>Me and my dad have been play-testing it as we were making it, but my friends have play-tested it once recently. They had a hard time with the game and didn&rsquo;t know what to do or how to select, and gave advice like &ldquo;You should add abilities to each character.&rdquo; Me and my dad have been changing things as we play-test, but I haven&rsquo;t changed anything after my friends gave feedback.</dd>
               <dt>WHAT THIS MEANS</dt>
-              <dd class="draft">I know this game better than anyone, and I got better at it while I built it. Someone new might find level 1 too hard, or be confused by things I stopped noticing. So &ldquo;feels right&rdquo; on this page means it felt right to me.</dd>
+              <dd>It matters because we know all the controls and everything else about the game. It tells us that we need to make things clearer and more simple. I didn&rsquo;t add character abilities yet because I was doing other things for the game and wanted to do that when I had different characters and when I will give them different stats.</dd>
             </dl>
           </article>
           <article class="method" id="l-own-script">
@@ -419,7 +420,6 @@
           <li>S6&rsquo;s win rates at levels 2 to 9, and how many rallies the 34% at level 1 used.<!-- decisions "CPU difficulty" gives only the one number --></li>
           <li>How many drops fell short of the front wall before S6b, and the total lost before S6b as its own number.<!-- decisions "Hitting" --></li>
           <li>Any person&rsquo;s measured win rate after CP-C. The later notes say how the levels felt, not what the score was.<!-- plan Session log 2026-10-20 "after S6b" --></li>
-          <li>A verdict on whether the step from level 5 to 6 is too big.<!-- decisions "Hitting" S12c Measured: "for the owner to judge in play"; plan S12b "Not checked" --></li>
         </ul>
       </section>
 
