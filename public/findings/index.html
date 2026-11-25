@@ -500,17 +500,6 @@
         <h2 id="ethics-h">ETHICS</h2>
         <p>What was done, the question it raises, and what I think. I&rsquo;m not a lawyer, and no lawyer has reviewed this project, so the legal parts are what I read, not legal advice.</p>
         <div class="findings">
-          <article class="method" id="e-copyright">
-            <h3>COPYRIGHT AND THE ORIGINAL GAME</h3>
-            <dl>
-              <dt>WHAT WAS DONE</dt>
-              <dd>The <a href="/sources/#g-rom">ROM</a>, its graphics and its sounds are Gaelco&rsquo;s copyrighted work. They were studied for reference, kept out of the public code, and never shipped or traced. The AI art and sound tools were given nothing from the arcade game. The game doesn&rsquo;t use Gaelco&rsquo;s name or logo; this site names them to give credit.<!-- hogg-squash CLAUDE.md "IP rules"; rom_extracts/README.md --></dd>
-              <dt>THE QUESTION</dt>
-              <dd>The game does ship more than an idea. Its physics file is a <a href="/sources/#g-port">port</a> of the arcade&rsquo;s routines, using its shot tables and numbers, and the public code includes the recorded ball data used for testing.<!-- squash-physics.js header; test/fixtures --> The project&rsquo;s rule that &ldquo;recreating gameplay mechanics is fine&rdquo; is its own position, not a ruling.</dd>
-              <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: say where the ROM file came from, and whether you&rsquo;re comfortable with that. Then: I think taking the art would clearly be wrong and copying how a ball bounces is much closer to fine, but a port sits somewhere in between.</dd>
-            </dl>
-          </article>
           <article class="method" id="e-reverse">
             <h3>REVERSE ENGINEERING</h3>
             <dl>
@@ -542,28 +531,6 @@
               <dd>Those tools learned from other people&rsquo;s work. ElevenLabs names one licensed source and SpriteCook&rsquo;s wasn&rsquo;t checked. See <a href="#v-artists">Artists</a>.</dd>
               <dt>MY VIEW</dt>
               <dd>I think it&rsquo;s OK for a free school project if it&rsquo;s credited, but I wouldn&rsquo;t be as sure if I were selling the game.</dd>
-            </dl>
-          </article>
-          <article class="method" id="e-logo">
-            <h3>THE SCHOOL&rsquo;S NAME AND LOGO</h3>
-            <dl>
-              <dt>WHAT WAS DONE</dt>
-              <dd>The Hogg Razorbacks shield is on the title screen and in the match, and the court uses the school&rsquo;s colours and name.<!-- decisions "Theme" --> </dd>
-              <dt>THE QUESTION</dt>
-              <dd>The project&rsquo;s notes said it was &ldquo;worth confirming the school is happy&rdquo; with the logo appearing publicly. They record my decision to use it, not an answer from the school.<!-- open-questions.md #6 --></dd>
-              <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: ask the school, then say what they answered. Until then, the honest wording is: it&rsquo;s my school and I meant it as a tribute, but that isn&rsquo;t the same as permission.</dd>
-            </dl>
-          </article>
-          <article class="method" id="e-privacy">
-            <h3>PRIVACY AND REAL PEOPLE</h3>
-            <dl>
-              <dt>WHAT WAS DONE</dt>
-              <dd>A group photo of the courts was kept out of the code because it shows students, and this site names no students except me. One real coach, who has agreed, is being added as a character. Their photos stay out of the code, but they were uploaded to SpriteCook as references.<!-- theme.md; plan-v2 "Finalized characters", A7z --></dd>
-              <dt>THE QUESTION</dt>
-              <dd>Agreeing to be in a game isn&rsquo;t necessarily agreeing to have your photos sent to an AI service. It depends on what they were told.</dd>
-              <dt>MY VIEW</dt>
-              <dd class="draft">Ronin: say whether the coach knew the photos would go to an AI tool. Then: I think people should get to choose this, especially students, which is why I kept them out.</dd>
             </dl>
           </article>
         </div>
